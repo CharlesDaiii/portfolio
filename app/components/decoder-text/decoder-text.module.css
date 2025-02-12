@@ -1,0 +1,40 @@
+@layer components {
+  .text {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    &::after {
+      content: '_';
+      visibility: hidden;
+    }
+  }
+
+  .glyph {
+    opacity: 0.8;
+    font-weight: var(--fontWeightRegular);
+    font-family: var(--japaneseFontStack);
+    line-height: 0;
+  }
+
+  .content {
+    display: inline-flex;
+  }
+
+  .value {
+    display: inline-block;
+    opacity: 0;
+    animation: fade-in 1.5s ease forwards;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

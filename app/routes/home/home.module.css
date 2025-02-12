@@ -1,0 +1,96 @@
+.home {
+  overflow-x: hidden;
+  position: relative;
+}
+
+.section {
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  position: relative;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 0;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.projects > div:first-child {
+  margin-top: 120vh;  /* 增加与WORK标题的间距 */
+  padding-top: 0;
+}
+
+.projects > div:not(:first-child) {
+  margin-top: 0px;  /* 项目之间的重叠 */
+}
+
+@media (max-width: 1096px) {
+  .projects > div:first-child {
+    margin-top: 90vh;
+  }
+  
+  .projects > div:not(:first-child) {
+    margin-top: 0px;
+  }
+
+  .projectSection {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .projectSectionContent {
+    margin: 0;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .projectSectionImage {
+    max-width: 100%;
+    margin: 0;
+  }
+}
+
+.projectSection {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.projectSectionContent {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.projectSectionImage {
+  position: relative;
+  max-width: 50%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@media (--mediaTablet) {
+  .projects > div:first-child {
+    margin-top: 90vh;
+  }
+  
+  .projects > div:not(:first-child) {
+    margin-top: 0px;
+  }
+
+  .projectSection {
+    flex-direction: column;
+    align-items: center;
+  }
+}

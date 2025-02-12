@@ -1,0 +1,708 @@
+.petpals {
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.slogan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 120px 32px;
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+.sloganSubtitle {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+}
+
+.sloganTitle {
+  font-size: 4.5rem;
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  opacity: 0.2;
+  margin: 80px 0;
+}
+
+.contentSection {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 160px;
+  padding: 0 32px;
+  max-width: 1200px;
+  margin: 0 auto 80px;
+}
+
+.contentSection:last-child {
+  margin-bottom: 0;
+}
+
+.contentLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.contentRight {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 40px;
+}
+
+.contentRight .sectionText {
+  position: relative;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+.sectionTitle {
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.sectionText {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+.sectionGroup {
+  margin-bottom: 40px;
+}
+
+.sectionGroup:last-child {
+  margin-bottom: 0;
+}
+
+.overview {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.overview h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+}
+
+.tags {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.tags span {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: var(--background-light);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.details {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.techStack, .challenges, .solution {
+  margin-bottom: 60px;
+}
+
+.techStack h2, .challenges h2, .solution h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: var(--text-primary);
+}
+
+.challenge, .feature {
+  margin-bottom: 30px;
+}
+
+.challenge h3, .feature h3 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: var(--text-primary);
+}
+
+.challenge p, .feature p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.infoBlock {
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.infoTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.infoList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.infoList li {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  font-weight: 400;
+}
+
+.overviewBlock {
+  max-width: 640px;
+  position: relative;
+}
+
+.overviewTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.overviewText {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+
+.overviewText strong {
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: linear-gradient(transparent 0%, rgba(255, 255, 255, 0.1) 40%);
+  padding: 0 2px;
+}
+
+@media (max-width: 1024px) {
+  .sloganTitle {
+    font-size: 3.5rem;
+  }
+
+  .contentSection {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .contentRight {
+    padding-left: 0;
+  }
+
+  .sectionTitle {
+    position: static;
+    white-space: normal;
+  }
+
+  .infoBlock {
+    margin-bottom: 24px;
+  }
+
+  .overviewBlock {
+    max-width: 100%;
+  }
+
+  .contentSection::before {
+    left: 24px;
+    right: 24px;
+  }
+
+  .problemHeader {
+    margin-bottom: 80px;
+  }
+
+  .problemTitle {
+    font-size: 2.75rem;
+    white-space: normal;
+  }
+
+  .problemDescription {
+    font-size: 1.125rem;
+    width: 100%;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 768px) {
+  .sloganTitle {
+    font-size: 2.5rem;
+  }
+
+  .overview h1 {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 1.1rem;
+  }
+
+  .tags span {
+    font-size: 0.8rem;
+  }
+
+  .overviewText strong {
+    background: none;
+    font-weight: 700;
+  }
+
+  .problemTitle {
+    font-size: 2.25rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.25rem;
+  }
+
+  .sectionText {
+    font-size: 0.9375rem;
+  }
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background);
+}
+
+.problemHeader {
+  max-width: 1200px;
+  margin: 0 auto 120px;
+  padding: 0 32px;
+  position: relative;
+}
+
+.problemSubtitle {
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  opacity: 0.8;
+}
+
+.problemTitle {
+  font-size: 3.5rem;
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0 0 32px 0;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.problemDescription {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+  font-weight: 300;
+  opacity: 0.8;
+  width: 75%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.solutionContainer {
+  width: 100%;
+  position: relative;
+}
+
+.solutionTitle {
+  font-size: 4.5rem;
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0 0 80px 0;
+  text-align: center;
+}
+
+.inverted {
+  position: relative;
+  margin: 0;
+  padding: 120px 0;
+  width: 100vw;
+  left: calc(-50vw + 50%);
+  right: calc(-50vw + 50%);
+  box-sizing: border-box;
+}
+
+/* 在浅色模式下显示深色主题 */
+.inverted[data-theme='dark'] {
+  background: oklch(17.76% 0 0);
+}
+
+.inverted[data-theme='dark'] .sectionTitle,
+.inverted[data-theme='dark'] .sectionText,
+.inverted[data-theme='dark'] .solutionTitle {
+  color: oklch(100% 0 0);
+}
+
+.inverted[data-theme='dark'] .stepNumber {
+  background: oklch(100% 0 0);
+  color: oklch(17.76% 0 0);
+}
+
+/* 在深色模式下显示浅色主题 */
+.inverted[data-theme='light'] {
+  background: oklch(96.12% 0 0);
+}
+
+.inverted[data-theme='light'] .sectionTitle,
+.inverted[data-theme='light'] .sectionText,
+.inverted[data-theme='light'] .solutionTitle {
+  color: oklch(0% 0 0);
+}
+
+.inverted[data-theme='light'] .stepNumber {
+  background: oklch(0% 0 0);
+  color: oklch(96.12% 0 0);
+}
+
+.stepNumber {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.solutionImage {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: transparent;
+  box-shadow: none;
+}
+
+.solutionImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.solutionVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: transparent;
+}
+
+@media (max-width: 1024px) {
+  .solutionTitle {
+    font-size: 3.5rem;
+    margin-bottom: 60px;
+  }
+
+  .solutionSteps {
+    gap: 60px;
+  }
+
+  .solutionStep,
+  .solutionStep:nth-child(even) {
+    grid-template-columns: 1fr;
+    direction: ltr;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .stepContent {
+    align-items: center;
+    text-align: center;
+  }
+
+  .solutionImage {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .solutionTitle {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+  }
+
+  .solutionImage {
+    box-shadow: none;
+  }
+
+  .stepNumber {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .solutionVideo {
+    border-radius: 16px;
+  }
+}
+
+.comparisonSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 32px;
+}
+
+.comparisonLeft,
+.comparisonRight {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.comparisonTitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.comparisonText {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+.comparisonText strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.comparisonInsight {
+  max-width: 1200px;
+  margin: 0 auto 80px;
+  padding: 0 32px;
+}
+
+.insightText {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+@media (max-width: 1024px) {
+  .comparisonSection {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .comparisonTitle {
+    font-size: 1.25rem;
+  }
+
+  .comparisonText,
+  .insightText {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .comparisonText,
+  .insightText {
+    font-size: 0.9375rem;
+  }
+}
+
+.comparisonLogos {
+  display: flex;
+  gap: 40px;
+  margin-top: 32px;
+  align-items: center;
+  padding-left: 40px;
+}
+
+.comparisonLogo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* 为特定 logo 添加圆角 */
+.comparisonLogo[alt="DogCha!"],
+.comparisonLogo[alt="Woofz"],
+.comparisonLogo[alt="Bumble"] {
+  background: var(--background-light);
+  padding: 10px;
+  border-radius: 28px;
+  height: 80px; /* 稍微减小一点以补偿padding */
+}
+
+/* 为 Tinder logo 单独设置大小 */
+.comparisonLogo[alt="Tinder"] {
+  height: 66px; /* 与带圆角的logo视觉上保持一致 */
+}
+
+@media (max-width: 768px) {
+  .comparisonLogos {
+    gap: 32px;
+  }
+  
+  .comparisonLogo {
+    height: 36px;
+  }
+
+  .comparisonLogo[alt="DogCha!"],
+  .comparisonLogo[alt="Woofz"],
+  .comparisonLogo[alt="Bumble"] {
+    height: 32px;
+    padding: 8px;
+    border-radius: 12px;
+  }
+
+  .comparisonLogo[alt="Tinder"] {
+    height: 32px;
+  }
+}
+
+.solutionSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.solutionStep {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+}
+
+.stepContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.stepNumber {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 1024px) {
+  .solutionSteps {
+    gap: 80px;
+  }
+
+  .solutionStep {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .stepContent {
+    align-items: center;
+    text-align: center;
+  }
+
+  .solutionImage {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .solutionSteps {
+    gap: 60px;
+  }
+
+  .solutionStep {
+    gap: 24px;
+  }
+
+  .solutionImage {
+    max-width: 100%;
+    border-radius: 16px;
+  }
+
+  .stepNumber {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+  }
+}

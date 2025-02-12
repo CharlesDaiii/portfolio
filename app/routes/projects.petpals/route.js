@@ -1,0 +1,1 @@
+export { PetPals as default, meta } from './petpals'; 

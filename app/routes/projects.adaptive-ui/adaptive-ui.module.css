@@ -1,0 +1,583 @@
+.adaptiveUI {
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.slogan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 120px 32px;
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+.sloganSubtitle {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+}
+
+.sloganTitle {
+  font-size: 4.5rem;
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  opacity: 0.2;
+  margin: 80px 0;
+}
+
+.contentSection {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 160px;
+  padding: 0 32px;
+  max-width: 1200px;
+  margin: 0 auto 80px;
+}
+
+.contentLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.contentRight {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 40px;
+}
+
+.infoBlock {
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.infoTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.infoContent {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.infoList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.infoList li {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  font-weight: 400;
+}
+
+.infoList strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+ol.infoList {
+  list-style: decimal;
+  padding-left: 1.2em;
+}
+
+ol.infoList li {
+  padding-left: 0.3em;
+}
+
+.overviewBlock {
+  max-width: 640px;
+  position: relative;
+}
+
+.overviewTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.overviewText {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+
+.overviewText strong {
+  color: var(--text-primary);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: linear-gradient(transparent 0%, rgba(255, 255, 255, 0.1) 40%);
+  padding: 0 2px;
+}
+
+@media (max-width: 1024px) {
+  .sloganTitle {
+    font-size: 3.5rem;
+  }
+
+  .contentSection {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .contentRight {
+    padding-left: 0;
+  }
+
+  .infoBlock {
+    margin-bottom: 20px;
+  }
+
+  .infoTitle {
+    font-size: 0.8125rem;
+  }
+
+  .infoList li {
+    font-size: 0.875rem;
+  }
+
+  .overviewBlock {
+    max-width: 100%;
+  }
+
+  .overviewText {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sloganTitle {
+    font-size: 2.5rem;
+  }
+
+  .infoBlock {
+    margin-bottom: 16px;
+  }
+
+  .overviewText strong {
+    background: none;
+  }
+}
+
+/* Workshop Section Styles */
+.workshopContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+  background: var(--background);
+}
+
+.sectionHeader {
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+.sectionSubtitle {
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  opacity: 0.8;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0 0 16px 0;
+  color: var(--text-primary);
+  width: 100%;
+  max-width: 100%;
+}
+
+.sectionDescription {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+  font-weight: 400;
+  opacity: 0.8;
+  width: 100%;
+  max-width: 100%;
+}
+
+.timeline {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 20px;
+  width: 2px;
+  height: calc(100% - 40px);
+  background: var(--primary);
+  opacity: 0.8;
+}
+
+.timelineItem {
+  position: relative;
+  padding-left: 64px;
+  margin-bottom: 60px;
+}
+
+.timelineItem:last-child {
+  margin-bottom: 0;
+}
+
+.timelineStep {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--background);
+  border: 2px solid var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  z-index: 1;
+}
+
+.timelineContent {
+  position: relative;
+  background: var(--background);
+  padding: 0;
+  margin-top: 8px;
+}
+
+.timelineTitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0 0 16px 0;
+}
+
+.timelineText {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0 0 8px 0;
+  opacity: 0.8;
+}
+
+.timelineMedia {
+  margin-top: 24px;
+  padding: 0;
+}
+
+/* After Workshop Styles */
+.afterWorkshop {
+  margin-top: 80px;
+}
+
+.afterWorkshopItem {
+  margin-bottom: 60px;
+}
+
+.afterWorkshopItem:last-child {
+  margin-bottom: 0;
+}
+
+.afterWorkshopTitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.afterWorkshopText {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  opacity: 0.8;
+}
+
+/* Media Styles */
+.presentationPlaceholder,
+.prototypeGrid,
+.testingDesign,
+.testingResults {
+  padding: 40px;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  background: var(--background);
+  border-radius: 12px;
+  text-align: center;
+  font-size: 1.125rem;
+}
+
+.brainstormingBox {
+  padding: 48px;
+  border: 3px dashed var(--primary);
+  opacity: 0.9;
+  background: transparent;
+}
+
+.pdfViewer {
+  width: 70%;
+  height: 470px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--background);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pdfObject {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.pdfViewer p {
+  padding: 20px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.pdfViewer a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.pdfViewer a:hover {
+  text-decoration: underline;
+}
+
+.discussionImage {
+  width: 70%;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.discussionImage .image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  .timelineStep {
+    width: 36px;
+    height: 36px;
+    font-size: 0.875rem;
+  }
+
+  .timelineItem {
+    padding-left: 56px;
+  }
+
+  .timeline::before {
+    left: 18px;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+  }
+
+  .pdfViewer {
+    width: 85%;
+    height: 350px;
+  }
+
+  .discussionImage {
+    width: 85%;
+  }
+}
+
+@media (max-width: 768px) {
+  .timelineStep {
+    width: 32px;
+    height: 32px;
+    font-size: 0.875rem;
+  }
+
+  .timelineItem {
+    padding-left: 48px;
+    margin-bottom: 40px;
+  }
+
+  .timeline::before {
+    left: 16px;
+  }
+
+  .timelineTitle {
+    font-size: 1.25rem;
+  }
+
+  .timelineText {
+    font-size: 0.875rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.75rem;
+  }
+
+  .pdfViewer {
+    width: 100%;
+    height: 300px;
+  }
+
+  .discussionImage {
+    width: 100%;
+  }
+}
+
+.brainstormingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 24px 0;
+  width: 100%;
+}
+
+.paperA4 {
+  flex: 0 0 auto;
+  width: 32%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 3px;
+  padding: 0;
+  aspect-ratio: 1/1.414;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.paperImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Remove hover effects and transitions */
+.paperA4:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.paperGap {
+  width: 2px;
+  flex: 0 0 auto;
+}
+
+.paperTitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.paperContent {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  padding: 0 16px;
+}
+
+.arrowContainer {
+  flex: 0 0 auto;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 0;
+}
+
+/* Remove old arrow styles */
+.arrow, .arrow::after, .arrowLine, .arrowCircle {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .brainstormingContainer {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .paperA4 {
+    width: 85%;
+  }
+
+  .arrowContainer {
+    transform: rotate(90deg);
+    margin: 8px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .paperA4 {
+    width: 100%;
+  }
+
+  .paperTitle {
+    font-size: 1.125rem;
+  }
+
+  .paperContent {
+    font-size: 0.875rem;
+  }
+} 

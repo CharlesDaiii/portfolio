@@ -1,0 +1,21 @@
+.sectionTitle {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(120px, 20vw, 260px);
+  line-height: 1;
+  color: var(--colorText);
+  position: absolute;
+  top: 80vh;
+  left: var(--spaceOuter);
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  z-index: 1;
+}
+
+@media (max-width: 1096px) {
+  .sectionTitle {
+    font-size: clamp(80px, 15vw, 140px);
+    top: 60vh;
+  }
+} 

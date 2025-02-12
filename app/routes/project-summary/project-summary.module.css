@@ -1,0 +1,60 @@
+.projectLogos {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24px;
+  margin: 0 0 20px;
+  padding: 0;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.logoWrapper {
+  background-color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.projectLogo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.projectLogo:hover {
+  opacity: 1;
+}
+
+@media (--mediaTablet) {
+  .projectLogos {
+    padding: 0;
+  }
+
+  .logoWrapper {
+    padding: 6px 12px;
+  }
+
+  .projectLogo {
+    height: 28px;
+  }
+}
+
+@media (--mediaMobile) {
+  .projectLogos {
+    padding: 0;
+  }
+
+  .logoWrapper {
+    padding: 4px 8px;
+  }
+
+  .projectLogo {
+    height: 24px;
+  }
+} 
