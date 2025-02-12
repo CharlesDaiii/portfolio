@@ -9,8 +9,9 @@ import { useTheme } from '~/components/theme-provider';
 import workshopSlidesPDF from '~/assets/adaptive-ui/workshop-slides.pdf';
 import discussionImage from '~/assets/adaptive-ui/Discussion.jpg';
 import brainstormingImage from '~/assets/adaptive-ui/Brainstorming.jpg';
-import auiReport1Image from '~/assets/adaptive-ui/AUIReport1.jpg';
-import auiReport2Image from '~/assets/adaptive-ui/AUIReprot2.jpg';
+import AUIReport1Image from '~/assets/adaptive-ui/AUIReport1.jpg';
+import AUIReport2Image from '~/assets/adaptive-ui/AUIReprot2.jpg';
+import AUIReport3Image from '~/assets/adaptive-ui/AUIReprot3.jpg';
 
 export const meta = () => {
   return baseMeta({
@@ -128,19 +129,63 @@ export const AdaptiveUI = () => {
               <div className={styles.timelineContent}>
                 <h3 className={styles.timelineTitle}>Brainstorming: Identifying AUI Opportunities in SR&C</h3>
                 <div className={styles.timelineMedia}>
-                  <div className={styles.brainstormingContainer}>
-                    <div className={styles.paperA4}>
-                      <img src={brainstormingImage} alt="Initial brainstorming ideas" className={styles.paperImage} />
+                  <div className={styles.mediaCaption}>
+                    Top left shows workshop brainstorming, top right displays product psychology principles for post-analysis. Bottom row presents workshop reports.
+                  </div>
+                  <div className={styles.brainstormingRow}>
+                    <div className={styles.brainstormingLeft}>
+                      <img 
+                        src={brainstormingImage} 
+                        alt="Initial brainstorming ideas" 
+                        className={styles.brainstormingImage} 
+                      />
                     </div>
-                    <div className={styles.arrowContainer}>
-                      ➡️
+                    <div className={styles.insightCards}>
+                      <div className={styles.insightCard}>
+                        <div className={styles.insightHeader}>
+                          <span className={styles.insightIcon}>🧠</span>
+                          <span className={styles.insightTag}>#PSYCHOLOGY INSIGHT</span>
+                        </div>
+                        <h4 className={styles.insightTitle}>Hick's Law</h4>
+                        <p className={styles.insightText}>
+                          Too many options can confuse users.<sup>1</sup>
+                        </p>
+                        <p className={styles.insightText}>
+                          By using progressive disclosure<sup>2</sup>, Scribe reduced cognitive load<sup>3</sup> and helped people complete their signature quicker.
+                        </p>
+                        <div className={styles.insightFooter}>
+                          <span className={styles.insightReference}>¹ Hick's Law, Growth.Design</span>
+                          <span className={styles.insightReference}>² Progressive Disclosure, Growth.Design</span>
+                          <span className={styles.insightReference}>³ Cognitive Load, Growth.Design</span>
+                        </div>
+                      </div>
+                      <div className={styles.insightCard}>
+                        <div className={styles.insightHeader}>
+                          <span className={styles.insightIcon}>🧠</span>
+                          <span className={styles.insightTag}>#PSYCHOLOGY INSIGHT</span>
+                        </div>
+                        <h4 className={styles.insightTitle}>Drunk User Theory</h4>
+                        <p className={styles.insightText}>
+                          Users can be distracted, overwhelmed, or inattentive. Designing for the worst-case scenario ensures that core functions remain simple, accessible, and easy to use—even in suboptimal conditions.
+                        </p>
+                        <p className={styles.insightText}>
+                          By minimizing friction and focusing on intuitive interactions, Adaptive UI makes CPAP therapy more seamless.
+                        </p>
+                        <div className={styles.insightFooter}>
+                          <span className={styles.insightReference}>¹ Drunk User Theory, Cassie Kozyrkov</span>
+                        </div>
+                      </div>
                     </div>
-                    <div className={styles.paperA4}>
-                      <img src={auiReport1Image} alt="User scenarios analysis" className={styles.paperImage} />
+                  </div>
+                  <div className={styles.reportsRow}>
+                    <div className={styles.reportCard}>
+                      <img src={AUIReport1Image} alt="User scenarios analysis" className={styles.reportImage} />
                     </div>
-                    <div className={styles.paperGap}></div>
-                    <div className={styles.paperA4}>
-                      <img src={auiReport2Image} alt="AUI solutions proposal" className={styles.paperImage} />
+                    <div className={styles.reportCard}>
+                      <img src={AUIReport2Image} alt="AUI solutions proposal" className={styles.reportImage} />
+                    </div>
+                    <div className={styles.reportCard}>
+                      <img src={AUIReport3Image} alt="Final implementation plan" className={styles.reportImage} />
                     </div>
                   </div>
                 </div>

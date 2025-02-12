@@ -303,9 +303,34 @@ ol.infoList li {
   opacity: 0.8;
 }
 
+/* 时间线媒体容器 */
 .timelineMedia {
-  margin-top: 24px;
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;  /* 减小整体间距 */
+}
+
+/* Media caption styles */
+.mediaCaption {
+  font-size: 1rem;  /* 增大字号 */
+  color: var(--text-secondary);
+  text-align: left;  /* 左对齐 */
+  margin: 0 0 4px;  /* 减小下方间距 */
+  opacity: 0.75;  /* 稍微提高不透明度 */
+  max-width: 872px;
+  margin-left: 0;  /* 确保左对齐 */
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  font-style: italic;
+}
+
+.mediaCaption::before {
+  content: "*";
+  margin-right: 6px;
+  color: var(--text-secondary);
+  font-style: normal;  /* 星号不使用斜体 */
 }
 
 /* After Workshop Styles */
@@ -580,4 +605,125 @@ ol.infoList li {
   .paperContent {
     font-size: 0.875rem;
   }
+}
+
+/* 修改粉色为更柔和的色调 */
+:root {
+  --soft-pink: #FFC0CB;  /* 更柔和的粉色 */
+}
+
+/* 修改布局结构，使用更灵活的方式 */
+.brainstormingRow {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);  /* 左侧固定，右侧自适应 */
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 872px;  /* 280px + 16px + (280px * 2 + 16px) = 872px，考虑了间隙 */
+}
+
+.brainstormingLeft {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: white;
+  width: 280px;
+  height: fit-content;
+}
+
+.brainstormingImage {
+  width: 100%;
+  display: block;
+  height: auto;
+  object-fit: contain;
+  vertical-align: bottom;
+}
+
+/* 报告图片样式 */
+.reportCard {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: white;
+  width: 280px;
+}
+
+.reportImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Optimize insight cards container */
+.insightCards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;  /* Reduced gap */
+  height: fit-content;
+}
+
+/* Compact card style */
+.insightCard {
+  background: white;
+  border-radius: 12px;
+  padding: 12px;  /* Reduced padding */
+  display: flex;
+  flex-direction: column;
+  gap: 4px;  /* Added small gap between elements */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #FFB6C1;
+}
+
+.insightHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;  /* Reduced margin */
+}
+
+.insightIcon {
+  font-size: 14px;  /* Smaller icon */
+}
+
+.insightTag {
+  font-size: 0.625rem;  /* Smaller tag text */
+  color: var(--soft-pink);
+}
+
+.insightTitle {
+  font-size: 0.875rem;  /* Smaller title */
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  line-height: 1.2;
+  color: #1C1C1E;
+}
+
+.insightText {
+  font-size: 0.75rem;  /* Smaller body text */
+  line-height: 1.4;
+  margin-bottom: 4px;
+  color: #666;
+}
+
+.insightFooter {
+  margin-top: 4px;  /* Reduced margin */
+  padding-top: 4px;  /* Reduced padding */
+  border-top: 1px solid #eee;
+}
+
+.insightReference {
+  font-size: 0.625rem;  /* Smaller reference text */
+  color: #999;
+  margin-bottom: 1px;  /* Minimal margin */
+}
+
+/* 报告行布局 */
+.reportsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 280px);
+  gap: 16px;
+  justify-content: center;  /* 居中显示 */
+  width: 100%;
+  max-width: 872px;  /* 与上方内容保持一致 */
+  margin: 0 auto;  /* 水平居中 */
 } 
