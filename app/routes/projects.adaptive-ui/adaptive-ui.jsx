@@ -12,6 +12,11 @@ import brainstormingImage from '~/assets/adaptive-ui/Brainstorming.jpg';
 import AUIReport1Image from '~/assets/adaptive-ui/AUIReport1.jpg';
 import AUIReport2Image from '~/assets/adaptive-ui/AUIReprot2.jpg';
 import AUIReport3Image from '~/assets/adaptive-ui/AUIReprot3.jpg';
+import therapy1Image from '~/assets/adaptive-ui/Therapy1.png';
+import therapy2Image from '~/assets/adaptive-ui/Therapy2.png';
+import therapy3Image from '~/assets/adaptive-ui/Therapy3.png';
+import therapy4Image from '~/assets/adaptive-ui/Therapy4.png';
+import projectStyles from '~/styles/project.module.css';  // 导入全局项目样式
 
 export const meta = () => {
   return baseMeta({
@@ -35,101 +40,98 @@ export const AdaptiveUI = () => {
           <div className={styles.sloganDivider} />
         </div>
         
-        <div className={styles.projectInfo}>
-          <section className={styles.contentSection}>
-            <div className={styles.contentLeft}>
-              <div className={styles.infoBlock}>
-                <h2 className={styles.infoTitle}>Company</h2>
-                <div className={styles.infoContent}>Philips</div>
-              </div>
+        <div className={styles.mainContent}>
+          <div className={projectStyles.projectInfo}>
+            <section className={projectStyles.contentSection}>
+              <div className={projectStyles.contentLeft}>
+                <div className={projectStyles.infoBlock}>
+                  <h2 className={projectStyles.infoTitle}>Company</h2>
+                  <div className={projectStyles.infoList}>Philips</div>
+                </div>
 
-              <div className={styles.infoBlock}>
-                <h2 className={styles.infoTitle}>Team</h2>
-                <ul className={styles.infoList}>
-                  <li><strong>Sara Wang</strong> (UX Designer)</li>
-                  <li><strong>Keith Fraser</strong> (Senior UX Designer)</li>
-                  <li><strong>10+ Philips colleagues</strong> (R&D, Marketing, Engineering)</li>
-                </ul>
-              </div>
+                <div className={projectStyles.infoBlock}>
+                  <h2 className={projectStyles.infoTitle}>Team</h2>
+                  <ul className={projectStyles.infoList}>
+                    <li>Sara Wang(UX Designer)</li>
+                    <li>Keith Fraser(Senior UX Designer)</li>
+                    <li>10+ Philips colleagues(R&D, Marketing, Engineering)</li>
+                  </ul>
+                </div>
 
-              <div className={styles.infoBlock}>
-                <h2 className={styles.infoTitle}>My Contribution</h2>
-                <ol className={styles.infoList}>
-                  <li><strong>AUI Workshop Lead</strong></li>
-                  <li><strong>User Research & Testing</strong></li>
-                  <li><strong>Design Prototype & Analysis</strong></li>
-                </ol>
+                <div className={`${styles.infoBlock} ${projectStyles.infoBlock}`}>
+                  <h2 className={projectStyles.infoTitle}>My Contribution</h2>
+                  <ol className={projectStyles.infoList}>
+                    <li>AUI Workshop Lead</li>
+                    <li>User Research & Testing</li>
+                    <li>Design Prototype & Analysis</li>
+                  </ol>
+                </div>
               </div>
-            </div>
-            <div className={styles.contentRight}>
-              <div className={styles.overviewBlock}>
-                <h2 className={styles.overviewTitle}>Overview</h2>
-                <p className={styles.overviewText}>
-                  During my internship at Philips Sleep & Respiratory Care, I explored how <strong>Adaptive UI</strong>—small yet powerful AI enhancements—could make <strong>CPAP therapy</strong> more user-friendly.
-                </p>
-                <p className={styles.overviewText}>
-                  I tackled two closely related projects: first, I organized an in-house workshop to align cross-functional teams on AUI opportunities; next, I worked with two fellow UX designers to build and test four prototype concepts with real users.
-                </p>
-                <p className={styles.overviewText}>
-                  Our small-scale study indicated a potential <strong>10–15% boost</strong> in device usage and user satisfaction. By offering <strong>subtle, user-controlled AI features</strong>, we reduced everyday friction so patients could stick to their CPAP routines more easily—helping them stay on track with treatment in a natural, comfortable way.
-                </p>
+              <div className={projectStyles.contentRight}>
+                <div className={projectStyles.overviewBlock}>
+                  <h2 className={projectStyles.overviewTitle}>Overview</h2>
+                  <p className={projectStyles.overviewText}>
+                    During my internship at Philips Sleep & Respiratory Care, I explored how <strong>Adaptive UI</strong>—small yet powerful AI enhancements—could make <strong>CPAP therapy</strong> more user-friendly.
+                  </p>
+                  <p className={projectStyles.overviewText}>
+                    I tackled two closely related projects: first, I organized an in-house workshop to align cross-functional teams on AUI opportunities; next, I worked with two fellow UX designers to build and test four prototype concepts with real users.
+                  </p>
+                  <p className={projectStyles.overviewText}>
+                    Our small-scale study indicated a potential <strong>10–15% boost</strong> in device usage and user satisfaction. By offering <strong>subtle, user-controlled AI features</strong>, we reduced everyday friction so patients could stick to their CPAP routines more easily—helping them stay on track with treatment in a natural, comfortable way.
+                  </p>
+                </div>
               </div>
-            </div>
-          </section>
-        </div>
-
-        <div className={styles.divider} />
-
-        <div className={styles.workshopContainer}>
-          <div className={styles.sectionHeader}>
-            <div className={styles.sectionSubtitle}>● The Workshop</div>
-            <h2 className={styles.sectionTitle}>
-                Exploring Adaptive UI to Improve CPAP Usage
-            </h2>
-            <p className={styles.sectionDescription}>
-                Nearly 50% of CPAP users drop out due to complexity. I led a Philips workshop to design subtle AI cues that simplify tasks and boost adherence.
-            </p>
+            </section>
           </div>
 
-          <div className={styles.timeline}>
-            <div className={styles.timelineItem}>
-              <div className={styles.timelineStep}>1</div>
-              <div className={styles.timelineContent}>
-                <h3 className={styles.timelineTitle}>Introduce the concept of AUI</h3>
-                <div className={styles.timelineMedia}>
-                  <div className={styles.pdfViewer}>
-                    <object
-                      data={workshopSlidesPDF}
-                      type="application/pdf"
-                      className={styles.pdfObject}
-                    >
-                      <p>Your browser does not support PDFs. Please download the PDF to view it: 
-                        <a href={workshopSlidesPDF}>Download PDF</a>
-                      </p>
-                    </object>
+          <div className={projectStyles.sectionContainer}>
+            <div className={projectStyles.sectionHeader}>
+              <div className={projectStyles.sectionSubtitle}>● The Workshop</div>
+              <h2 className={projectStyles.sectionTitle}>
+                Exploring Adaptive UI to Improve CPAP Usage
+              </h2>
+              <p className={projectStyles.sectionDescription}>
+                Nearly 50% of CPAP users drop out due to complexity. I led a workshop to design subtle AI cues that simplify tasks and boost adherence.
+              </p>
+            </div>
+            <div className={styles.timeline}>
+              <div className={styles.timelineItem}>
+                <div className={styles.timelineStep}>1</div>
+                <div className={styles.timelineContent}>
+                  <h3 className={styles.timelineTitle}>Introduce the concept of AUI</h3>
+                  <div className={styles.timelineMedia}>
+                    <div className={styles.pdfViewer}>
+                      <object
+                        data={workshopSlidesPDF}
+                        type="application/pdf"
+                        className={styles.pdfObject}
+                      >
+                        <p>Your browser does not support PDFs. Please download the PDF to view it: 
+                          <a href={workshopSlidesPDF}>Download PDF</a>
+                        </p>
+                      </object>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className={styles.timelineItem}>
-              <div className={styles.timelineStep}>2</div>
-              <div className={styles.timelineContent}>
-                <h3 className={styles.timelineTitle}>Break & Discussion</h3>
-                <div className={styles.timelineMedia}>
-                  <div className={styles.discussionImage}>
-                    <img src={discussionImage} alt="Team discussion during the workshop" className={styles.image} />
+              <div className={styles.timelineItem}>
+                <div className={styles.timelineStep}>2</div>
+                <div className={styles.timelineContent}>
+                  <h3 className={styles.timelineTitle}>Break & Discussion</h3>
+                  <div className={styles.timelineMedia}>
+                    <div className={styles.discussionImage}>
+                      <img src={discussionImage} alt="Team discussion during the workshop" className={styles.image} />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className={styles.timelineItem}>
-              <div className={styles.timelineStep}>3</div>
-              <div className={styles.timelineContent}>
-                <h3 className={styles.timelineTitle}>Brainstorming: Identifying AUI Opportunities in SR&C</h3>
-                <div className={styles.timelineMedia}>
-                  <div className={styles.mediaCaption}>
+              <div className={styles.timelineItem}>
+                <div className={styles.timelineStep}>3</div>
+                <div className={styles.timelineContent}>
+                  <h3 className={styles.timelineTitle}>Brainstorming: Identifying AUI Opportunities in SR&C</h3>
+                  <div className={styles.timelineText}>
                     Top left shows workshop brainstorming, top right displays product psychology principles for post-analysis. Bottom row presents workshop reports.
                   </div>
                   <div className={styles.brainstormingRow}>
@@ -191,50 +193,144 @@ export const AdaptiveUI = () => {
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className={styles.sectionHeader}>
-            <div className={styles.sectionSubtitle}>● After Workshop</div>
-          </div>
-
-          <div className={styles.afterWorkshop}>
-            <div className={styles.afterWorkshopItem}>
-              <h3 className={styles.afterWorkshopTitle}>1. Prototype Development</h3>
-              <p className={styles.afterWorkshopText}>Implementing AUI Concepts in Practice</p>
-              <div className={styles.afterWorkshopMedia}>
-                <div className={styles.prototypeGrid}>
-                  Four Collaborative Prototypes
+            <div className={styles.sectionContainer}>
+              <div className={styles.sectionHeader}>
+                <div className={projectStyles.sectionSubtitle}>● Prototype Development </div>
+                <h2 className={projectStyles.sectionTitle}>Four Prototypes, Smarter Interfaces</h2>
+                <div className={projectStyles.sectionDescription}>
+                Building on this workshop, I worked with colleagues on a separate research project where we designed and conducted initial testing of four conceptual prototypes for CPAP devices. Although the two projects were independent, both focused on using adaptive interactions to enhance healthcare management, each demonstrating the potential value of adaptive interfaces in different ways.
                 </div>
               </div>
-            </div>
-
-            <div className={styles.afterWorkshopItem}>
-              <h3 className={styles.afterWorkshopTitle}>2. User Testing Design</h3>
-              <p className={styles.afterWorkshopText}>Planning the evaluation framework</p>
-              <div className={styles.afterWorkshopMedia}>
-                <div className={styles.testingDesign}>
-                  Testing Framework & Methodology
-                </div>
+              <div className={styles.confidentialNote}>
+                Due to confidentiality, these prototypes are shown in a blurred format.
               </div>
-            </div>
 
-            <div className={styles.afterWorkshopItem}>
-              <h3 className={styles.afterWorkshopTitle}>3. Testing Results</h3>
-              <p className={styles.afterWorkshopText}>Key Findings & Insights</p>
-              <div className={styles.afterWorkshopMedia}>
-                <div className={styles.testingResults}>
-                  10-15% Improvement in User Satisfaction
+              <div className={styles.prototypesGrid}>
+                {[
+                  { image: therapy1Image, caption: 'Comfort Settings Auto-Adjustment' },
+                  { image: therapy2Image, caption: 'Personalized Health Insights' },
+                  { image: therapy3Image, caption: 'Auto-Suggestions for Routine Tasks' },
+                  { image: therapy4Image, caption: 'Patient Data Integration for Doctor Visits' }
+                ].map(({ image, caption }, index) => (
+                  <div key={index} className={styles.prototypeCard}>
+                    <img src={image} alt={`Prototype ${index + 1}`} className={styles.prototypeImage} />
+                    <div className={styles.prototypeCaption}>{caption}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className={styles.testingSection}>
+                <div className={projectStyles.sectionSubtitle}>● User Testing</div>
+                <h2 className={projectStyles.sectionTitle}>From Complexity to Simplicity</h2>
+                <p className={projectStyles.sectionDescription}>
+                  We conducted <strong>remote usability testing</strong> with participants on UserTesting.com and <strong>in-person sessions</strong> using <strong>interactive cards</strong>, allowing users to <strong>customize their interface</strong>. The testing revealed <strong>key user preferences</strong> for features, display, and interaction hierarchy, <strong>guiding prototype refinement and validation</strong>. We aimed to achieve the following goals (expected outcomes):
+                </p>
+
+                <div className={styles.metricsRow}>
+                  {/* Fewer Clicks */}
+                  <div className={styles.metricCard}>
+                    <div className={styles.metricHeader}>
+                      <div className={styles.metricValue}>-30%</div>
+                      <div className={styles.metricTitle}>FEWER CLICKS</div>
+                    </div>
+                    <div className={styles.barsContainer}>
+                      <div className={styles.barWrapper}>
+                        <div className={styles.barGroup}>
+                          <div className={styles.barLabel}>100%</div>
+                          <div className={`${styles.bar} ${styles.beforeBar}`} />
+                          <div className={styles.barCaption}>Before</div>
+                        </div>
+                        <div className={styles.barGroup}>
+                          <div className={styles.barLabel}>70%</div>
+                          <div className={`${styles.bar} ${styles.afterBar}`} />
+                          <div className={styles.barCaption}>After</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* User Satisfaction */}
+                  <div className={styles.metricCard}>
+                    <div className={styles.metricHeader}>
+                      <div className={styles.metricValue}>4.0/5</div>
+                      <div className={styles.metricTitle}>USER SATISFACTION</div>
+                    </div>
+                    <div className={styles.progressRings}>
+                      <div className={styles.ring}>
+                        <svg viewBox="0 0 120 120" className={styles.ringSVG}>
+                          {/* 外层环 - 3.2分 */}
+                          <circle 
+                            cx="60" 
+                            cy="60" 
+                            r="50" 
+                            className={styles.ringOuter}
+                            style={{
+                              strokeDasharray: `${Math.PI * 100 * 0.64} ${Math.PI * 100}`,
+                            }}
+                          />
+                          {/* 内层环 - 4.1分 */}
+                          <circle 
+                            cx="60" 
+                            cy="60" 
+                            r="40"
+                            className={styles.ringInner}
+                            style={{
+                              strokeDasharray: `${Math.PI * 80 * 0.82} ${Math.PI * 80}`,
+                            }}
+                          />
+                        </svg>
+                        <div className={styles.ringCaption}>↑ from 3.2</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Usage Boost */}
+                  <div className={styles.metricCard}>
+                    <div className={styles.metricHeader}>
+                      <div className={styles.metricValue}>+15%</div>
+                      <div className={styles.metricTitle}>USAGE BOOST</div>
+                    </div>
+                    <div className={styles.progressRings}>
+                      <div className={styles.ring}>
+                        <svg viewBox="0 0 120 120" className={styles.ringSVG}>
+                          {/* 基准环 */}
+                          <circle 
+                            cx="60" 
+                            cy="60" 
+                            r="50" 
+                            className={styles.ringOuter}
+                            style={{
+                              strokeDasharray: `${Math.PI * 100 * 0.5} ${Math.PI * 100}`,
+                            }}
+                          />
+                          {/* 增长部分 */}
+                          <circle 
+                            cx="60" 
+                            cy="60" 
+                            r="50"
+                            className={styles.ringInner}
+                            style={{
+                              strokeDasharray: `${Math.PI * 100 * 0.15} ${Math.PI * 100}`,
+                              strokeDashoffset: `${-Math.PI * 100 * 0.5}`,
+                            }}
+                          />
+                        </svg>
+                        <div className={styles.ringCaption}>10% — 15%</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <p className={projectStyles.sectionDescription}>
+                  Whether during the workshop's <strong>creative phase</strong> or the prototypes' <strong>feasibility testing phase</strong>, the goal remains the same: to help medical devices <strong>better 'understand' user needs</strong> and enable users to <strong>manage their health more conveniently</strong>. Through <strong>continuous iteration and testing</strong>, these <strong>adaptive interface concepts</strong> are poised to evolve into more fully realized product features, ultimately <strong>delivering meaningful improvements</strong> in the healthcare industry.
+                </p>
               </div>
             </div>
           </div>
         </div>
-
-        <div className={styles.divider} />
       </ProjectContainer>
       <Footer />
     </Fragment>
   );
 };
-
 export default AdaptiveUI; 

@@ -1,0 +1,192 @@
+/* 项目页面全局样式 */
+.projectInfo {
+  width: 100%;
+}
+
+.contentSection {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 160px;
+  padding: 0 32px;
+  max-width: 1200px;
+  margin: 0 auto 80px;
+}
+
+/* 左侧信息栏样式 */
+.contentLeft {
+  padding: 0;
+}
+
+.infoBlock {
+  margin-bottom: 24px;
+}
+
+.infoTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+
+.infoList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .infoList li {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    font-weight: 400;
+  }
+
+/* 右侧内容区域样式 */
+.contentRight {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.overviewBlock {
+  max-width: 800px;
+}
+
+.overviewTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.overviewText {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+
+.overviewText strong {
+  color: var(--text-primary);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: linear-gradient(transparent 0%, rgba(255, 255, 255, 0.1) 40%);
+  padding: 0 2px;
+}
+
+/* 响应式调整 */
+@media (max-width: 1024px) {
+  .contentSection {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contentSection {
+    padding: 0 16px;
+  }
+  
+  .infoTitle {
+    font-size: 0.8125rem;
+  }
+  
+  .infoContent,
+  .overviewText {
+    font-size: 0.875rem;
+  }
+  
+  .overviewTitle {
+    font-size: 0.9375rem;
+  }
+}
+
+/* 修改通用的section样式 */
+.sectionContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 120px auto 0;
+  padding: 0 32px;
+}
+
+.sectionHeader {
+  margin: 0 0 24px;
+  padding: 0;
+  width: 100%;
+}
+
+.sectionSubtitle {
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  opacity: 0.8;
+}
+
+.sectionTitle {
+  font-size: 3.5rem;
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0 0 32px 0;
+  color: var(--text-primary);
+  width: 100%;
+  max-width: none;
+}
+
+.sectionDescription {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+  font-weight: 300;
+  opacity: 0.8;
+  width: 100%;
+  max-width: none;
+}
+
+/* 移除不需要的样式 */
+.sectionTitle,
+.sectionDescription {
+  white-space: normal;  /* 移除 nowrap */
+  width: auto;         /* 移除固定宽度 */
+  overflow: visible;   /* 移除溢出隐藏 */
+  text-overflow: clip; /* 移除省略号 */
+}
+
+/* 添加响应式样式 */
+@media (max-width: 1024px) {
+  .sectionTitle {
+    font-size: 2.75rem;
+    white-space: normal;
+  }
+  
+  .sectionDescription {
+    width: 100%;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 768px) {
+  .sectionContainer {
+    padding: 0 16px;
+    margin-top: 80px;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .sectionDescription {
+    font-size: 1rem;
+  }
+}

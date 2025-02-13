@@ -4,6 +4,31 @@
   margin: 0;
 }
 
+/* 修改内容区域的布局，参考PetPals的设置 */
+.contentSection {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 160px;
+  padding: 0 32px;        /* 改为与PetPals一致的padding */
+  max-width: 1200px;      /* 设置最大宽度 */
+  margin: 0 auto 80px;    /* 居中对齐 */
+}
+
+/* 移除mainContent的padding，因为现在由contentSection控制 */
+.mainContent {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;            /* 移除之前的padding */
+}
+
+/* 调整右侧内容区域 */
+.contentRight {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 40px;    /* 与PetPals保持一致 */
+}
+
 .slogan {
   position: relative;
   display: flex;
@@ -11,7 +36,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 120px 32px;
+  padding: 120px 0;   /* 移除水平padding */
   background: var(--background);
   color: var(--text-primary);
 }
@@ -19,7 +44,7 @@
 .sloganSubtitle {
   font-size: 1.125rem;
   font-weight: 500;
-  margin-bottom: 16px;
+  margin-bottom: 26px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--text-secondary);
@@ -41,27 +66,9 @@
   margin: 80px 0;
 }
 
-.contentSection {
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 160px;
-  padding: 0 32px;
-  max-width: 1200px;
-  margin: 0 auto 80px;
-}
-
+/* 移除多余的padding */
 .contentLeft {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  position: relative;
-}
-
-.contentRight {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding-left: 40px;
+  padding-left: 0;
 }
 
 .infoBlock {
@@ -143,11 +150,13 @@ ol.infoList li {
   padding: 0 2px;
 }
 
+/* 响应式调整 */
 @media (max-width: 1024px) {
-  .sloganTitle {
-    font-size: 3.5rem;
+  .mainContent,
+  .workshopContainer {
+    padding: 0 40px;
   }
-
+  
   .contentSection {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -179,6 +188,11 @@ ol.infoList li {
 }
 
 @media (max-width: 768px) {
+  .mainContent,
+  .workshopContainer {
+    padding: 0 24px;
+  }
+
   .sloganTitle {
     font-size: 2.5rem;
   }
@@ -194,46 +208,7 @@ ol.infoList li {
 
 /* Workshop Section Styles */
 .workshopContainer {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 32px;
-  background: var(--background);
-}
-
-.sectionHeader {
-  margin-bottom: 60px;
-  width: 100%;
-}
-
-.sectionSubtitle {
-  font-size: 0.875rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-secondary);
-  margin-bottom: 24px;
-  opacity: 0.8;
-}
-
-.sectionTitle {
-  font-size: 2.5rem;
-  font-weight: 500;
-  line-height: 1.2;
-  margin: 0 0 16px 0;
-  color: var(--text-primary);
-  width: 100%;
-  max-width: 100%;
-}
-
-.sectionDescription {
-  font-size: 1.25rem;
-  line-height: 1.5;
-  color: var(--text-secondary);
-  margin: 0;
-  font-weight: 400;
-  opacity: 0.8;
-  width: 100%;
-  max-width: 100%;
+  /* 删除所有相关样式 */
 }
 
 .timeline {
@@ -726,4 +701,351 @@ ol.infoList li {
   width: 100%;
   max-width: 872px;  /* 与上方内容保持一致 */
   margin: 0 auto;  /* 水平居中 */
-} 
+}
+
+/* Prototype Section Styles */
+.prototypeSection {
+  max-width: 1200px;
+  margin: 120px auto;
+  padding: 0 32px;
+}
+
+.bigTitle {
+  font-size: 4.5rem;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 48px;
+  color: var(--text-primary);
+}
+
+.prototypeDescription {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.confidentialNote {
+  position: relative;
+  padding: 8px 16px;
+  margin: 0;  /* 移除自身的 margin */
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  background: var(--background-light);
+  border-radius: 4px;
+  line-height: 1.5;
+  opacity: 0.8;
+  font-style: italic;  /* 保持倾斜 */
+}
+
+.confidentialNote::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: oklch(65.02% 0.173 194.77);
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.prototypesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;  /* 更小的间距 */
+  margin: 32px 0;
+}
+
+.prototypeCard {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;  /* 调整为更高的比例 */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.prototypeImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* 改回 cover 以填充整个容器 */
+  filter: blur(12px);  /* 增加模糊程度 */
+  opacity: 0.8;  /* 降低不透明度 */
+  transform: scale(1.1);  /* 稍微放大以避免模糊边缘 */
+  background: rgba(0, 0, 0, 0.3);  /* 加深背景 */
+}
+
+.prototypeCaption {
+  position: absolute;
+  bottom: 12px;  /* 稍微往下移 */
+  left: 12px;
+  color: white;
+  font-size: 0.7rem;  /* 更小的字号 */
+  font-weight: 300;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);  /* 加强文字阴影 */
+  text-align: left;
+  max-width: 90%;
+  line-height: 1.4;
+  opacity: 0.75;  /* 更透明 */
+}
+
+/* Testing Section Styles */
+.testingSection {
+  width: 100%;
+  max-width: 1200px;
+  margin: 160px auto 0;  /* 增加上边距从0改为160px */
+  padding: 0;
+}
+
+.testingDescription {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 48px 0;
+  max-width: 100%;
+}
+
+/* 全新的数据可视化样式 */
+.metricsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  margin: 32px auto;  /* 改为auto实现水平居中 */
+  align-items: start;
+  max-width: 872px;  /* 设置最大宽度，与其他内容保持一致 */
+}
+
+/* 调整卡片内部的padding和宽度 */
+.metricCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  background: var(--background-light);
+  border-radius: 16px;
+  height: 100%;
+  width: 100%;  /* 确保卡片填充网格空间 */
+}
+
+.metricHeader {
+  text-align: center;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.metricValue {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.metricTitle {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+/* 柱状图样式优化 */
+.barsContainer {
+  width: 160px;
+  height: 160px;
+  position: relative;
+  margin: 18px auto 0; /* 从-8px改为8px，让柱状图往下移动 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.barWrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  height: 100px;
+}
+
+.barGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 48px;
+}
+
+.bar {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s ease;
+}
+
+.beforeBar {
+  height: 100px;
+  background: var(--primary);
+  opacity: 0.3;
+}
+
+.afterBar {
+  height: 63px;
+  background: var(--primary);
+  opacity: 0.8;
+}
+
+.barLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0px;  /* 从4px减小到2px */
+}
+
+.barCaption {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  opacity: 0.8;
+  margin-top: 0px;  /* 从4px减小到2px */
+}
+
+/* 环形图基础容器 */
+.progressRings {
+  width: 160px;
+  height: 160px;
+  position: relative;
+  margin: -8px auto 0;
+}
+
+.ring {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ringSVG {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+/* 环形图样式 */
+.ringOuter {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 7;
+  opacity: 0.3;
+  transform-origin: center;
+  transition: stroke-dasharray 0.5s ease;
+}
+
+.ringInner {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 9;
+  opacity: 0.8;
+  transform-origin: center;
+  transition: stroke-dasharray 0.5s ease;
+}
+
+.ringCaption {
+  position: absolute;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  text-align: center;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 响应式布局调整 */
+@media (max-width: 1024px) {
+  .metricsRow {
+    gap: 32px;
+    padding: 0 24px;  /* 添加一些边距 */
+  }
+  
+  .metricValue {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .metricsRow {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 0 16px;
+  }
+  
+  .metricCard {
+    padding: 24px;
+  }
+}
+
+/* 调整timeline的布局 */
+.timeline {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;    /* 确保不会超出容器 */
+}
+
+/* 响应式调整 */
+@media (max-width: 1024px) {
+  .contentSection,
+  .workshopContainer,
+  .testingSection {
+    padding: 0;  /* 移除padding */
+  }
+  
+  .contentSection {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contentSection,
+  .workshopContainer,
+  .testingSection {
+    padding: 0;  /* 移除padding */
+  }
+}
+
+.sectionHeader {
+  margin: 0 0 24px;  /* 减小下方间距 */
+  padding: 0;
+  width: 100%;
+}
+
+.sectionContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 120px auto 0;  
+  padding: 0;  /* 移除padding */
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .sectionContainer {
+    margin-top: 80px;
+    padding: 0;  /* 移除padding */
+  }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .testingSection {
+    margin: 120px auto 0;  /* 在移动端稍微减小上边距 */
+  }
+}
+
+.testingDescription strong,
+.sectionDescription strong {
+  color: var(--text-primary);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
