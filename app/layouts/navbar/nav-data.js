@@ -13,7 +13,7 @@ export const navLinks = [
     type: 'work'
   },
   {
-    label: 'Data Narratives',
+    label: 'Data Visualization',
     pathname: '/#data-narratives',
     type: 'work'
   },

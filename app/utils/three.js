@@ -82,3 +82,18 @@ export const getChild = (name, object) => {
 
   return node;
 };
+
+// 替换为更简单的错误处理方式
+const originalLoad = modelLoader.load.bind(modelLoader);
+modelLoader.load = (url, onLoad, onProgress, onError) => {
+  console.log('Loading model:', url);
+  return originalLoad(
+    url,
+    onLoad,
+    onProgress,
+    (error) => {
+      console.error('Model loading error:', error);
+      onError?.(error);
+    }
+  );
+};

@@ -1,7 +1,7 @@
 import { Button } from '~/components/button';
 import { Divider } from '~/components/divider';
 import { Heading } from '~/components/heading';
-import { deviceModels } from '~/components/model/device-models';
+import { deviceModels, ModelAnimationType } from '~/components/model/device-models';
 import { Section } from '~/components/section';
 import { Text } from '~/components/text';
 import { useTheme } from '~/components/theme-provider';
@@ -63,7 +63,7 @@ export function ProjectSummary({
             {`${category} ${indexText}`}
           </span>
         </div>
-        {title === "Adaptive UI for Philips Sleep & Respiratory Care" && (
+        {title === "Adaptive UI for Sleep & Respiratory Care" && (
           <div className={styles.projectLogos}>
             <div className={styles.logoWrapper}>
               <img src={philipsLogo} alt="Philips Logo" className={styles.projectLogo} />
@@ -86,7 +86,14 @@ export function ProjectSummary({
           {description}
         </Text>
         <div className={styles.tags}>
-          {title === "Adaptive UI for Philips Sleep & Respiratory Care" ? (
+          {title === "MR Finder: Mixed Reality Lost & Found" ? (
+            <>
+              <span className={styles.tag}>Mixed Reality</span>
+              <span className={styles.tag}>ChatGPT Voice</span>
+              <span className={styles.tag}>SLAM Mapping</span>
+              <span className={styles.tag}>Unity MRTK</span>
+            </>
+          ) : title === "Adaptive UI for Sleep & Respiratory Care" ? (
             <>
               <span className={styles.tag}>Co-Creation</span>
               <span className={styles.tag}>User Testing</span>
@@ -123,7 +130,7 @@ export function ProjectSummary({
               <Suspense>
                 <Model
                   alt={model.alt}
-                  cameraPosition={{ x: 0, y: 0, z: 8 }}
+                  cameraPosition={{ x: 0, y: 0, z: 6 }}
                   showDelay={700}
                   onLoad={handleModelLoad}
                   show={visible}
@@ -157,7 +164,7 @@ export function ProjectSummary({
               <Suspense>
                 <Model
                   alt={model.alt}
-                  cameraPosition={{ x: 0, y: 0, z: 11.5 }}
+                  cameraPosition={{ x: 0, y: 0, z: 10 }}
                   showDelay={300}
                   onLoad={handleModelLoad}
                   show={visible}
@@ -177,6 +184,37 @@ export function ProjectSummary({
                         ...model.textures[1],
                         sizes: phoneSizes,
                       },
+                    },
+                  ]}
+                />
+              </Suspense>
+            )}
+          </div>
+        )}
+        {model.type === 'quest3' && (
+          <div className={styles.model} data-device="quest3">
+            {!modelLoaded && (
+              <Loader center className={styles.loader} data-visible={visible} />
+            )}
+            {isHydrated && visible && (
+              <Suspense fallback={null}>
+                <Model
+                  alt={model.alt}
+                  cameraPosition={{ x: 0, y: 0, z: 0.6 }}
+                  showDelay={300}
+                  onLoad={() => {
+                    console.log('Quest3 model loaded successfully');
+                    handleModelLoad();
+                  }}
+                  show={visible}
+                  models={[
+                    {
+                      type: 'quest3',
+                      url: deviceModels.quest3.url,
+                      position: deviceModels.quest3.position,
+                      rotation: deviceModels.quest3.rotation,
+                      scale: deviceModels.quest3.scale,
+                      animation: ModelAnimationType.Quest3Rotate
                     },
                   ]}
                 />

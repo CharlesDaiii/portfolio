@@ -136,7 +136,7 @@ export const Home = () => {
         visible={visibleSections.includes(projectTwo.current)}
         index={2}
         category="AI Product"
-        title="Adaptive UI for Philips Sleep & Respiratory Care"
+        title="Adaptive UI for Sleep & Respiratory Care"
         description="An AI-driven initiative at Philips—combining an Adaptive UI workshop I led and collaborative user testing with fellow designers, to deliver personalized, compliant interfaces for CPAP devices."
         buttonText="View project"
         buttonLink="/projects/adaptive-ui"
@@ -157,23 +157,19 @@ export const Home = () => {
         }}
       />
       <ProjectSummary
-        id="creative-computing"
+        id="vr-project"
         sectionRef={projectThree}
         visible={visibleSections.includes(projectThree.current)}
         index={3}
-        title="Biomedical image collaboration"
-        description="Increasing the amount of collaboration in Slice, an app for biomedical imaging"
+        category="AI Product"
+        title="MR Finder: Mixed Reality Lost & Found"
+        description="An AI-powered XR solution merging ChatGPT voice commands and SLAM-based spatial mapping, giving you real-time guidance to find lost items around you."
         buttonText="View project"
-        buttonLink="/projects/slice"
+        buttonLink="/projects/mr-finder"
         model={{
-          type: 'laptop',
-          alt: 'Annotating a biomedical image in the Slice app',
-          textures: [
-            {
-              srcSet: `${sliceTexture} 800w, ${sliceTextureLarge} 1920w`,
-              placeholder: sliceTexturePlaceholder,
-            },
-          ],
+          type: 'quest3',
+          alt: 'Quest3 VR headset demonstrating MR Finder application',
+          scale: 1.0,
         }}
       />
       <ProjectSummary

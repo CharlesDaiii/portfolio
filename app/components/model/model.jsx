@@ -39,9 +39,10 @@ import {
   removeLights,
   textureLoader,
 } from '~/utils/three';
-import { ModelAnimationType } from './device-models';
+import { ModelAnimationType, deviceModels } from './device-models';
 import { throttle } from '~/utils/throttle';
 import styles from './model.module.css';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 const MeshType = {
   Frame: 'Frame',
@@ -211,6 +212,8 @@ export const Model = ({
 
     const unsubscribeX = rotationX.on('change', renderFrame);
     const unsubscribeY = rotationY.on('change', renderFrame);
+
+    const loader = new GLTFLoader();
 
     return () => {
       renderTarget.current.dispose();
@@ -400,121 +403,170 @@ const Device = ({
     };
 
     const load = async () => {
-      const { texture, position, url } = model;
+      const { texture, position, url, type } = model;
       let loadFullResTexture;
       let playAnimation;
 
-      // Handle video texture
-      if (texture.type === 'video') {
-        videoElement.current = document.createElement('video');
-        videoElement.current.src = texture.src;
-        videoElement.current.autoplay = texture.autoPlay;
-        videoElement.current.loop = texture.loop;
-        videoElement.current.muted = texture.muted;
-        videoElement.current.playsInline = texture.playsInline;
-      }
-
-      const [gltf] = await Promise.all([
-        modelLoader.loadAsync(url),
-      ]);
-
-      modelGroup.current.add(gltf.scene);
-
-      gltf.scene.traverse(async node => {
-        if (node.material) {
-          node.material.color = new Color(0x1f2025);
+      try {
+        // Handle video texture - 只对有 texture 的模型处理纹理
+        if (texture?.type === 'video') {
+          videoElement.current = document.createElement('video');
+          videoElement.current.src = texture.src;
+          videoElement.current.autoplay = texture.autoPlay;
+          videoElement.current.loop = texture.loop;
+          videoElement.current.muted = texture.muted;
+          videoElement.current.playsInline = texture.playsInline;
         }
 
-        if (node.name === MeshType.Screen) {
-          if (texture.type === 'video') {
-            await applyScreenTexture(videoElement.current, node);
-          } else {
-            const placeholder = await textureLoader.loadAsync(texture.placeholder);
-            placeholderScreen.current = node.clone();
-            placeholderScreen.current.material = node.material.clone();
-            node.parent.add(placeholderScreen.current);
-            placeholderScreen.current.material.opacity = 1;
-            placeholderScreen.current.position.z += 0.001;
+        const [gltf] = await Promise.all([
+          modelLoader.loadAsync(url),
+        ]);
 
-            applyScreenTexture(placeholder, placeholderScreen.current);
+        modelGroup.current.add(gltf.scene);
 
-            loadFullResTexture = async () => {
-              const image = await resolveSrcFromSrcSet(texture);
-              const fullSize = await textureLoader.loadAsync(image);
-              await applyScreenTexture(fullSize, node);
-
-              animate(1, 0, {
-                onUpdate: value => {
-                  placeholderScreen.current.material.opacity = value;
-                  renderFrame();
-                },
-              });
-            };
+        // 根据模型类型设置材质
+        gltf.scene.traverse(async node => {
+          if (node.material) {
+            // Quest3 使用不同的材质颜色
+            if (type === 'quest3') {
+              node.material.color = new Color(0x808080);
+            } else {
+              node.material.color = new Color(0x1f2025);
+            }
           }
-        }
-      });
 
-      const targetPosition = new Vector3(position.x, position.y, position.z);
+          // 只对有屏幕的设备处理屏幕纹理
+          if (node.name === MeshType.Screen && texture) {
+            if (texture.type === 'video') {
+              await applyScreenTexture(videoElement.current, node);
+            } else {
+              const placeholder = await textureLoader.loadAsync(texture.placeholder);
+              placeholderScreen.current = node.clone();
+              placeholderScreen.current.material = node.material.clone();
+              node.parent.add(placeholderScreen.current);
+              placeholderScreen.current.material.opacity = 1;
+              placeholderScreen.current.position.z += 0.001;
 
-      if (reduceMotion) {
-        gltf.scene.position.set(...targetPosition.toArray());
-      }
+              applyScreenTexture(placeholder, placeholderScreen.current);
 
-      // Simple slide up animation
-      if (model.animation === ModelAnimationType.SpringUp) {
-        playAnimation = () => {
-          const startPosition = new Vector3(
-            targetPosition.x,
-            targetPosition.y - 1,
-            targetPosition.z
-          );
+              loadFullResTexture = async () => {
+                const image = await resolveSrcFromSrcSet(texture);
+                const fullSize = await textureLoader.loadAsync(image);
+                await applyScreenTexture(fullSize, node);
 
-          gltf.scene.position.set(...startPosition.toArray());
+                animate(1, 0, {
+                  onUpdate: value => {
+                    placeholderScreen.current.material.opacity = value;
+                    renderFrame();
+                  },
+                });
+              };
+            }
+          }
+        });
 
-          animate(startPosition.y, targetPosition.y, {
-            type: 'spring',
-            delay: (300 * index + showDelay) / 1000,
-            stiffness: 60,
-            damping: 20,
-            mass: 1,
-            restSpeed: 0.0001,
-            restDelta: 0.0001,
-            onUpdate: value => {
-              gltf.scene.position.y = value;
-              renderFrame();
-            },
-          });
-        };
-      }
+        const targetPosition = new Vector3(position.x, position.y, position.z);
 
-      // Swing the laptop lid open
-      if (model.animation === ModelAnimationType.LaptopOpen) {
-        playAnimation = () => {
-          const frameNode = gltf.scene.children.find(
-            node => node.name === MeshType.Frame
-          );
-          const startRotation = new Vector3(MathUtils.degToRad(90), 0, 0);
-          const endRotation = new Vector3(0, 0, 0);
-
+        if (reduceMotion) {
           gltf.scene.position.set(...targetPosition.toArray());
-          frameNode.rotation.set(...startRotation.toArray());
+        }
 
-          return animate(startRotation.x, endRotation.x, {
-            type: 'spring',
-            delay: (300 * index + showDelay + 300) / 1000,
-            stiffness: 80,
-            damping: 20,
-            restSpeed: 0.0001,
-            restDelta: 0.0001,
-            onUpdate: value => {
-              frameNode.rotation.x = value;
-              renderFrame();
-            },
-          });
-        };
+        // Simple slide up animation
+        if (model.animation === ModelAnimationType.SpringUp) {
+          playAnimation = () => {
+            const startPosition = new Vector3(
+              targetPosition.x,
+              targetPosition.y - 1,
+              targetPosition.z
+            );
+
+            gltf.scene.position.set(...startPosition.toArray());
+
+            animate(startPosition.y, targetPosition.y, {
+              type: 'spring',
+              delay: (300 * index + showDelay) / 1000,
+              stiffness: 60,
+              damping: 20,
+              mass: 1,
+              restSpeed: 0.0001,
+              restDelta: 0.0001,
+              onUpdate: value => {
+                gltf.scene.position.y = value;
+                renderFrame();
+              },
+            });
+          };
+        }
+
+        // Swing the laptop lid open
+        if (model.animation === ModelAnimationType.LaptopOpen) {
+          playAnimation = () => {
+            const frameNode = gltf.scene.children.find(
+              node => node.name === MeshType.Frame
+            );
+            const startRotation = new Vector3(MathUtils.degToRad(90), 0, 0);
+            const endRotation = new Vector3(0, 0, 0);
+
+            gltf.scene.position.set(...targetPosition.toArray());
+            frameNode.rotation.set(...startRotation.toArray());
+
+            return animate(startRotation.x, endRotation.x, {
+              type: 'spring',
+              delay: (300 * index + showDelay + 300) / 1000,
+              stiffness: 80,
+              damping: 20,
+              restSpeed: 0.0001,
+              restDelta: 0.0001,
+              onUpdate: value => {
+                frameNode.rotation.x = value;
+                renderFrame();
+              },
+            });
+          };
+        }
+
+        // Quest3 rotate animation
+        if (model.animation === ModelAnimationType.Quest3Rotate) {
+          playAnimation = () => {
+            const modelNode = gltf.scene;
+            const startRotation = new Vector3(0, -Math.PI / 4, 0);
+            const endRotation = new Vector3(0, Math.PI / 4, 0);
+
+            if (model.position) {
+              modelNode.position.set(
+                model.position.x,
+                model.position.y,
+                model.position.z
+              );
+            }
+            
+            if (model.rotation) {
+              modelNode.rotation.set(
+                model.rotation.x,
+                startRotation.y,
+                model.rotation.z
+              );
+            }
+
+            return animate(startRotation.y, endRotation.y, {
+              ease: 'easeInOut',
+              duration: 20,
+              repeat: Infinity,
+              repeatType: 'reverse',
+              onUpdate: value => {
+                modelNode.rotation.y = value;
+                renderFrame();
+              },
+            });
+          };
+        }
+
+        return { loadFullResTexture, playAnimation };
+
+      } catch (error) {
+        console.error(`Failed to load model:`, error);
+        throw error;
       }
-
-      return { loadFullResTexture, playAnimation };
     };
 
     setLoadDevice({ start: load });
