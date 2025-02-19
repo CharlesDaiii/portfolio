@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { useInViewport } from '~/hooks';
 import styles from './image-carousel.module.css';
 
@@ -7,6 +7,18 @@ export const ImageCarousel = ({ images }) => {
   const [direction, setDirection] = useState(null);
   const carouselRef = useRef(null);
   const inView = useInViewport(carouselRef, true);
+  
+  // 预加载下一张图片
+  useEffect(() => {
+    const nextIndex = (currentIndex + 1) % images.length;
+    const img = new Image();
+    img.src = getImageSrc(images[nextIndex]);
+  }, [currentIndex, images]);
+
+  const getImageSrc = (image) => {
+    if (typeof image === 'string') return image;
+    return image.src || image.url || '';
+  };
 
   const goToPrevious = useCallback(() => {
     setDirection('previous');
@@ -30,6 +42,13 @@ export const ImageCarousel = ({ images }) => {
     return styles.slide;
   };
 
+  // 添加图片加载错误处理
+  const handleImageError = (e) => {
+    console.error('Image failed to load:', e.target.src);
+    // 可以设置一个默认的占位图
+    // e.target.src = '/path/to/fallback-image.jpg';
+  };
+
   return (
     <div ref={carouselRef} className={styles.carouselContainer}>
       <button className={styles.leftArrow} onClick={goToPrevious} aria-label="Previous image">
@@ -39,25 +58,14 @@ export const ImageCarousel = ({ images }) => {
         ❯
       </button>
       <div className={styles.imageContainer}>
-        {/* 只渲染当前图片和前后相邻的图片 */}
-        {images.map((image, index) => {
-          const shouldRender = 
-            index === currentIndex ||
-            index === (currentIndex + 1) % images.length ||
-            index === (currentIndex - 1 + images.length) % images.length;
-          
-          if (!shouldRender) return null;
-          
-          return (
-            <img 
-              key={index}
-              src={image} 
-              alt={`Slide ${index + 1}`}
-              className={getSlideClassName(index)}
-              loading={index === currentIndex ? "eager" : "lazy"}
-            />
-          );
-        })}
+        {/* 只渲染当前图片 */}
+        <img 
+          key={currentIndex}
+          src={getImageSrc(images[currentIndex])}
+          alt={`Slide ${currentIndex + 1}`}
+          className={styles.slide}
+          loading="eager"
+        />
       </div>
       <div className={styles.thumbnailContainer}>
         {images.map((image, index) => (
@@ -70,9 +78,10 @@ export const ImageCarousel = ({ images }) => {
             }}
           >
             <img 
-              src={image} 
-              alt={`Thumbnail ${index + 1}`} 
+              src={getImageSrc(image)}
+              alt={`Thumbnail ${index + 1}`}
               loading="lazy"
+              onError={handleImageError}
             />
           </div>
         ))}
