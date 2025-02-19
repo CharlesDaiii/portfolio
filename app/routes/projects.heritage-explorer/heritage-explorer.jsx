@@ -2,7 +2,7 @@ import { Footer } from '~/components/footer';
 import {
   ProjectContainer,
 } from '~/layouts/project';
-import { Fragment } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { baseMeta } from '~/utils/meta';
 import styles from './heritage-explorer.module.css';
 import { useTheme } from '~/components/theme-provider';
@@ -12,6 +12,7 @@ import image1 from '~/assets/heritage-explorer/data4_1.jpg';
 import image2 from '~/assets/heritage-explorer/data4_2.jpg';
 import image3 from '~/assets/heritage-explorer/data4_3.jpg';
 import image4 from '~/assets/heritage-explorer/data4_4.jpg';
+import { optimizeImage } from '~/utils/image-optimization';
 
 export const meta = () => {
   return baseMeta({
@@ -22,9 +23,35 @@ export const meta = () => {
 };
 
 export const HeritageExplorer = () => {
+  const [optimizedImages, setOptimizedImages] = useState([]);
   const { theme } = useTheme();
-  const images = [image1, image2, image3, image4];
-  
+  const originalImages = [image1, image2, image3, image4];
+
+  useEffect(() => {
+    const processImages = async () => {
+      const processed = await Promise.all(
+        originalImages.map(async (img) => {
+          return {
+            original: img,
+            compressed: await optimizeImage(img, {
+              maxWidth: 1600, // 增加最大宽度
+              quality: 95,    // 提高质量
+              format: 'webp'
+            }),
+            thumbnail: await optimizeImage(img, {
+              maxWidth: 300,  // 增加缩略图尺寸
+              quality: 90,    // 提高缩略图质量
+              format: 'webp'
+            })
+          };
+        })
+      );
+      setOptimizedImages(processed);
+    };
+
+    processImages();
+  }, []);
+
   return (
     <Fragment>
       <ProjectContainer className={styles.heritageExplorer}>
@@ -92,13 +119,11 @@ export const HeritageExplorer = () => {
           </div>
           
           <ImageCarousel 
-            images={images.map(img => ({
-              src: img,
-              srcSet: `${img.replace('.jpg', '-small.webp')} 800w, 
-                       ${img.replace('.jpg', '-medium.webp')} 1200w, 
-                       ${img.replace('.jpg', '-large.webp')} 1920w`,
-              sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-            }))} 
+            images={optimizedImages.map(img => ({
+              src: img.original,
+              compressed: img.compressed,
+              thumbnail: img.thumbnail
+            }))}
           />
         </div>
       </ProjectContainer>

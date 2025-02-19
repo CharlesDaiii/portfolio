@@ -2,11 +2,20 @@ import { Footer } from '~/components/footer';
 import {
   ProjectContainer,
 } from '~/layouts/project';
-import { Fragment } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { baseMeta } from '~/utils/meta';
 import styles from './bike-sharing.module.css';
 import { useTheme } from '~/components/theme-provider';
 import projectStyles from '~/styles/project.module.css';
+import { ImageCarousel } from '~/components/image-carousel/image-carousel';
+import { optimizeImage } from '~/utils/image-optimization';
+
+// 导入图片
+import data5_1 from '~/assets/bike-sharing/data5_1.jpg';
+import data5_2 from '~/assets/bike-sharing/data5_2.jpg';
+import data5_3 from '~/assets/bike-sharing/data5_3.jpg';
+import data5_4 from '~/assets/bike-sharing/data5_4.jpg';
+import data5_5 from '~/assets/bike-sharing/data5_5.jpg';
 
 export const meta = () => {
   return baseMeta({
@@ -17,8 +26,35 @@ export const meta = () => {
 };
 
 export const BikeSharing = () => {
+  const [optimizedImages, setOptimizedImages] = useState([]);
   const { theme } = useTheme();
-  
+  const originalImages = [data5_1, data5_2, data5_3, data5_4, data5_5];
+
+  useEffect(() => {
+    const processImages = async () => {
+      const processed = await Promise.all(
+        originalImages.map(async (img) => {
+          return {
+            original: img,
+            compressed: await optimizeImage(img, {
+              maxWidth: 1600,
+              quality: 95,
+              format: 'webp'
+            }),
+            thumbnail: await optimizeImage(img, {
+              maxWidth: 300,
+              quality: 90,
+              format: 'webp'
+            })
+          };
+        })
+      );
+      setOptimizedImages(processed);
+    };
+
+    processImages();
+  }, []);
+
   return (
     <Fragment>
       <ProjectContainer className={styles.bikeSharing}>
@@ -34,12 +70,11 @@ export const BikeSharing = () => {
           <div className={projectStyles.projectInfo}>
             <section className={projectStyles.contentSection}>
               <div className={projectStyles.contentLeft}>
-
                 <div className={projectStyles.infoBlock}>
                   <h2 className={projectStyles.infoTitle}>Team</h2>
                   <ul className={projectStyles.infoList}>
                     <li>Yecheng Zhang, Zixuan Wang</li>
-                    <li>Wenya Xu, Wen Wenen</li>
+                    <li>Wenya Xu, Wen Wen</li>
                   </ul>
                 </div>
 
@@ -66,6 +101,13 @@ export const BikeSharing = () => {
               </div>
             </section>
           </div>
+          <ImageCarousel 
+            images={optimizedImages.map(img => ({
+              src: img.original,
+              compressed: img.compressed,
+              thumbnail: img.thumbnail
+            }))}
+          />
         </div>
       </ProjectContainer>
       <Footer />

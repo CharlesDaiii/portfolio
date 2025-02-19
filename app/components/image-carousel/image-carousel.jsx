@@ -5,19 +5,47 @@ import styles from './image-carousel.module.css';
 export const ImageCarousel = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const carouselRef = useRef(null);
   const inView = useInViewport(carouselRef, true);
   
-  // 预加载下一张图片
+  // 优化预加载策略
   useEffect(() => {
-    const nextIndex = (currentIndex + 1) % images.length;
-    const img = new Image();
-    img.src = getImageSrc(images[nextIndex]);
+    if (!images.length) return;
+    
+    const preloadImages = async () => {
+      try {
+        // 只预加载当前图片和下一张图片
+        const imagesToLoad = [
+          images[currentIndex],
+          images[(currentIndex + 1) % images.length]
+        ];
+
+        await Promise.all(
+          imagesToLoad.map(image => {
+            return new Promise((resolve, reject) => {
+              const img = new Image();
+              img.onload = resolve;
+              img.onerror = reject;
+              img.src = getImageSrc(image);
+            });
+          })
+        );
+        
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error preloading images:', error);
+        setIsLoading(false);
+      }
+    };
+
+    preloadImages();
   }, [currentIndex, images]);
 
   const getImageSrc = (image) => {
     if (typeof image === 'string') return image;
-    return image.src || image.url || '';
+    // 优先使用压缩后的图片
+    return image.compressed || image.src || image.url || '';
   };
 
   const goToPrevious = useCallback(() => {
@@ -35,9 +63,20 @@ export const ImageCarousel = ({ images }) => {
   }, [images.length]);
 
   const getSlideClassName = (index) => {
-    if (index === currentIndex) return `${styles.slide} ${styles.active}`;
+    if (index === currentIndex) {
+      return `${styles.slide} ${styles.active}`;
+    }
     if (direction === 'next' && index === (currentIndex - 1 + images.length) % images.length) {
       return `${styles.slide} ${styles.previous}`;
+    }
+    if (direction === 'next' && index === (currentIndex + 1) % images.length) {
+      return `${styles.slide} ${styles.next}`;
+    }
+    if (direction === 'previous' && index === (currentIndex - 1 + images.length) % images.length) {
+      return `${styles.slide} ${styles.previous}`;
+    }
+    if (direction === 'previous' && index === (currentIndex + 1) % images.length) {
+      return `${styles.slide} ${styles.next}`;
     }
     return styles.slide;
   };
@@ -58,14 +97,25 @@ export const ImageCarousel = ({ images }) => {
         ❯
       </button>
       <div className={styles.imageContainer}>
-        {/* 只渲染当前图片 */}
-        <img 
-          key={currentIndex}
-          src={getImageSrc(images[currentIndex])}
-          alt={`Slide ${currentIndex + 1}`}
-          className={styles.slide}
-          loading="eager"
-        />
+        {images.map((image, index) => {
+          const shouldRender = 
+            index === currentIndex ||
+            index === (currentIndex + 1) % images.length ||
+            index === (currentIndex - 1 + images.length) % images.length;
+          
+          if (!shouldRender) return null;
+          
+          return (
+            <img 
+              key={index}
+              src={getImageSrc(image)}
+              alt={`Slide ${index + 1}`}
+              className={getSlideClassName(index)}
+              loading={index === currentIndex ? "eager" : "lazy"}
+              style={{ opacity: isLoading ? 0 : 1 }}
+            />
+          );
+        })}
       </div>
       <div className={styles.thumbnailContainer}>
         {images.map((image, index) => (

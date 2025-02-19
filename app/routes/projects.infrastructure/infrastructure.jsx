@@ -2,11 +2,21 @@ import { Footer } from '~/components/footer';
 import {
   ProjectContainer,
 } from '~/layouts/project';
-import { Fragment } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { baseMeta } from '~/utils/meta';
 import styles from './infrastructure.module.css';
 import { useTheme } from '~/components/theme-provider';
 import projectStyles from '~/styles/project.module.css';
+import { ImageCarousel } from '~/components/image-carousel/image-carousel';
+import { optimizeImage } from '~/utils/image-optimization';
+
+// 导入图片
+import data6_1 from '~/assets/infrastructure/data6_1.jpg';
+import data6_2 from '~/assets/infrastructure/data6_2.jpg';
+import data6_3 from '~/assets/infrastructure/data6_3.jpg';
+import data6_4 from '~/assets/infrastructure/data6_4.jpg';
+import data6_5 from '~/assets/infrastructure/data6_5.jpg';
+import data6_6 from '~/assets/infrastructure/data6_6.jpg';
 
 export const meta = () => {
   return baseMeta({
@@ -17,8 +27,35 @@ export const meta = () => {
 };
 
 export const Infrastructure = () => {
+  const [optimizedImages, setOptimizedImages] = useState([]);
   const { theme } = useTheme();
-  
+  const originalImages = [data6_1, data6_2, data6_3, data6_4, data6_5, data6_6];
+
+  useEffect(() => {
+    const processImages = async () => {
+      const processed = await Promise.all(
+        originalImages.map(async (img) => {
+          return {
+            original: img,
+            compressed: await optimizeImage(img, {
+              maxWidth: 1600,
+              quality: 95,
+              format: 'webp'
+            }),
+            thumbnail: await optimizeImage(img, {
+              maxWidth: 300,
+              quality: 90,
+              format: 'webp'
+            })
+          };
+        })
+      );
+      setOptimizedImages(processed);
+    };
+
+    processImages();
+  }, []);
+
   return (
     <Fragment>
       <ProjectContainer className={styles.infrastructure}>
@@ -67,6 +104,13 @@ export const Infrastructure = () => {
               </div>
             </section>
           </div>
+          <ImageCarousel 
+            images={optimizedImages.map(img => ({
+              src: img.original,
+              compressed: img.compressed,
+              thumbnail: img.thumbnail
+            }))}
+          />
         </div>
       </ProjectContainer>
       <Footer />

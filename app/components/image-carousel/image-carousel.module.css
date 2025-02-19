@@ -26,25 +26,34 @@
   height: 100%;
   object-fit: contain;
   position: absolute;
-  opacity: 1;
-  border-radius: 16px;
-  transition: opacity 0.3s ease;
-  will-change: opacity;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.3s ease;
+  will-change: transform, opacity;
+  border-radius: 16px !important;
 }
 
 .slide.active {
   opacity: 1;
   transform: translateX(0);
+  z-index: 2;
 }
 
 .slide.previous {
+  opacity: 1;
   transform: translateX(-100%);
+  z-index: 1;
+}
+
+.slide.next {
+  opacity: 1;
+  transform: translateX(100%);
+  z-index: 1;
 }
 
 .leftArrow, .rightArrow {
   position: absolute;
-  top: calc(50% - 60px);
-  transform: translateY(-50%);
+  top: calc(300px - 24px);
   font-size: 2rem;
   color: var(--text-primary);
   background: rgba(0, 0, 0, 0.3);
@@ -55,7 +64,7 @@
   justify-content: center;
   border-radius: 50%;
   cursor: pointer;
-  z-index: 1;
+  z-index: 10;
   transition: all 0.3s ease;
   backdrop-filter: blur(4px);
   border: none;
@@ -128,6 +137,10 @@
     width: 160px;
     height: 120px;
   }
+
+  .leftArrow, .rightArrow {
+    top: calc(250px - 24px);
+  }
 }
 
 @media (max-width: 768px) {
@@ -141,7 +154,7 @@
   }
   
   .leftArrow, .rightArrow {
-    top: calc(50% - 40px);
+    top: calc(200px - 24px);
   }
 
   .loading {
