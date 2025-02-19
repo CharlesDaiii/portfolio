@@ -246,14 +246,28 @@
 
 /* 添加代码仓库链接样式 */
 .repoLink {
-  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  transition: all 0.2s ease;
   text-decoration: underline;
-  font-size:1rem;
-  font-weight: 500;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  cursor: pointer;
 }
 
 .repoLink:hover {
-  opacity: 0.8;
+  opacity: 1;
+}
+
+.githubIcon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
 }
 
 /* 响应式调整 */
@@ -283,7 +297,9 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
 }
 
 /* 全局变量 */
@@ -296,37 +312,34 @@
 
 .scenarioCard {
   position: relative;
-  padding: 40px;
+  padding: 26px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
   border-radius: 20px;
   background: white;
   border: none;
   box-shadow: 
-    0 0 0 1px rgba(0, 0, 0, 0.03),
     0 2px 4px rgba(0, 0, 0, 0.02),
-    0 6px 12px rgba(0, 0, 0, 0.03),
-    0 12px 24px rgba(0, 0, 0, 0.03),
-    0 24px 48px rgba(0, 0, 0, 0.02);
+    0 8px 16px rgba(0, 0, 0, 0.04),
+    0 16px 32px rgba(0, 0, 0, 0.02);
+  transform: translateY(0);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .scenarioCard:hover {
   transform: translateY(-4px);
   box-shadow: 
-    0 0 0 1px rgba(0, 0, 0, 0.03),
-    0 4px 8px rgba(0, 0, 0, 0.04),
-    0 12px 24px rgba(0, 0, 0, 0.04),
-    0 24px 48px rgba(0, 0, 0, 0.04),
-    0 48px 96px rgba(0, 0, 0, 0.03);
+    0 4px 8px rgba(0, 0, 0, 0.03),
+    0 12px 24px rgba(0, 0, 0, 0.05),
+    0 24px 48px rgba(0, 0, 0, 0.03);
 }
 
 .scenarioTitle {
   display: flex;
   align-items: center;
-  gap: 24px;
-  font-size: 1.5rem;
+  gap: 20px;
+  font-size: 1.375rem;
   font-weight: 600;
   margin: 0;
   line-height: 1.3;
@@ -346,59 +359,158 @@
 }
 
 .blockText {
-  font-size: 1.25rem;
-  line-height: 1.5;
+  font-size: 1.075rem;
+  line-height: 1.4;
   color: #374151;
   font-weight: 400;
   font-style: italic;
   margin: 0;
-  padding-left: 0;
+  white-space: nowrap;
 }
 
 /* 响应式布局 */
 @media (max-width: 1024px) {
   .scenariosGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 16px;
+    padding: 0 32px;
   }
   
   .scenarioCard {
-    padding: 36px;
-  }
-  
-  .scenarioIcon {
-    width: 44px;
-    height: 44px;
+    padding: 28px;
   }
   
   .blockText {
-    padding-left: 68px;
-    font-size: 1.125rem;
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 768px) {
   .scenariosGrid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
+    padding: 0 16px;
   }
   
   .scenarioCard {
-    padding: 32px;
-  }
-  
-  .scenarioTitle {
-    font-size: 1.375rem;
-    gap: 20px;
-  }
-  
-  .scenarioIcon {
-    width: 40px;
-    height: 40px;
+    padding: 24px;
   }
   
   .blockText {
-    padding-left: 60px;
-    font-size: 1.125rem;
+    font-size: 1rem;
+    white-space: normal;
+  }
+}
+
+/* Use Cases 部分样式 */
+.useCaseContainer {
+  width: 100%;
+  margin: 120px 0;
+}
+
+.useCaseStep {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.useCaseContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.useCaseImage {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: transparent;
+  box-shadow: none;
+}
+
+.useCaseImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* 响应式调整 */
+@media (max-width: 1024px) {
+  .useCaseStep {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .useCaseContent {
+    align-items: center;
+    text-align: center;
+  }
+
+  .useCaseImage {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .useCaseContainer {
+    margin: 80px 0;
+  }
+
+  .useCaseStep {
+    gap: 24px;
+    padding: 0 16px;
+  }
+
+  .useCaseImage {
+    max-width: 100%;
+  }
+}
+
+.sectionGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.sectionText {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .sectionText {
+    font-size: 1rem;
+  }
+}
+
+.fullWidth {
+  grid-template-columns: 1fr !important;  /* 覆盖默认的两列布局 */
+  max-width: 1200px;  /* 与其他部分保持一致 */
+  margin: 0 auto;
+  padding: 0 32px;  /* 与其他部分保持一致的边距 */
+}
+
+.fullWidth .useCaseContent {
+  width: 100%;
+  padding: 0;  /* 移除内部padding */
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .fullWidth {
+    padding: 0 16px;  /* 移动端边距保持一致 */
   }
 }

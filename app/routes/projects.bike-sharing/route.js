@@ -1,0 +1,1 @@
+export { BikeSharing as default, meta } from './bike-sharing'; 

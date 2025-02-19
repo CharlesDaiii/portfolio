@@ -31,6 +31,7 @@ export function ProjectSummary({
   buttonLink,
   alternate,
   category,
+  images,
   ...rest
 }) {
   const [focused, setFocused] = useState(false);
@@ -93,6 +94,25 @@ export function ProjectSummary({
               <span className={styles.tag}>SLAM Mapping</span>
               <span className={styles.tag}>Unity MRTK</span>
             </>
+          ) : title === "Infrastructure Equality" ? (
+            <>
+              <span className={styles.tag}>Python</span>
+              <span className={styles.tag}>Evolutionary Algorithm</span>
+              <span className={styles.tag}>Cost-Benefit Model</span>
+            </>
+          ) : title === "Heritage Knowledge Explorer" ? (
+            <>
+              <span className={styles.tag}>TextCNN</span>
+              <span className={styles.tag}>Storytelling</span>
+              <span className={styles.tag}>Knowledge Graph</span>
+              <span className={styles.tag}>User Flow</span>
+            </>
+          ) : title === "Bike Sharing Analysis" ? (
+            <>
+              <span className={styles.tag}>Python</span>
+              <span className={styles.tag}>SHAP</span>
+              <span className={styles.tag}>User Research</span>
+            </>
           ) : title === "Adaptive UI for Sleep & Respiratory Care" ? (
             <>
               <span className={styles.tag}>Co-Creation</span>
@@ -121,7 +141,7 @@ export function ProjectSummary({
   function renderPreview(visible) {
     return (
       <div className={styles.preview}>
-        {model.type === 'laptop' && (
+        {model?.type === 'laptop' && (
           <div className={styles.model} data-device="laptop" style={{ transform: 'scale(0.8)' }}>
             {!modelLoaded && (
               <Loader center className={styles.loader} data-visible={visible} />
@@ -155,7 +175,7 @@ export function ProjectSummary({
             )}
           </div>
         )}
-        {model.type === 'phone' && (
+        {model?.type === 'phone' && (
           <div className={styles.model} data-device="phone">
             {!modelLoaded && (
               <Loader center className={styles.loader} data-visible={visible} />
@@ -191,7 +211,7 @@ export function ProjectSummary({
             )}
           </div>
         )}
-        {model.type === 'quest3' && (
+        {model?.type === 'quest3' && (
           <div className={styles.model} data-device="quest3">
             {!modelLoaded && (
               <Loader center className={styles.loader} data-visible={visible} />
@@ -220,6 +240,20 @@ export function ProjectSummary({
                 />
               </Suspense>
             )}
+          </div>
+        )}
+        {!model && images && (
+          <div className={styles.imageContainer}>
+            {images.map((image, index) => (
+              <img
+                key={index}
+                src={image.src}
+                alt={image.alt}
+                className={styles.projectImage}
+                data-visible={visible}
+                data-index={index}
+              />
+            ))}
           </div>
         )}
       </div>

@@ -27,6 +27,12 @@ import { useEffect, useRef, useState } from 'react';
 import config from '~/config.json';
 import styles from './home.module.css';
 import { SectionTitle } from '~/components/section-title/section-title';
+import data4Image from '../../assets/homepage/data4_1.jpg';
+import data4_4Image from '../../assets/homepage/data4_4.jpg';
+import data5Image from '../../assets/homepage/data5_5.jpg';
+import data5_2Image from '../../assets/homepage/data5_2.jpg';
+import data6Image from '../../assets/homepage/data6_2.jpg';
+import data6_1Image from '../../assets/homepage/data6_1.jpg';
 
 // Prefetch draco decoader wasm
 export const links = () => {
@@ -62,11 +68,14 @@ export const Home = () => {
   const projectOne = useRef();
   const projectTwo = useRef();
   const projectThree = useRef();
+  const projectFour = useRef();
+  const projectFive = useRef();
+  const projectSix = useRef();
   const others = useRef();
   const contact = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne, projectTwo, projectThree, others, contact];
+    const sections = [intro, projectOne, projectTwo, projectThree, projectFour, projectFive, projectSix, others, contact];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -171,6 +180,71 @@ export const Home = () => {
           alt: 'Quest3 VR headset demonstrating MR Finder application',
           scale: 1.0,
         }}
+      />
+      <ProjectSummary
+        id="data-viz-1"
+        alternate
+        sectionRef={projectFour}
+        visible={visibleSections.includes(projectFour.current)}
+        index={4}
+        category="Data Visualization"
+        title="Heritage Knowledge Explorer"
+        description="Prototype a mobile app generating personalized heritage tours via voice/text queries, powered by a 5,000-node knowledge graph."
+        buttonText="View project"
+        buttonLink="/projects/heritage-explorer"
+        images={[
+          {
+            src: data4Image,
+            alt: 'Heritage Knowledge Explorer preview 1'
+          },
+          {
+            src: data4_4Image,
+            alt: 'Heritage Knowledge Explorer preview 2'
+          }
+        ]}
+      />
+      <ProjectSummary
+        id="data-visualization-05"
+        sectionRef={projectFive}
+        visible={visibleSections.includes(projectFive.current)}
+        index={5}
+        category="Data Visualization"
+        title="Bike-Sharing in Epidemic Era"
+        description="Created an explainable AI model using SHAP values to decode how pandemic policies and weather impacted urban mobility."
+        buttonText="View project"
+        buttonLink="/projects/bike-sharing"
+        images={[
+          {
+            src: data5_2Image,
+            alt: 'Bike sharing analysis dashboard preview 1'
+          },
+          {
+            src: data5Image,
+            alt: 'Bike sharing analysis dashboard preview 2'
+          }
+        ]}
+      />
+      <ProjectSummary
+        id="data-visualization-06"
+        alternate
+        sectionRef={projectSix}
+        visible={visibleSections.includes(projectSix.current)}
+        index={6}
+        category="Data Visualization"
+        title="Infrastructure Equality"
+        description="Developed a multi-objective optimization framework combining geospatial analysis and evolutionary algorithms to balance flood risks, infrastructure costs, and social equity."
+        buttonText="View project"
+        buttonLink="/projects/infrastructure"
+        images={[
+          {
+            src: data6_1Image,
+            alt: 'Infrastructure optimization visualization 1'
+          },
+          {
+            src: data6Image,
+            alt: 'Infrastructure optimization visualization 2'
+          }
+        ]}
       />
       <ProjectSummary
         id="others"
