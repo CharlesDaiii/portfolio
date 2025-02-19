@@ -1,0 +1,1 @@
+export { FireboyWatergirl as default, meta } from './fireboy-watergirl'; 

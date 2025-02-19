@@ -120,6 +120,12 @@ export function ProjectSummary({
               <span className={styles.tag}>Proactive Intelligence</span>
               <span className={styles.tag}>Healthcare</span>
             </>
+          ) : title === "Fireboy & Watergirl" ? (
+            <>
+              <span className={styles.tag}>Python</span>
+              <span className={styles.tag}>Game Development</span>
+              <span className={styles.tag}>Dual-Player</span>
+              </>
           ) : (
             <>
               <span className={styles.tag}>Frontend</span>

@@ -33,6 +33,8 @@ import data5Image from '../../assets/homepage/data5_5.jpg';
 import data5_2Image from '../../assets/homepage/data5_2.jpg';
 import data6Image from '../../assets/homepage/data6_2.jpg';
 import data6_1Image from '../../assets/homepage/data6_1.jpg';
+import data7_1Image from '~/assets/fireboywatergirl/7.1.png';
+import data7Image from '~/assets/fireboywatergirl/7.2.png';
 
 // Prefetch draco decoader wasm
 export const links = () => {
@@ -71,11 +73,23 @@ export const Home = () => {
   const projectFour = useRef();
   const projectFive = useRef();
   const projectSix = useRef();
+  const projectSeven = useRef();
   const others = useRef();
   const contact = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne, projectTwo, projectThree, projectFour, projectFive, projectSix, others, contact];
+    const sections = [
+      intro, 
+      projectOne, 
+      projectTwo, 
+      projectThree, 
+      projectFour, 
+      projectFive, 
+      projectSix,
+      projectSeven,
+      others, 
+      contact
+    ];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -243,6 +257,27 @@ export const Home = () => {
           {
             src: data6Image,
             alt: 'Infrastructure optimization visualization 2'
+          }
+        ]}
+      />
+      <ProjectSummary
+        id="creative-computing-07"
+        sectionRef={projectSeven}
+        visible={visibleSections.includes(projectSeven.current)}
+        index={7}
+        category="Creative Computing"
+        title="Fireboy & Watergirl"
+        description="Built a Python-based 2D platformer with dynamically generated levels, enabling two players to collaborate in real-time to solve physics-driven puzzles and navigate shifting obstacles."
+        buttonText="View project"
+        buttonLink="/projects/fireboy-watergirl"
+        images={[
+          {
+            src: data7_1Image,
+            alt: 'Fireboy & Watergirl visualization 1'
+          },
+          {
+            src: data7Image,
+            alt: 'Fireboy & Watergirl visualization 2'
           }
         ]}
       />
