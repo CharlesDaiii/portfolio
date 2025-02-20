@@ -151,17 +151,17 @@
 
   &::after {
     content: '';
-    background: var(--accent);
+    position: absolute;
+    inset: 0 -0.02em 0 0;
     animation-duration: 1.5s;
     animation-delay: var(--delay);
     animation-fill-mode: forwards;
     animation-timing-function: var(--bezierFastoutSlowin);
     transform-origin: left;
     transform: scale3d(0, 1, 1);
-    position: absolute;
-    inset: 0 -0.02em 0 0;
     z-index: var(--zIndex1);
     will-change: transform;
+    background: var(--accent);
   }
 
   &[data-plus='true']::before {
@@ -197,6 +197,22 @@
     top: 0;
     z-index: var(--zIndex0);
   }
+}
+
+.row .word[data-role='data-driven developer']::after {
+  background: color-mix(in lab, var(--accent) 85%, #4ECDC4);
+}
+
+.row .word[data-role='ux engineer']::after {
+  background: color-mix(in lab, var(--accent) 85%, #FF6B6B);
+}
+
+.row .word[data-role='computational designer']::after {
+  background: color-mix(in lab, var(--accent) 85%, #A8E6CF);
+}
+
+.row .word[data-role='creative technologist']::after {
+  background: color-mix(in lab, var(--accent) 85%, #FFD93D);
 }
 
 @keyframes introLine {

@@ -65,7 +65,7 @@ export function ProjectSummary({
           </span>
         </div>
         {title === "Adaptive UI for Sleep & Respiratory Care" && (
-          <div className={styles.projectLogos}>
+          <div className={styles.projectLogos} data-visible={visible}>
             <div className={styles.logoWrapper}>
               <img src={philipsLogo} alt="Philips Logo" className={styles.projectLogo} />
             </div>
@@ -86,7 +86,7 @@ export function ProjectSummary({
         <Text className={styles.description} data-visible={visible} as="p">
           {description}
         </Text>
-        <div className={styles.tags}>
+        <div className={styles.tags} data-visible={visible}>
           {title === "MR Finder: Mixed Reality Lost & Found" ? (
             <>
               <span className={styles.tag}>Mixed Reality</span>
@@ -281,13 +281,19 @@ export function ProjectSummary({
       {...rest}
     >
       <div className={styles.content}>
-        <Transition in={sectionVisible || focused}>
-          {({ visible }) => (
+        <Transition in={sectionVisible || focused} timeout={0}>
+          {({ visible, status }) => (
             <>
               {!alternate && !isMobile && (
                 <>
                   {renderDetails(visible)}
-                  {renderPreview(visible)}
+                  <div style={{ 
+                    transitionDelay: '200ms',  // 与 title 同步出现
+                    opacity: visible ? 1 : 0,
+                    transition: 'opacity 0.3s ease'
+                  }}>
+                    {renderPreview(visible)}
+                  </div>
                 </>
               )}
               {(alternate || isMobile) && (
