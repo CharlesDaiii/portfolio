@@ -17,14 +17,6 @@ const DisplacementSphere = lazy(() =>
   import('./displacement-sphere').then(module => ({ default: module.DisplacementSphere }))
 );
 
-function WordTransition({ children, delay, role }) {
-  return (
-    <span className={styles.word} style={{ '--delay': delay }} data-role={role}>
-      {children}
-    </span>
-  );
-}
-
 export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
   const { theme } = useTheme();
   const { disciplines } = config;
@@ -107,9 +99,16 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                       key={item}
                     >
                       {({ status, nodeRef }) => (
-                        <WordTransition role={item.toLowerCase()}>
+                        <span
+                          aria-hidden
+                          ref={nodeRef}
+                          className={styles.word}
+                          data-plus={true}
+                          data-status={status}
+                          style={cssProps({ delay: tokens.base.durationL })}
+                        >
                           {item}
-                        </WordTransition>
+                        </span>
                       )}
                     </Transition>
                   ))}
