@@ -1,0 +1,1 @@
+const e="Ziying Qi",o="AI-Powered Designer",i=["Data-Driven Developer","UX Engineer","Computational Designer","Creative Technologist"],n="http://localhost:3003/",t="https://github.com/QiqiCoder/portfolio",r={name:e,role:o,disciplines:i,url:n,repo:t};export{r as c};
