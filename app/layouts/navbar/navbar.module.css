@@ -81,6 +81,8 @@
     margin-left: var(--spaceM);
     position: relative;
     opacity: 0.8;
+    font-size: 1.125rem;
+    letter-spacing: 0.02em;
   }
 
   .navLink[data-type='contact']::before {
@@ -268,6 +270,97 @@
     .mobileNavLink:hover,
     .mobileNavLink:focus {
       color: var(--colorText);
+    }
+  }
+
+  .navIcons {
+    display: flex;
+    align-items: center;
+    gap: var(--spaceS);
+    margin-left: var(--spaceM);
+  }
+
+  .navIconLink {
+    display: flex;
+    align-items: center;
+    gap: var(--spaceXS);
+    padding: var(--spaceXS) var(--spaceS);
+    color: var(--colorTextLight);
+    text-decoration: none;
+    font-size: 1.125rem;
+    letter-spacing: 0.02em;
+    transition: color var(--durationS) ease;
+  }
+
+  .navIconLink[download] {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .navIconLink[download]::after {
+    content: 'Resume';
+    font-size: 1.125rem;
+    letter-spacing: 0.02em;
+  }
+
+  .navIconLink:hover {
+    color: var(--colorText);
+  }
+
+  .navIcon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
+  @media (--mediaMobile) {
+    .navIconLink[download]::after {
+      font-size: 1rem;
+    }
+    
+    .navIcon {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .socialLinks {
+    display: flex;
+    align-items: center;
+    gap: var(--spaceS);
+    margin-left: var(--spaceM);
+  }
+
+  .socialLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spaceXS);
+    color: var(--colorTextLight);
+    transition: color var(--durationS) ease;
+    margin-left: var(--spaceM);
+  }
+
+  .socialLink:hover {
+    color: var(--colorText);
+  }
+
+  .socialIcon {
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
+  }
+
+  /* 响应式调整 */
+  @media (--mediaMobile) {
+    .socialLinks {
+      margin-left: var(--spaceS);
+    }
+    
+    .socialIcon {
+      width: 24px;
+      height: 24px;
     }
   }
 }

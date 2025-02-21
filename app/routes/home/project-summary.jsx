@@ -14,6 +14,7 @@ import { useHydrated } from '~/hooks/useHydrated';
 import styles from './project-summary.module.css';
 import philipsLogo from '../../assets/adaptive-ui/Philips.png';
 import philipsSRCLogo from '../../assets/adaptive-ui/SRC.png';
+import bikelogo from '~/assets/bike-sharing/bikelogo.jpg';
 
 const Model = lazy(() =>
   import('~/components/model').then(module => ({ default: module.Model }))
@@ -66,11 +67,18 @@ export function ProjectSummary({
         </div>
         {title === "Adaptive UI for Sleep & Respiratory Care" && (
           <div className={styles.projectLogos} data-visible={visible}>
-            <div className={styles.logoWrapper}>
+            <div className={styles.logoWrapper} data-logo="philips">
               <img src={philipsLogo} alt="Philips Logo" className={styles.projectLogo} />
             </div>
-            <div className={styles.logoWrapper}>
+            <div className={styles.logoWrapper} data-logo="respironics">
               <img src={philipsSRCLogo} alt="Philips Sleep & Respiratory Care Logo" className={styles.projectLogo} />
+            </div>
+          </div>
+        )}
+        {title === "Bike-Sharing in Epidemic Era" && (
+          <div className={styles.projectLogos} data-visible={visible}>
+            <div className={styles.logoWrapper} data-logo="bike">
+              <img src={bikelogo} alt="Bike-sharing Logo" className={styles.projectLogo} />
             </div>
           </div>
         )}
@@ -107,7 +115,7 @@ export function ProjectSummary({
               <span className={styles.tag}>Knowledge Graph</span>
               <span className={styles.tag}>User Flow</span>
             </>
-          ) : title === "Bike Sharing Analysis" ? (
+          ) : title === "Bike-Sharing in Epidemic Era" ? (
             <>
               <span className={styles.tag}>Python</span>
               <span className={styles.tag}>SHAP</span>

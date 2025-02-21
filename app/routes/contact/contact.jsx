@@ -1,7 +1,6 @@
 import { Button } from '~/components/button';
 import { DecoderText } from '~/components/decoder-text';
 import { Divider } from '~/components/divider';
-import { Footer } from '~/components/footer';
 import { Heading } from '~/components/heading';
 import { Icon } from '~/components/icon';
 import { Input } from '~/components/input';
@@ -22,7 +21,7 @@ export const meta = () => {
   return baseMeta({
     title: 'Contact',
     description:
-      'Send me a message if you’re interested in discussing a project or if you just want to say hi',
+      'Send me a message if you‘re interested in discussing a project or if you just want to say hi',
   });
 };
 
@@ -104,134 +103,164 @@ export const Contact = () => {
 
   return (
     <Section className={styles.contact}>
-      <Transition unmount in={!actionData?.success} timeout={1600}>
-        {({ status, nodeRef }) => (
-          <Form
-            unstable_viewTransition
-            className={styles.form}
-            method="post"
-            ref={nodeRef}
-          >
-            <Heading
-              className={styles.title}
-              data-status={status}
-              level={3}
-              as="h1"
-              style={getDelay(tokens.base.durationXS, initDelay, 0.3)}
-            >
-              <DecoderText text="Say hello" start={status !== 'exited'} delay={300} />
-            </Heading>
-            <Divider
-              className={styles.divider}
-              data-status={status}
-              style={getDelay(tokens.base.durationXS, initDelay, 0.4)}
-            />
-            {/* Hidden honeypot field to identify bots */}
-            <Input
-              className={styles.botkiller}
-              label="Name"
-              name="name"
-              maxLength={MAX_EMAIL_LENGTH}
-            />
-            <Input
-              required
-              className={styles.input}
-              data-status={status}
-              style={getDelay(tokens.base.durationXS, initDelay)}
-              autoComplete="email"
-              label="Your email"
-              type="email"
-              name="email"
-              maxLength={MAX_EMAIL_LENGTH}
-              {...email}
-            />
-            <Input
-              required
-              multiline
-              className={styles.input}
-              data-status={status}
-              style={getDelay(tokens.base.durationS, initDelay)}
-              autoComplete="off"
-              label="Message"
-              name="message"
-              maxLength={MAX_MESSAGE_LENGTH}
-              {...message}
-            />
-            <Transition
-              unmount
-              in={!sending && actionData?.errors}
-              timeout={msToNum(tokens.base.durationM)}
-            >
-              {({ status: errorStatus, nodeRef }) => (
-                <div
-                  className={styles.formError}
-                  ref={nodeRef}
-                  data-status={errorStatus}
-                  style={cssProps({
-                    height: errorStatus ? errorRef.current?.offsetHeight : 0,
-                  })}
+      <div className={styles.contactWrapper}>
+        <Transition in appear>
+          {({ status }) => (
+            <div className={styles.contactInfo} data-status={status}>
+              <Text className={styles.contactText}>
+                <span className={styles.emoji}>👾</span>
+                Hey there—welcome to my little slice of the internet!
+                <span className={styles.emoji}>👾</span>
+              </Text>
+              <Text className={styles.contactText}>
+                I cooked this site up with React, Remix, Three.js, and Framer Motion.
+              </Text>
+              <Text className={styles.contactText}>
+                Everything's open source on my{' '}
+                <a 
+                  href="https://github.com/Qiqicoder/portfolio" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={styles.contactLink}
                 >
-                  <div className={styles.formErrorContent} ref={errorRef}>
-                    <div className={styles.formErrorMessage}>
-                      <Icon className={styles.formErrorIcon} icon="error" />
-                      {actionData?.errors?.email}
-                      {actionData?.errors?.message}
+                  Github
+                </a>
+                , so if you're curious about the code or just want to chat about blending creativity and tech, let's connect!
+              </Text>
+            </div>
+          )}
+        </Transition>
+
+        <div>
+          <Transition unmount in={!actionData?.success} timeout={1600}>
+            {({ status, nodeRef }) => (
+              <Form
+                unstable_viewTransition
+                className={styles.form}
+                method="post"
+                ref={nodeRef}
+              >
+                <Heading
+                  className={styles.title}
+                  data-status={status}
+                  level={3}
+                  as="h1"
+                  style={getDelay(tokens.base.durationXS, initDelay, 0.3)}
+                >
+                  <DecoderText text="Let's chat!" start={status !== 'exited'} delay={300} />
+                </Heading>
+                <Divider
+                  className={styles.divider}
+                  data-status={status}
+                  style={getDelay(tokens.base.durationXS, initDelay, 0.4)}
+                />
+                {/* Hidden honeypot field to identify bots */}
+                <Input
+                  className={styles.botkiller}
+                  label="Name"
+                  name="name"
+                  maxLength={MAX_EMAIL_LENGTH}
+                />
+                <Input
+                  required
+                  className={styles.input}
+                  data-status={status}
+                  style={getDelay(tokens.base.durationXS, initDelay)}
+                  autoComplete="email"
+                  label="Your email"
+                  type="email"
+                  name="email"
+                  maxLength={MAX_EMAIL_LENGTH}
+                  {...email}
+                />
+                <Input
+                  required
+                  multiline
+                  className={styles.input}
+                  data-status={status}
+                  style={getDelay(tokens.base.durationS, initDelay)}
+                  autoComplete="off"
+                  label="Message"
+                  name="message"
+                  maxLength={MAX_MESSAGE_LENGTH}
+                  {...message}
+                />
+                <Transition
+                  unmount
+                  in={!sending && actionData?.errors}
+                  timeout={msToNum(tokens.base.durationM)}
+                >
+                  {({ status: errorStatus, nodeRef }) => (
+                    <div
+                      className={styles.formError}
+                      ref={nodeRef}
+                      data-status={errorStatus}
+                      style={cssProps({
+                        height: errorStatus ? errorRef.current?.offsetHeight : 0,
+                      })}
+                    >
+                      <div className={styles.formErrorContent} ref={errorRef}>
+                        <div className={styles.formErrorMessage}>
+                          <Icon className={styles.formErrorIcon} icon="error" />
+                          {actionData?.errors?.email}
+                          {actionData?.errors?.message}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              )}
-            </Transition>
-            <Button
-              className={styles.button}
-              data-status={status}
-              data-sending={sending}
-              style={getDelay(tokens.base.durationM, initDelay)}
-              disabled={sending}
-              loading={sending}
-              loadingText="Sending..."
-              icon="send"
-              type="submit"
-            >
-              Send message
-            </Button>
-          </Form>
-        )}
-      </Transition>
-      <Transition unmount in={actionData?.success}>
-        {({ status, nodeRef }) => (
-          <div className={styles.complete} aria-live="polite" ref={nodeRef}>
-            <Heading
-              level={3}
-              as="h3"
-              className={styles.completeTitle}
-              data-status={status}
-            >
-              Message Sent
-            </Heading>
-            <Text
-              size="l"
-              as="p"
-              className={styles.completeText}
-              data-status={status}
-              style={getDelay(tokens.base.durationXS)}
-            >
-              I’ll get back to you within a couple days, sit tight
-            </Text>
-            <Button
-              secondary
-              iconHoverShift
-              className={styles.completeButton}
-              data-status={status}
-              style={getDelay(tokens.base.durationM)}
-              href="/"
-              icon="chevron-right"
-            >
-              Back to homepage
-            </Button>
-          </div>
-        )}
-      </Transition>
-      <Footer className={styles.footer} />
+                  )}
+                </Transition>
+                <Button
+                  className={styles.button}
+                  data-status={status}
+                  data-sending={sending}
+                  style={getDelay(tokens.base.durationM, initDelay)}
+                  disabled={sending}
+                  loading={sending}
+                  loadingText="Sending..."
+                  icon="send"
+                  type="submit"
+                >
+                  Send message
+                </Button>
+              </Form>
+            )}
+          </Transition>
+          <Transition unmount in={actionData?.success}>
+            {({ status, nodeRef }) => (
+              <div className={styles.complete} aria-live="polite" ref={nodeRef}>
+                <Heading
+                  level={3}
+                  as="h3"
+                  className={styles.completeTitle}
+                  data-status={status}
+                >
+                  Message Sent
+                </Heading>
+                <Text
+                  size="l"
+                  as="p"
+                  className={styles.completeText}
+                  data-status={status}
+                  style={getDelay(tokens.base.durationXS)}
+                >
+                  I'll get back to you within a couple days, sit tight
+                </Text>
+                <Button
+                  secondary
+                  iconHoverShift
+                  className={styles.completeButton}
+                  data-status={status}
+                  style={getDelay(tokens.base.durationM)}
+                  href="/"
+                  icon="chevron-right"
+                >
+                  Back to homepage
+                </Button>
+              </div>
+            )}
+          </Transition>
+        </div>
+      </div>
     </Section>
   );
 };

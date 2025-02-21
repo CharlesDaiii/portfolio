@@ -1,4 +1,5 @@
 .summary {
+  scroll-margin-top: 100px;
   height: 80vh;
   width: 100%;
   max-height: 800px;
@@ -370,6 +371,7 @@
   height: 46px;
 }
 
+/* 基础logo样式 */
 .projectLogo {
   width: auto;
   object-fit: contain;
@@ -379,6 +381,36 @@
 
 .projectLogo:hover {
   opacity: 0.9;
+}
+
+/* Philips shield logo 独立样式 */
+.logoWrapper[data-logo="philips"] .projectLogo {
+  height: 58px;
+  filter: none;
+  background-color: transparent;
+  padding: 0;
+  mix-blend-mode: normal;
+}
+
+/* Respironics logo 独立样式 */
+.logoWrapper[data-logo="respironics"] .projectLogo {
+  height: 46px;
+  background-color: white;
+  padding: 0 4px;
+}
+
+/* Bike logo 完全独立的样式 */
+.logoWrapper[data-logo="bike"] {
+  background: transparent;
+  padding: 0;
+}
+
+.logoWrapper[data-logo="bike"] .projectLogo {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  filter: brightness(0.95);
 }
 
 @media (--mediaTablet) {
@@ -395,6 +427,10 @@
   .logoWrapper:last-child .projectLogo {
     height: 40px;
   }
+
+  .logoWrapper[data-logo="bike"] .projectLogo {
+    height: 28px;
+  }
 }
 
 @media (--mediaMobile) {
@@ -409,6 +445,10 @@
 
   .logoWrapper:last-child .projectLogo {
     height: 34px;
+  }
+
+  .logoWrapper[data-logo="bike"] .projectLogo {
+    height: 24px;
   }
 }
 

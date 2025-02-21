@@ -8,9 +8,6 @@ import matchingVideo from '~/assets/Matching.mov';
 import petpalsTexture from '~/assets/petpals.jpg';
 import petpalsTextureLarge from '~/assets/petpals-large.jpg';
 import petpalsPlaceholder from '~/assets/petpals-placeholder.jpg';
-import sliceTextureLarge from '~/assets/slice-app-large.jpg';
-import sliceTexturePlaceholder from '~/assets/slice-app-placeholder.jpg';
-import sliceTexture from '~/assets/slice-app.jpg';
 import sprTextureLarge from '~/assets/spr-lesson-builder-dark-large.jpg';
 import sprTexturePlaceholder from '~/assets/spr-lesson-builder-dark-placeholder.jpg';
 import sprTexture from '~/assets/spr-lesson-builder-dark.jpg';
@@ -35,6 +32,8 @@ import data6Image from '../../assets/homepage/data6_2.jpg';
 import data6_1Image from '../../assets/homepage/data6_1.jpg';
 import data7_1Image from '~/assets/fireboywatergirl/7.1.png';
 import data7Image from '~/assets/fireboywatergirl/7.2.png';
+import { Contact } from '../contact/contact';
+import bikelogo from '~/assets/bike-sharing/bikelogo.jpg';
 
 // Prefetch draco decoader wasm
 export const links = () => {
@@ -74,23 +73,21 @@ export const Home = () => {
   const projectFive = useRef();
   const projectSix = useRef();
   const projectSeven = useRef();
-  const others = useRef();
   const contact = useRef();
 
-  useEffect(() => {
-    const sections = [
-      intro, 
-      projectOne, 
-      projectTwo, 
-      projectThree, 
-      projectFour, 
-      projectFive, 
-      projectSix,
-      projectSeven,
-      others, 
-      contact
-    ];
+  const sectionRefs = [
+    intro,
+    projectOne,
+    projectTwo,
+    projectThree,
+    projectFour,
+    projectFive,
+    projectSix,
+    projectSeven,
+    contact,
+  ];
 
+  useEffect(() => {
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach(entry => {
@@ -112,7 +109,7 @@ export const Home = () => {
       { rootMargin: '-100% 0px 0px 0px' }
     );
 
-    sections.forEach(section => {
+    sectionRefs.forEach(section => {
       if (section.current) {
         sectionObserver.observe(section.current);
       }
@@ -196,8 +193,7 @@ export const Home = () => {
         }}
       />
       <ProjectSummary
-        id="data-viz-1"
-        alternate
+        id="data-visualization-04"
         sectionRef={projectFour}
         visible={visibleSections.includes(projectFour.current)}
         index={4}
@@ -227,6 +223,13 @@ export const Home = () => {
         description="Created an explainable AI model using SHAP values to decode how pandemic policies and weather impacted urban mobility."
         buttonText="View project"
         buttonLink="/projects/bike-sharing"
+        logos={[
+          {
+            src: bikelogo,
+            alt: 'Bike-sharing logo',
+            dataLogo: 'bike'
+          }
+        ]}
         images={[
           {
             src: data5_2Image,
@@ -281,47 +284,9 @@ export const Home = () => {
           }
         ]}
       />
-      <ProjectSummary
-        id="others"
-        sectionRef={others}
-        visible={visibleSections.includes(others.current)}
-        index={4}
-        title="Other Works & Skills"
-        description="A collection of my other projects, technical writings, and additional skills"
-        buttonText="View all"
-        buttonLink="/others"
-        model={{
-          type: 'laptop',
-          alt: 'Other works preview',
-          textures: [
-            {
-              srcSet: `${sliceTexture} 800w, ${sliceTextureLarge} 1920w`,
-              placeholder: sliceTexturePlaceholder,
-            },
-          ],
-        }}
-      />
-      <ProjectSummary
-        id="contact"
-        alternate
-        sectionRef={contact}
-        visible={visibleSections.includes(contact.current)}
-        index={5}
-        title="Get in Touch"
-        description="Interested in collaborating? Feel free to reach out for projects or just to say hi"
-        buttonText="Send a message"
-        buttonLink="/contact"
-        model={{
-          type: 'laptop',
-          alt: 'Contact section preview',
-          textures: [
-            {
-              srcSet: `${sliceTexture} 800w, ${sliceTextureLarge} 1920w`,
-              placeholder: sliceTexturePlaceholder,
-            },
-          ],
-        }}
-      />
+      <div id="contact">
+        <Contact />
+      </div>
       <Footer />
     </div>
   );

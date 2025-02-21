@@ -312,3 +312,110 @@
     animation: fade-in var(--durationL) ease var(--durationXL) forwards;
   }
 }
+
+.contactWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 120px;
+  align-items: center;
+  max-width: var(--maxWidthL);
+  margin: 0 auto;
+  padding: 0 var(--spaceL);
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spaceL);
+  padding-top: 0px;
+  text-align: left;
+  opacity: 0;
+  transition-property: opacity;
+  transition-timing-function: var(--bezierFastoutSlowin);
+  transition-duration: var(--durationXL);
+  transition-delay: var(--delay);
+
+  @media (--mediaUseMotion) {
+    transition-property: transform, opacity;
+    transform: translate3d(0, var(--space3XL), 0);
+  }
+
+  &[data-status='entering'],
+  &[data-status='entered'] {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.contactText {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--colorTextLight);
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.contactText:first-child {
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: var(--colorTextLight);
+  margin-bottom: var(--spaceM);
+  line-height: 1.4;
+}
+
+.contactLink {
+  color: rgb(0, 229, 255);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(0, 229, 255, 0.3);
+}
+
+.contactLink:hover {
+  color: rgb(0, 255, 255);
+  border-bottom-color: rgb(0, 255, 255);
+}
+
+.emoji {
+  font-size: 1.4rem;
+  margin: 0 0.3rem;
+  display: inline-block;
+  vertical-align: middle;
+  color: initial;
+  -webkit-text-fill-color: initial;
+}
+
+@media (max-width: 1024px) {
+  .contactWrapper {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .contactInfo {
+    padding-top: 0px;
+    text-align: center;
+  }
+
+  .contactText {
+    font-size: 1rem;
+  }
+
+  .contactText:first-child {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contactText {
+    font-size: 0.9375rem;
+  }
+
+  .contactText:first-child {
+    font-size: 1.375rem;
+  }
+
+  .emoji {
+    font-size: 1.4rem;
+  }
+}

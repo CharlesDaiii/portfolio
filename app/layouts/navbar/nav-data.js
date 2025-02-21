@@ -14,30 +14,36 @@ export const navLinks = [
   },
   {
     label: 'Data Visualization',
-    pathname: '/#data-narratives',
+    pathname: '/#data-visualization-04',
     type: 'work'
   },
   {
     label: 'Creative Computing',
-    pathname: '/#creative-computing',
+    pathname: '/#creative-computing-07',
     type: 'work'
   },
   {
     label: 'Contact',
-    pathname: '/contact',
+    pathname: '/#contact',
     type: 'contact'
   },
 ];
 
 export const socialLinks = [
   {
+    label: 'GitHub',
+    url: 'https://github.com/your-github-username',
+    icon: 'github',
+  },
+  {
     label: 'LinkedIn',
-    url: `https://www.linkedin.com/in/${config.linkedin}`,
+    url: 'https://www.linkedin.com/in/ziying-qi',
     icon: 'linkedin',
   },
   {
-    label: 'Github',
-    url: `https://github.com/${config.github}`,
-    icon: 'github',
+    label: 'Resume',
+    url: '/resume.pdf',
+    icon: 'document',
+    download: true,
   },
 ];

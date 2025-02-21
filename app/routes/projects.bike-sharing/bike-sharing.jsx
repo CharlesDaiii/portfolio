@@ -11,6 +11,7 @@ import { ImageCarousel } from '~/components/image-carousel/image-carousel';
 import { optimizeImage } from '~/utils/image-optimization';
 
 // 导入图片
+import bikelogo from '~/assets/bike-sharing/bikelogo.jpg';
 import data5_1 from '~/assets/bike-sharing/data5_1.jpg';
 import data5_2 from '~/assets/bike-sharing/data5_2.jpg';
 import data5_3 from '~/assets/bike-sharing/data5_3.jpg';
