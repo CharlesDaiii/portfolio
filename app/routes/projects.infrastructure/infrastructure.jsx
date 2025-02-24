@@ -9,6 +9,7 @@ import { useTheme } from '~/components/theme-provider';
 import projectStyles from '~/styles/project.module.css';
 import { ImageCarousel } from '~/components/image-carousel/image-carousel';
 import { optimizeImage } from '~/utils/image-optimization';
+import { ProjectNav } from '~/components/project-nav/project-nav';
 
 // 导入图片
 import data6_1 from '/assets/infrastructure/data6_1.jpg';
@@ -113,6 +114,7 @@ export const Infrastructure = () => {
           />
         </div>
       </ProjectContainer>
+      <ProjectNav currentPath="/projects/infrastructure" />
       <Footer />
     </Fragment>
   );

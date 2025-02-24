@@ -1,4 +1,3 @@
-
 import profileSetupVideo from '/assets/petpals/ProfileSetup.mov';
 import matchingVideo from '/assets/petpals/Matching.mov';
 import chattingImage from '/assets/petpals/Chatting.png';
@@ -23,6 +22,7 @@ import { Fragment } from 'react';
 import { baseMeta } from '~/utils/meta';
 import styles from './petpals.module.css';
 import { useTheme } from '~/components/theme-provider';
+import { ProjectNav } from '~/components/project-nav/project-nav';
 
 export const meta = () => {
   return baseMeta({
@@ -278,6 +278,7 @@ export const PetPals = () => {
           </div>
         </div>
       </ProjectContainer>
+      <ProjectNav currentPath="/projects/petpals" />
       <Footer />
     </Fragment>
   );

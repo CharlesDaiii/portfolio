@@ -1,0 +1,72 @@
+.projectNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 120px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-top: 1px solid var(--text-secondary);
+  border-color: rgba(var(--rgbText), 0.1);
+}
+
+.projectNavLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  gap: 16px;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.projectNavLink:hover {
+  background: rgba(var(--rgbText), 0.05);
+}
+
+.projectNavContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.projectNavLink:last-child .projectNavContent {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.projectNavLabel {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.projectNavTitle {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.projectNavIcon {
+  width: 24px;
+  height: 24px;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .projectNav {
+    padding: 80px 16px;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .projectNavLink {
+    width: 100%;
+  }
+
+  .projectNavTitle {
+    font-size: 1rem;
+  }
+} 

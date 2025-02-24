@@ -17,6 +17,7 @@ import therapy2Image from '/assets/adaptive-ui/Therapy2.png';
 import therapy3Image from '/assets/adaptive-ui/Therapy3.png';
 import therapy4Image from '/assets/adaptive-ui/Therapy4.png';
 import projectStyles from '~/styles/project.module.css';
+import { ProjectNav } from '~/components/project-nav/project-nav';
 
 export const meta = () => {
   return baseMeta({
@@ -329,6 +330,7 @@ export const AdaptiveUI = () => {
           </div>
         </div>
       </ProjectContainer>
+      <ProjectNav currentPath="/projects/adaptive-ui" />
       <Footer />
     </Fragment>
   );

@@ -13,6 +13,7 @@ import image2 from '/assets/heritage-explorer/data4_2.jpg';
 import image3 from '/assets/heritage-explorer/data4_3.jpg';
 import image4 from '/assets/heritage-explorer/data4_4.jpg';
 import { optimizeImage } from '~/utils/image-optimization';
+import { ProjectNav } from '~/components/project-nav/project-nav';
 
 export const meta = () => {
   return baseMeta({
@@ -127,6 +128,7 @@ export const HeritageExplorer = () => {
           />
         </div>
       </ProjectContainer>
+      <ProjectNav currentPath="/projects/heritage-explorer" />
       <Footer />
     </Fragment>
   );

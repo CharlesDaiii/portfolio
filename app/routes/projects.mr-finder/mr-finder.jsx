@@ -15,6 +15,7 @@ import askVideo from '/assets/mr-finder/Ask.mp4';
 import followVideo from '/assets/mr-finder/Follow.mp4';
 import airbnbImage from '/assets/mr-finder/airbnb.png';
 import cognitive3dImage from '/assets/mr-finder/cognitive3d.mp4';
+import { ProjectNav } from '~/components/project-nav/project-nav';
 
 
 export const meta = () => {
@@ -319,6 +320,7 @@ export default function MRFinder() {
         </div>  
         </div>
       </ProjectContainer>
+      <ProjectNav currentPath="/projects/mr-finder" />
       <Footer />
     </Fragment>
   );

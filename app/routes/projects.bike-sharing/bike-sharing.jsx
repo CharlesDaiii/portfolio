@@ -9,6 +9,7 @@ import { baseMeta } from '~/utils/meta';
 import { optimizeImage } from '~/utils/image-optimization';
 import styles from './bike-sharing.module.css';
 import projectStyles from '~/styles/project.module.css';
+import { ProjectNav } from '~/components/project-nav/project-nav';
 
 import data5_1 from '/assets/bike-sharing/data5_1.jpg';
 import data5_2 from '/assets/bike-sharing/data5_2.jpg';
@@ -109,6 +110,7 @@ export const BikeSharing = () => {
           />
         </div>
       </ProjectContainer>
+      <ProjectNav currentPath="/projects/bike-sharing" />
       <Footer />
     </Fragment>
   );

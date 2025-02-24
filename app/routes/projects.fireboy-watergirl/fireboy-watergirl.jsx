@@ -5,6 +5,7 @@ import { baseMeta } from '~/utils/meta';
 import styles from './fireboy-watergirl.module.css';
 import { useTheme } from '~/components/theme-provider';
 import projectStyles from '~/styles/project.module.css';
+import { ProjectNav } from '~/components/project-nav/project-nav';
 
 export const meta = () => {
   return baseMeta({
@@ -88,6 +89,7 @@ export const FireboyWatergirl = () => {
           </div>
         </div>
       </ProjectContainer>
+      <ProjectNav currentPath="/projects/fireboy-watergirl" />
       <Footer />
     </Fragment>
   );
