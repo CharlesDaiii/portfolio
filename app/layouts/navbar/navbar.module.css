@@ -74,7 +74,7 @@
     background: rgb(0, 229, 255);
   }
 
-  /* Contact 导航样式 */
+  /* Contact 和 Resume 共享的基础样式 */
   .navLink[data-type='contact'] {
     color: var(--colorText);
     font-weight: 400;
@@ -85,7 +85,8 @@
     letter-spacing: 0.02em;
   }
 
-  .navLink[data-type='contact']::before {
+  /* 只为没有 download 属性的 contact 类型（即 Contact）添加分隔符 */
+  .navLink[data-type='contact']:not([download])::before {
     content: '|';
     position: absolute;
     left: calc(var(--spaceM) * -1);
@@ -93,6 +94,7 @@
     opacity: 0.4;
   }
 
+  /* Contact 和 Resume 共享的悬停效果 */
   .navLink[data-type='contact']::after {
     content: '';
     position: absolute;

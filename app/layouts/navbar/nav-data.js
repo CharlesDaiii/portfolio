@@ -1,12 +1,7 @@
 import config from '~/config.json';
 
 export const navLinks = [
-  /* 暂时隐藏About me链接
-  {
-    label: 'About me',
-    pathname: '/#details',
-  },
-  */
+
   {
     label: 'AI Product',
     pathname: '/#ai-product',
@@ -27,6 +22,12 @@ export const navLinks = [
     pathname: '/#contact',
     type: 'contact'
   },
+  {
+    label: 'Resume',
+    pathname: '/assets/resume/Resume-ZiyingQi.pdf',
+    type: 'contact',
+    download: true
+  },
 ];
 
 export const socialLinks = [
@@ -39,11 +40,5 @@ export const socialLinks = [
     label: 'LinkedIn',
     url: 'https://www.linkedin.com/in/ziying-qi',
     icon: 'linkedin',
-  },
-  {
-    label: 'Resume',
-    url: '/resume.pdf',
-    icon: 'document',
-    download: true,
   },
 ];
