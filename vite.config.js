@@ -18,7 +18,8 @@ export default defineConfig({
   },
   server: {
     port: 3003,
-    host: '0.0.0.0'
+    host: ['0.0.0.0', 'www.ziyingqi.com'],
+    allowedHosts: ['www.ziyingqi.com'],
   },
   plugins: [
     mdx({
@@ -26,7 +27,22 @@ export default defineConfig({
       remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
       providerImportSource: '@mdx-js/react',
     }),
-    remixCloudflareDevProxy(),
+    remixCloudflareDevProxy({
+      getLoadContext: () => ({
+        cloudflare: {
+          env: {
+            SESSION_SECRET: process.env.SESSION_SECRET || 'dev-secret'
+          }
+        }
+      }),
+      platformProxy: {
+        crypto: () => ({
+          subtle: crypto.subtle,
+          randomUUID: crypto.randomUUID?.bind(crypto),
+          getRandomValues: crypto.getRandomValues?.bind(crypto),
+        })
+      }
+    }),
     remix({
       routes(defineRoutes) {
         return defineRoutes(route => {

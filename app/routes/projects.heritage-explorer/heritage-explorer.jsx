@@ -8,10 +8,10 @@ import styles from './heritage-explorer.module.css';
 import { useTheme } from '~/components/theme-provider';
 import projectStyles from '~/styles/project.module.css';
 import { ImageCarousel } from '~/components/image-carousel/image-carousel';
-import image1 from '~/assets/heritage-explorer/data4_1.jpg';
-import image2 from '~/assets/heritage-explorer/data4_2.jpg';
-import image3 from '~/assets/heritage-explorer/data4_3.jpg';
-import image4 from '~/assets/heritage-explorer/data4_4.jpg';
+import image1 from '/assets/heritage-explorer/data4_1.jpg';
+import image2 from '/assets/heritage-explorer/data4_2.jpg';
+import image3 from '/assets/heritage-explorer/data4_3.jpg';
+import image4 from '/assets/heritage-explorer/data4_4.jpg';
 import { optimizeImage } from '~/utils/image-optimization';
 
 export const meta = () => {

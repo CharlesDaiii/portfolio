@@ -1,39 +1,25 @@
-import gamestackTexture2Large from '~/assets/gamestack-list-large.jpg';
-import gamestackTexture2Placeholder from '~/assets/gamestack-list-placeholder.jpg';
-import gamestackTexture2 from '~/assets/gamestack-list.jpg';
-import gamestackTextureLarge from '~/assets/gamestack-login-large.jpg';
-import gamestackTexturePlaceholder from '~/assets/gamestack-login-placeholder.jpg';
-import gamestackTexture from '~/assets/gamestack-login.jpg';
-import matchingVideo from '~/assets/Matching.mov';
-import petpalsTexture from '~/assets/petpals.jpg';
-import petpalsTextureLarge from '~/assets/petpals-large.jpg';
-import petpalsPlaceholder from '~/assets/petpals-placeholder.jpg';
-import sprTextureLarge from '~/assets/spr-lesson-builder-dark-large.jpg';
-import sprTexturePlaceholder from '~/assets/spr-lesson-builder-dark-placeholder.jpg';
-import sprTexture from '~/assets/spr-lesson-builder-dark.jpg';
-import adaptiveUIMain from '../../assets/adaptive-ui/adaptive-ui-main.jpg';
-import adaptiveUIDetail from '../../assets/adaptive-ui/adaptive-ui-detail.jpg';
-import philipsLogo from '../../assets/adaptive-ui/Philips.png';
-import philipsSRCLogo from '../../assets/adaptive-ui/SRC.png';
+
+import matchingVideo from '/assets/petpals/Matching.mov';
+import adaptiveUIMain from '/assets/adaptive-ui/adaptive-ui-main.jpg';
+import adaptiveUIDetail from '/assets/adaptive-ui/adaptive-ui-detail.jpg';
 import { Footer } from '~/components/footer';
 import { baseMeta } from '~/utils/meta';
 import { Intro } from './intro';
-import { Profile } from './profile';
 import { ProjectSummary } from './project-summary';
 import { useEffect, useRef, useState } from 'react';
 import config from '~/config.json';
 import styles from './home.module.css';
 import { SectionTitle } from '~/components/section-title/section-title';
-import data4Image from '../../assets/homepage/data4_1.jpg';
-import data4_4Image from '../../assets/homepage/data4_4.jpg';
-import data5Image from '../../assets/homepage/data5_5.jpg';
-import data5_2Image from '../../assets/homepage/data5_2.jpg';
-import data6Image from '../../assets/homepage/data6_2.jpg';
-import data6_1Image from '../../assets/homepage/data6_1.jpg';
-import data7_1Image from '~/assets/fireboywatergirl/7.1.png';
-import data7Image from '~/assets/fireboywatergirl/7.2.png';
+import data4Image from '/assets/homepage/data4_1.jpg';
+import data4_4Image from '/assets/homepage/data4_4.jpg';
+import data5Image from '/assets/homepage/data5_5.jpg';
+import data5_2Image from '/assets/homepage/data5_2.jpg';
+import data6Image from '/assets/homepage/data6_2.jpg';
+import data6_1Image from '/assets/homepage/data6_1.jpg';
+import data7_1Image from '/assets/fireboywatergirl/7.1.png';
+import data7Image from '/assets/fireboywatergirl/7.2.png';
 import { Contact } from '../contact/contact';
-import bikelogo from '~/assets/bike-sharing/bikelogo.jpg';
+import bikelogo from '/assets/bike-sharing/bikelogo.jpg';
 
 // Prefetch draco decoader wasm
 export const links = () => {

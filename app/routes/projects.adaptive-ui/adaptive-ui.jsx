@@ -6,17 +6,17 @@ import { Fragment } from 'react';
 import { baseMeta } from '~/utils/meta';
 import styles from './adaptive-ui.module.css';
 import { useTheme } from '~/components/theme-provider';
-import workshopSlidesPDF from '~/assets/adaptive-ui/workshop-slides.pdf';
-import discussionImage from '~/assets/adaptive-ui/Discussion.jpg';
-import brainstormingImage from '~/assets/adaptive-ui/Brainstorming.jpg';
-import AUIReport1Image from '~/assets/adaptive-ui/AUIReport1.jpg';
-import AUIReport2Image from '~/assets/adaptive-ui/AUIReprot2.jpg';
-import AUIReport3Image from '~/assets/adaptive-ui/AUIReprot3.jpg';
-import therapy1Image from '~/assets/adaptive-ui/Therapy1.png';
-import therapy2Image from '~/assets/adaptive-ui/Therapy2.png';
-import therapy3Image from '~/assets/adaptive-ui/Therapy3.png';
-import therapy4Image from '~/assets/adaptive-ui/Therapy4.png';
-import projectStyles from '~/styles/project.module.css';  // 导入全局项目样式
+import workshopSlidesPDF from '/assets/adaptive-ui/workshop-slides.pdf';
+import discussionImage from '/assets/adaptive-ui/Discussion.jpg';
+import brainstormingImage from '/assets/adaptive-ui/Brainstorming.jpg';
+import AUIReport1Image from '/assets/adaptive-ui/AUIReport1.jpg';
+import AUIReport2Image from '/assets/adaptive-ui/AUIReprot2.jpg';
+import AUIReport3Image from '/assets/adaptive-ui/AUIReprot3.jpg';
+import therapy1Image from '/assets/adaptive-ui/Therapy1.png';
+import therapy2Image from '/assets/adaptive-ui/Therapy2.png';
+import therapy3Image from '/assets/adaptive-ui/Therapy3.png';
+import therapy4Image from '/assets/adaptive-ui/Therapy4.png';
+import projectStyles from '~/styles/project.module.css';
 
 export const meta = () => {
   return baseMeta({

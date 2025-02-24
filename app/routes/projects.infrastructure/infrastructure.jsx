@@ -11,12 +11,12 @@ import { ImageCarousel } from '~/components/image-carousel/image-carousel';
 import { optimizeImage } from '~/utils/image-optimization';
 
 // 导入图片
-import data6_1 from '~/assets/infrastructure/data6_1.jpg';
-import data6_2 from '~/assets/infrastructure/data6_2.jpg';
-import data6_3 from '~/assets/infrastructure/data6_3.jpg';
-import data6_4 from '~/assets/infrastructure/data6_4.jpg';
-import data6_5 from '~/assets/infrastructure/data6_5.jpg';
-import data6_6 from '~/assets/infrastructure/data6_6.jpg';
+import data6_1 from '/assets/infrastructure/data6_1.jpg';
+import data6_2 from '/assets/infrastructure/data6_2.jpg';
+import data6_3 from '/assets/infrastructure/data6_3.jpg';
+import data6_4 from '/assets/infrastructure/data6_4.jpg';
+import data6_5 from '/assets/infrastructure/data6_5.jpg';
+import data6_6 from '/assets/infrastructure/data6_6.jpg';
 
 export const meta = () => {
   return baseMeta({

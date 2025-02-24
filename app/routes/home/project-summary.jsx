@@ -12,9 +12,9 @@ import { Suspense, lazy, useState } from 'react';
 import { cssProps, media } from '~/utils/style';
 import { useHydrated } from '~/hooks/useHydrated';
 import styles from './project-summary.module.css';
-import philipsLogo from '../../assets/adaptive-ui/Philips.png';
-import philipsSRCLogo from '../../assets/adaptive-ui/SRC.png';
-import bikelogo from '~/assets/bike-sharing/bikelogo.jpg';
+import philipsLogo from '/assets/adaptive-ui/Philips.png';
+import philipsSRCLogo from '/assets/adaptive-ui/SRC.png';
+import bikelogo from '/assets/bike-sharing/bikelogo.jpg';
 
 const Model = lazy(() =>
   import('~/components/model').then(module => ({ default: module.Model }))
@@ -37,9 +37,11 @@ export function ProjectSummary({
 }) {
   const [focused, setFocused] = useState(false);
   const [modelLoaded, setModelLoaded] = useState(false);
+
   const { theme } = useTheme();
   const { width } = useWindowSize();
   const isHydrated = useHydrated();
+
   const titleId = `${id}-title`;
   const isMobile = width <= media.tablet;
   const svgOpacity = theme === 'light' ? 0.7 : 1;
@@ -47,6 +49,7 @@ export function ProjectSummary({
   const phoneSizes = `(max-width: ${media.tablet}px) 30vw, 20vw`;
   const laptopSizes = `(max-width: ${media.tablet}px) 80vw, 40vw`;
 
+  // 仅客户端加载后才回调
   function handleModelLoad() {
     setModelLoaded(true);
   }
@@ -65,6 +68,8 @@ export function ProjectSummary({
             {`${category} ${indexText}`}
           </span>
         </div>
+
+        {/* 这里是一些特定的项目 Logo */}
         {title === "Adaptive UI for Sleep & Respiratory Care" && (
           <div className={styles.projectLogos} data-visible={visible}>
             <div className={styles.logoWrapper} data-logo="philips">
@@ -75,6 +80,7 @@ export function ProjectSummary({
             </div>
           </div>
         )}
+
         {title === "Bike-Sharing in Epidemic Era" && (
           <div className={styles.projectLogos} data-visible={visible}>
             <div className={styles.logoWrapper} data-logo="bike">
@@ -82,6 +88,7 @@ export function ProjectSummary({
             </div>
           </div>
         )}
+
         <Heading
           level={3}
           as="h2"
@@ -94,6 +101,8 @@ export function ProjectSummary({
         <Text className={styles.description} data-visible={visible} as="p">
           {description}
         </Text>
+
+        {/* 这里是项目 Tag */}
         <div className={styles.tags} data-visible={visible}>
           {title === "MR Finder: Mixed Reality Lost & Found" ? (
             <>
@@ -133,7 +142,7 @@ export function ProjectSummary({
               <span className={styles.tag}>Python</span>
               <span className={styles.tag}>Game Development</span>
               <span className={styles.tag}>Dual-Player</span>
-              </>
+            </>
           ) : (
             <>
               <span className={styles.tag}>Frontend</span>
@@ -143,6 +152,7 @@ export function ProjectSummary({
             </>
           )}
         </div>
+
         <div className={styles.button} data-visible={visible}>
           <Button iconHoverShift href={buttonLink} iconEnd="arrow-right">
             {buttonText}
@@ -152,16 +162,29 @@ export function ProjectSummary({
     );
   }
 
+
   function renderPreview(visible) {
     return (
       <div className={styles.preview}>
+        {/* Laptop */}
         {model?.type === 'laptop' && (
-          <div className={styles.model} data-device="laptop" style={{ transform: 'scale(0.8)' }}>
-            {!modelLoaded && (
-              <Loader center className={styles.loader} data-visible={visible} />
-            )}
-            {isHydrated && visible && (
-              <Suspense>
+          <div
+            className={styles.model}
+            data-device="laptop"
+            style={{ transform: 'scale(0.8)' }}
+            suppressHydrationWarning
+          >
+            <Suspense
+              fallback={
+                <Loader
+                  center
+                  className={styles.loader}
+                  data-visible={visible}
+                />
+              }
+            >
+              {/* 仅在客户端且 section 可见时真正挂载 Model */}
+              {isHydrated && visible ? (
                 <Model
                   alt={model.alt}
                   cameraPosition={{ x: 0, y: 0, z: 6 }}
@@ -171,31 +194,44 @@ export function ProjectSummary({
                   models={[
                     {
                       ...deviceModels.laptop,
-                      texture: model.video ? {
-                        type: 'video',
-                        src: model.video,
-                        autoPlay: true,
-                        loop: true,
-                        muted: true,
-                        playsInline: true,
-                      } : {
-                        ...model.textures?.[0],
-                        sizes: laptopSizes,
-                      }
+                      texture: model.video
+                        ? {
+                            type: 'video',
+                            src: model.video,
+                            autoPlay: true,
+                            loop: true,
+                            muted: true,
+                            playsInline: true,
+                          }
+                        : {
+                            ...model.textures?.[0],
+                            sizes: laptopSizes,
+                          },
                     },
                   ]}
                 />
-              </Suspense>
-            )}
+              ) : null}
+            </Suspense>
           </div>
         )}
+
+        {/* Phone */}
         {model?.type === 'phone' && (
-          <div className={styles.model} data-device="phone">
-            {!modelLoaded && (
-              <Loader center className={styles.loader} data-visible={visible} />
-            )}
-            {isHydrated && visible && (
-              <Suspense>
+          <div
+            className={styles.model}
+            data-device="phone"
+            suppressHydrationWarning
+          >
+            <Suspense
+              fallback={
+                <Loader
+                  center
+                  className={styles.loader}
+                  data-visible={visible}
+                />
+              }
+            >
+              {isHydrated && visible ? (
                 <Model
                   alt={model.alt}
                   cameraPosition={{ x: 0, y: 0, z: 10 }}
@@ -221,17 +257,28 @@ export function ProjectSummary({
                     },
                   ]}
                 />
-              </Suspense>
-            )}
+              ) : null}
+            </Suspense>
           </div>
         )}
+
+        {/* Quest3 */}
         {model?.type === 'quest3' && (
-          <div className={styles.model} data-device="quest3">
-            {!modelLoaded && (
-              <Loader center className={styles.loader} data-visible={visible} />
-            )}
-            {isHydrated && visible && (
-              <Suspense fallback={null}>
+          <div
+            className={styles.model}
+            data-device="quest3"
+            suppressHydrationWarning
+          >
+            <Suspense
+              fallback={
+                <Loader
+                  center
+                  className={styles.loader}
+                  data-visible={visible}
+                />
+              }
+            >
+              {isHydrated && visible ? (
                 <Model
                   alt={model.alt}
                   cameraPosition={{ x: 0, y: 0, z: 0.6 }}
@@ -248,16 +295,18 @@ export function ProjectSummary({
                       position: deviceModels.quest3.position,
                       rotation: deviceModels.quest3.rotation,
                       scale: deviceModels.quest3.scale,
-                      animation: ModelAnimationType.Quest3Rotate
+                      animation: ModelAnimationType.Quest3Rotate,
                     },
                   ]}
                 />
-              </Suspense>
-            )}
+              ) : null}
+            </Suspense>
           </div>
         )}
+
+        {/* 如果没有 model，就显示 images */}
         {!model && images && (
-          <div className={styles.imageContainer}>
+          <div className={styles.imageContainer} suppressHydrationWarning>
             {images.map((image, index) => (
               <img
                 key={index}
@@ -295,11 +344,13 @@ export function ProjectSummary({
               {!alternate && !isMobile && (
                 <>
                   {renderDetails(visible)}
-                  <div style={{ 
-                    transitionDelay: '200ms',  // 与 title 同步出现
-                    opacity: visible ? 1 : 0,
-                    transition: 'opacity 0.3s ease'
-                  }}>
+                  <div
+                    style={{
+                      transitionDelay: '200ms',
+                      opacity: visible ? 1 : 0,
+                      transition: 'opacity 0.3s ease'
+                    }}
+                  >
                     {renderPreview(visible)}
                   </div>
                 </>

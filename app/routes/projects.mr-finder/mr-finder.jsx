@@ -1,32 +1,20 @@
 import { Footer } from '~/components/footer';
 import {
-  ProjectContainer,
-  ProjectHeader,
-  ProjectSection,
-  ProjectSectionContent,
-  ProjectSectionHeading,
-  ProjectSectionText,
-  ProjectTextRow,
-  ProjectImage,
+  ProjectContainer
 } from '~/layouts/project';
 import { Fragment } from 'react';
 import { baseMeta } from '~/utils/meta';
 import styles from './mr-finder.module.css';
 import projectStyles from '~/styles/project.module.css';
-import demoVideo from '~/assets/mr-finder/demo.mp4';
-import demoPoster from '~/assets/mr-finder/demo-poster.jpg';
-import mrfinder1 from '~/assets/mr-finder/mrfinder1.png';
-import mrfinder2 from '~/assets/mr-finder/mrfinder2.png';
-import mrfinder3 from '~/assets/mr-finder/mrfinder3.png';
-import airbnbIcon from '~/assets/mr-finder/noun-airbnb-6212186.png';
-import travelIcon from '~/assets/mr-finder/noun-arrivals-6069945.png';
-import caregiverIcon from '~/assets/mr-finder/noun-caregiver-6549679.png';
-import scanVideo from '~/assets/mr-finder/scan.mp4';
-import tagVideo from '~/assets/mr-finder/tag.mp4';
-import askVideo from '~/assets/mr-finder/Ask.mp4';
-import followVideo from '~/assets/mr-finder/Follow.mp4';
-import airbnbImage from '~/assets/mr-finder/airbnb.png';
-import cognitive3dImage from '~/assets/mr-finder/cognitive3d.mp4';
+import airbnbIcon from '/assets/mr-finder/noun-airbnb-6212186.png';
+import travelIcon from '/assets/mr-finder/noun-arrivals-6069945.png';
+import caregiverIcon from '/assets/mr-finder/noun-caregiver-6549679.png';
+import scanVideo from '/assets/mr-finder/scan.mp4';
+import tagVideo from '/assets/mr-finder/tag.mp4';
+import askVideo from '/assets/mr-finder/Ask.mp4';
+import followVideo from '/assets/mr-finder/Follow.mp4';
+import airbnbImage from '/assets/mr-finder/airbnb.png';
+import cognitive3dImage from '/assets/mr-finder/cognitive3d.mp4';
 
 
 export const meta = () => {

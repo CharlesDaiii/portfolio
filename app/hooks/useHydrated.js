@@ -1,13 +1,11 @@
-import { useSyncExternalStore } from 'react';
-
-function subscribe() {
-  return () => {};
-}
+import { useState, useEffect } from "react";
 
 export function useHydrated() {
-  return useSyncExternalStore(
-    subscribe,
-    () => true,
-    () => false
-  );
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+
+  return hydrated;
 }

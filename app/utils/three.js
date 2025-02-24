@@ -83,9 +83,22 @@ export const getChild = (name, object) => {
   return node;
 };
 
-// 替换为更简单的错误处理方式
+// 添加预加载函数
+export const preloadModel = (url) => {
+  try {
+    useGLTF.preload(url);
+    console.log('Preloaded model:', url);
+  } catch (error) {
+    console.warn('Model preload failed:', error);
+  }
+};
+
+// 扩展现有的 modelLoader
 const originalLoad = modelLoader.load.bind(modelLoader);
 modelLoader.load = (url, onLoad, onProgress, onError) => {
+  // 在加载之前尝试预加载
+  preloadModel(url);
+  
   console.log('Loading model:', url);
   return originalLoad(
     url,
@@ -97,3 +110,20 @@ modelLoader.load = (url, onLoad, onProgress, onError) => {
     }
   );
 };
+
+// 新增检测函数
+export function isWebGLAvailable() {
+  try {
+    const canvas = document.createElement('canvas');
+    return !!(
+      window.WebGLRenderingContext && 
+      (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
+    );
+  } catch (e) {
+    return false;
+  }
+}
+
+window.addEventListener('error', (event) => {
+  console.error('WebGL Error:', event.error);
+});

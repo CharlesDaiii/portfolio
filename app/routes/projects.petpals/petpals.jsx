@@ -1,12 +1,12 @@
 
-import profileSetupVideo from '~/assets/ProfileSetup.mov';
-import matchingVideo from '~/assets/Matching.mov';
-import chattingImage from '~/assets/Chatting.png';
-import petzbeLogoImage from '~/assets/logos/petzbe.png';
-import dogchaLogoImage from '~/assets/logos/dogcha.png';
-import woofzLogoImage from '~/assets/logos/woofz.png';
-import tinderLogoImage from '~/assets/logos/tinder.png';
-import bumbleLogoImage from '~/assets/logos/bumble.png';
+import profileSetupVideo from '/assets/petpals/ProfileSetup.mov';
+import matchingVideo from '/assets/petpals/Matching.mov';
+import chattingImage from '/assets/petpals/Chatting.png';
+import petzbeLogoImage from '/assets/petpals/logos/petzbe.png';
+import dogchaLogoImage from '/assets/petpals/logos/dogcha.png';
+import woofzLogoImage from '/assets/petpals/logos/woofz.png';
+import tinderLogoImage from '/assets/petpals/logos/tinder.png';
+import bumbleLogoImage from '/assets/petpals/logos/bumble.png';
 import { Footer } from '~/components/footer';
 import {
   ProjectBackground,

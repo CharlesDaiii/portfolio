@@ -44,6 +44,7 @@ const ButtonContent = forwardRef(
       target,
       href,
       disabled,
+      unstable_viewTransition,
       ...rest
     },
     ref

@@ -1,5 +1,4 @@
 import { useTheme } from '~/components/theme-provider';
-import { Transition } from '~/components/transition';
 import { useReducedMotion, useSpring } from 'framer-motion';
 import { useInViewport, useWindowSize } from '~/hooks';
 import { startTransition, useEffect, useRef, useMemo } from 'react';
@@ -14,8 +13,7 @@ import {
   SphereGeometry,
   UniformsUtils,
   Vector2,
-  WebGLRenderer,
-  PointLight,
+  WebGLRenderer
 } from 'three';
 import { media } from '~/utils/style';
 import { throttle } from '~/utils/throttle';

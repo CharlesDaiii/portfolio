@@ -1,22 +1,20 @@
 import { Footer } from '~/components/footer';
+import { useTheme } from '~/components/theme-provider';
+import { ImageCarousel } from '~/components/image-carousel';
 import {
   ProjectContainer,
 } from '~/layouts/project';
 import { Fragment, useState, useEffect } from 'react';
 import { baseMeta } from '~/utils/meta';
-import styles from './bike-sharing.module.css';
-import { useTheme } from '~/components/theme-provider';
-import projectStyles from '~/styles/project.module.css';
-import { ImageCarousel } from '~/components/image-carousel/image-carousel';
 import { optimizeImage } from '~/utils/image-optimization';
+import styles from './bike-sharing.module.css';
+import projectStyles from '~/styles/project.module.css';
 
-// 导入图片
-import bikelogo from '~/assets/bike-sharing/bikelogo.jpg';
-import data5_1 from '~/assets/bike-sharing/data5_1.jpg';
-import data5_2 from '~/assets/bike-sharing/data5_2.jpg';
-import data5_3 from '~/assets/bike-sharing/data5_3.jpg';
-import data5_4 from '~/assets/bike-sharing/data5_4.jpg';
-import data5_5 from '~/assets/bike-sharing/data5_5.jpg';
+import data5_1 from '/assets/bike-sharing/data5_1.jpg';
+import data5_2 from '/assets/bike-sharing/data5_2.jpg';
+import data5_3 from '/assets/bike-sharing/data5_3.jpg';
+import data5_4 from '/assets/bike-sharing/data5_4.jpg';
+import data5_5 from '/assets/bike-sharing/data5_5.jpg';
 
 export const meta = () => {
   return baseMeta({

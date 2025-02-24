@@ -42,7 +42,7 @@ import {
 import { ModelAnimationType, deviceModels } from './device-models';
 import { throttle } from '~/utils/throttle';
 import styles from './model.module.css';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { GLTFLoader } from 'three-stdlib';
 
 const MeshType = {
   Frame: 'Frame',
@@ -385,10 +385,7 @@ const Device = ({
         videoTexture.magFilter = LinearFilter;
         
         node.material = new MeshBasicMaterial({
-          map: videoTexture,
-          transparent: false,
-          opacity: 1,
-          color: 0xffffff,
+          map: videoTexture
         });
       } else {
         texture.colorSpace = SRGBColorSpace;
@@ -398,7 +395,6 @@ const Device = ({
         await renderer.current.initTexture(texture);
         node.material.map = texture;
         node.material.color = new Color(0xffffff);
-        node.material.transparent = true;
       }
     };
 
@@ -428,9 +424,7 @@ const Device = ({
         gltf.scene.traverse(async node => {
           if (node.material) {
             // Quest3 使用不同的材质颜色
-            if (type === 'quest3') {
-              node.material.color = new Color(0x808080);
-            } else {
+            if (type !== 'quest3') {
               node.material.color = new Color(0x1f2025);
             }
           }
