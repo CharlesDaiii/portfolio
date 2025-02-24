@@ -8,32 +8,28 @@ and graphic assets behind this site humanstxt.org.
 
 _______________________________________________________________________________
 
-DESIGNER | デザイナー
+DESIGNER & DEVELOPER
 
-Hamish Williams
+Ziying Qi
 Hand crafted design & web development
 
-Design tools:
-Figma
-Photoshop
-Blender
-
-twitter.com/hamishmw
-github.com/hamishmw
+LinkedIn: linkedin.com/in/zy-qi-computationaldesign
+GitHub: github.com/Qiqicoder
+Medium: medium.com/@ziyingq
 
 _______________________________________________________________________________
 
-TECHNOLOGY | テクノロジー
+TECHNOLOGY 
 
 React
 Remix
 Three.js
 Framer Motion
+CSS Modules
 
 _______________________________________________________________________________
 
-FONTS | フォント
+FONTS 
 
-Gotham
-IPA Gothic Regular
-Hiragino Kaku Gothic W8
+Gotham Book
+Gotham Medium

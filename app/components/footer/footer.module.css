@@ -3,14 +3,63 @@
     --lineHeightBody: 1.1;
 
     display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     width: 100vw;
     padding: var(--space3XL) var(--spaceL);
     z-index: var(--zIndex2);
     position: relative;
     color: var(--textLight);
+  }
+
+  .socialContainer {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spaceXL);
+    margin-bottom: var(--spaceM);
+    width: fit-content;
+  }
+
+  .footerContent {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    border-top: 1px solid rgba(var(--rgbText), 0.1);
+    padding-top: var(--spaceM);
+  }
+
+  .socialLink {
+    display: flex;
+    align-items: center;
+    gap: var(--spaceS);
+    color: var(--colorText);
+    text-decoration: none;
+    transition: color var(--durationS) ease;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    padding: var(--spaceXS) 0;
+  }
+
+  .socialLink::after {
+    content: '↗';
+    margin-left: var(--spaceXS);
+    font-size: 0.875rem;
+    transition: transform var(--durationS) ease;
+  }
+
+  .socialLink:hover {
+    color: var(--colorText);
+  }
+
+  .socialLink:hover::after {
+    transform: translate(1px, -1px);
+  }
+
+  .socialLink svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
   }
 
   .link {
@@ -20,5 +69,36 @@
   .date {
     padding-right: var(--spaceXS);
     display: inline-flex;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+  }
+
+  .footer > :last-child {
+    align-self: center;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    margin-top: var(--spaceM);
+  }
+
+  @media (--mediaMobile) {
+    .socialContainer {
+      gap: var(--spaceL);
+    }
+
+    .socialLink {
+      font-size: 0.875rem;
+    }
+
+    .socialLink svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .date {
+      font-size: 0.875rem;
+    }
   }
 }

@@ -33,12 +33,17 @@ export const navLinks = [
 export const socialLinks = [
   {
     label: 'GitHub',
-    url: 'https://github.com/your-github-username',
+    url: 'https://github.com/Qiqicoder',
     icon: 'github',
   },
   {
     label: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/ziying-qi',
+    url: 'https://www.linkedin.com/in/zy-qi-computationaldesign/',
     icon: 'linkedin',
   },
+  {
+    label: 'Medium',
+    url: 'https://medium.com/@ziyingq',
+    icon: 'medium'
+  }
 ];
