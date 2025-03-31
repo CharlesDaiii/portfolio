@@ -364,17 +364,17 @@
 }
 
 .contactLink {
-  color: rgb(0, 229, 255);
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-weight: 500;
-  padding-bottom: 2px;
-  border-bottom: 1px solid rgba(0, 229, 255, 0.3);
+  color: var(--colorTextLight);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(var(--rgbText), 0.3);
+  transition: all 0.2s ease;
 }
 
 .contactLink:hover {
-  color: rgb(0, 255, 255);
-  border-bottom-color: rgb(0, 255, 255);
+  color: var(--colorText);
+  text-decoration-color: var(--colorText);
 }
 
 .emoji {

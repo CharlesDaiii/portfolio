@@ -9,97 +9,45 @@ import { Text } from '~/components/text';
 import { tokens } from '~/components/theme-provider/theme';
 import { Transition } from '~/components/transition';
 import { useFormInput } from '~/hooks';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { cssProps, msToNum, numToMs } from '~/utils/style';
 import { baseMeta } from '~/utils/meta';
-import { Form, useActionData, useNavigation } from '@remix-run/react';
 import { json } from '@remix-run/cloudflare';
-import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import styles from './contact.module.css';
+import { Footer } from '~/components/footer';
+import { emailConfig } from '~/config/email';
 
 export const meta = () => {
   return baseMeta({
     title: 'Contact',
-    description:
-      'Send me a message if you‘re interested in discussing a project or if you just want to say hi',
+    description: "Send me a message if you're interested in discussing a project or if you just want to say hi",
   });
 };
 
 const MAX_EMAIL_LENGTH = 512;
 const MAX_MESSAGE_LENGTH = 4096;
-const EMAIL_PATTERN = /(.+)@(.+){2,}\.(.+){2,}/;
-
-export async function action({ context, request }) {
-  const ses = new SESClient({
-    region: 'us-east-1',
-    credentials: {
-      accessKeyId: context.cloudflare.env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: context.cloudflare.env.AWS_SECRET_ACCESS_KEY,
-    },
-  });
-
-  const formData = await request.formData();
-  const isBot = String(formData.get('name'));
-  const email = String(formData.get('email'));
-  const message = String(formData.get('message'));
-  const errors = {};
-
-  // Return without sending if a bot trips the honeypot
-  if (isBot) return json({ success: true });
-
-  // Handle input validation on the server
-  if (!email || !EMAIL_PATTERN.test(email)) {
-    errors.email = 'Please enter a valid email address.';
-  }
-
-  if (!message) {
-    errors.message = 'Please enter a message.';
-  }
-
-  if (email.length > MAX_EMAIL_LENGTH) {
-    errors.email = `Email address must be shorter than ${MAX_EMAIL_LENGTH} characters.`;
-  }
-
-  if (message.length > MAX_MESSAGE_LENGTH) {
-    errors.message = `Message must be shorter than ${MAX_MESSAGE_LENGTH} characters.`;
-  }
-
-  if (Object.keys(errors).length > 0) {
-    return json({ errors });
-  }
-
-  // Send email via Amazon SES
-  await ses.send(
-    new SendEmailCommand({
-      Destination: {
-        ToAddresses: [context.cloudflare.env.EMAIL],
-      },
-      Message: {
-        Body: {
-          Text: {
-            Data: `From: ${email}\n\n${message}`,
-          },
-        },
-        Subject: {
-          Data: `Portfolio message from ${email}`,
-        },
-      },
-      Source: `Portfolio <${context.cloudflare.env.FROM_EMAIL}>`,
-      ReplyToAddresses: [email],
-    })
-  );
-
-  return json({ success: true });
-}
 
 export const Contact = () => {
   const errorRef = useRef();
   const email = useFormInput('');
   const message = useFormInput('');
   const initDelay = tokens.base.durationS;
-  const actionData = useActionData();
-  const { state } = useNavigation();
-  const sending = state === 'submitting';
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  
+  // Get the current URL for the _next parameter
+  const getReturnUrl = () => {
+    if (typeof window !== 'undefined') {
+      return window.location.href;
+    }
+    return '/';
+  };
+
+  // Handle form submission - this allows us to show success UI without redirecting
+  const handleSubmit = (e) => {
+    // Form will be submitted normally to formsubmit.co
+    // We just want to track submission state for UI
+    setFormSubmitted(true);
+  };
 
   return (
     <Section className={styles.contact}>
@@ -113,8 +61,37 @@ export const Contact = () => {
                 <span className={styles.emoji}>👾</span>
               </Text>
               <Text className={styles.contactText}>
-                I cooked this site up with React, Remix, Three.js, and Framer Motion.
+                I cooked this site up with{' '}
+                <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+                  React
+                </a>
+                ,{' '}
+                <a href="https://remix.run" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+                  Remix
+                </a>
+                ,{' '}
+                <a href="https://threejs.org" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+                  Three.js
+                </a>
+                , and{' '}
+                <a href="https://www.framer.com/motion" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+                  Framer Motion
+                </a>
+                .
+                Beyond web development, my journey includes:
               </Text>
+              <p className={styles.contactText}>
+              
+                🎓 Computational Design @{' '}
+                <a href="https://www.cmu.edu" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+                  CMU
+                </a>
+                <br />
+                💼 Previous UX Designer @{' '}
+                <a href="https://www.usa.philips.com" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+                  Philips
+                </a>
+              </p>
               <Text className={styles.contactText}>
                 Everything's open source on my{' '}
                 <a 
@@ -132,13 +109,23 @@ export const Contact = () => {
         </Transition>
 
         <div>
-          <Transition unmount in={!actionData?.success} timeout={1600}>
+          <Transition unmount in={!formSubmitted} timeout={1600}>
             {({ status, nodeRef }) => (
-              <Form
+              <form
                 className={styles.form}
-                method="post"
+                action={`https://formsubmit.co/${emailConfig.emailTo}`}
+                method="POST"
                 ref={nodeRef}
+                onSubmit={handleSubmit}
               >
+                {/* FormSubmit.co configuration fields */}
+                <input type="hidden" name="_subject" value="New Contact Form Message" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_honey" value="" />
+                <input type="hidden" name="_next" value={getReturnUrl()} />
+                <input type="hidden" name="_autoresponse" value="Thank you for your message! I'll get back to you soon." />
+
                 <Heading
                   className={styles.title}
                   data-status={status}
@@ -153,9 +140,11 @@ export const Contact = () => {
                   data-status={status}
                   style={getDelay(tokens.base.durationXS, initDelay, 0.4)}
                 />
-                {/* Hidden honeypot field to identify bots */}
+                {/* Name field */}
                 <Input
-                  className={styles.botkiller}
+                  className={styles.input}
+                  style={getDelay(tokens.base.durationXS, initDelay)}
+                  data-status={status}
                   label="Name"
                   name="name"
                   maxLength={MAX_EMAIL_LENGTH}
@@ -184,47 +173,19 @@ export const Contact = () => {
                   maxLength={MAX_MESSAGE_LENGTH}
                   {...message}
                 />
-                <Transition
-                  unmount
-                  in={!sending && actionData?.errors}
-                  timeout={msToNum(tokens.base.durationM)}
-                >
-                  {({ status: errorStatus, nodeRef }) => (
-                    <div
-                      className={styles.formError}
-                      ref={nodeRef}
-                      data-status={errorStatus}
-                      style={cssProps({
-                        height: errorStatus ? errorRef.current?.offsetHeight : 0,
-                      })}
-                    >
-                      <div className={styles.formErrorContent} ref={errorRef}>
-                        <div className={styles.formErrorMessage}>
-                          <Icon className={styles.formErrorIcon} icon="error" />
-                          {actionData?.errors?.email}
-                          {actionData?.errors?.message}
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </Transition>
                 <Button
                   className={styles.button}
                   data-status={status}
-                  data-sending={sending}
                   style={getDelay(tokens.base.durationM, initDelay)}
-                  disabled={sending}
-                  loading={sending}
-                  loadingText="Sending..."
                   icon="send"
                   type="submit"
                 >
                   Send message
                 </Button>
-              </Form>
+              </form>
             )}
           </Transition>
-          <Transition unmount in={actionData?.success}>
+          <Transition unmount in={formSubmitted}>
             {({ status, nodeRef }) => (
               <div className={styles.complete} aria-live="polite" ref={nodeRef}>
                 <Heading
@@ -260,6 +221,7 @@ export const Contact = () => {
           </Transition>
         </div>
       </div>
+      <Footer />
     </Section>
   );
 };

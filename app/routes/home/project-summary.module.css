@@ -89,6 +89,16 @@
   width: 100%;
   margin: 0;
   padding: 0;
+  
+  @media (--mediaTablet) {
+    justify-content: center;
+    margin-bottom: var(--spaceXL);
+    min-height: 350px;
+  }
+  
+  @media (--mediaMobile) {
+    min-height: 280px;
+  }
 }
 
 .model {
@@ -114,9 +124,12 @@
     }
 
     @media (--mediaTablet) {
-      --width: 120%;
+      --width: 100%;
       top: 0;
       left: 0;
+      --scale: 1;
+      min-width: 100%;
+      justify-self: center;
     }
   }
 
@@ -137,14 +150,37 @@
       --width: 90%;
       left: 0;
       max-height: 48vh;
+      --scale: 0.6;
+      justify-self: center;
     }
 
     @media (--mediaMobile) {
       --width: 100%;
       left: 0;
       max-height: none;
+      --scale: 0.4;
     }
   }
+  
+  /* &[data-device='quest3'] {
+    --width: 160%;
+    --aspectRatio: 1 / 1;
+    --scale: 1.0; */
+    /* top: 30px; */
+
+    /* @media (--mediaTablet) {
+      --width: 100%;
+      --scale: 1;
+      min-width: 100%;
+      justify-self: center;
+      top: 80px; */
+    /* } */
+
+    /* @media (--mediaMobile) {
+      --scale: 0.9;
+      top: 100px;
+    } */
+  /* } */
 }
 
 .loader {

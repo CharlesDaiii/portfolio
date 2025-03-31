@@ -29,15 +29,14 @@ export const Navbar = () => {
         <Monogram />
       </Link>
       <nav className={styles.nav}>
-        {navLinks.map(({ label, pathname, type, download }) => (
+        {navLinks.map(({ label, pathname, type }) => (
           <a
             key={label}
             href={pathname}
             className={styles.navLink}
             data-type={type}
-            download={download}
-            target={download ? "_blank" : undefined}
-            rel={download ? "noopener noreferrer" : undefined}
+            target={label === 'Resume' ? '_blank' : undefined}
+            rel={label === 'Resume' ? 'noopener noreferrer' : undefined}
             aria-current={location.pathname === pathname ? 'page' : undefined}
           >
             {label}
@@ -49,13 +48,14 @@ export const Navbar = () => {
         <>
           <NavToggle onClick={() => setMenuOpen(!menuOpen)} menuOpen={menuOpen} />
           <nav className={`${styles.mobileNav} ${menuOpen ? styles.visible : ''}`}>
-            {navLinks.map(({ label, pathname, download }) => (
+            {navLinks.map(({ label, pathname }) => (
               <a
                 key={label}
                 href={pathname}
                 className={styles.mobileNavLink}
                 onClick={() => setMenuOpen(false)}
-                download={download}
+                target={label === 'Resume' ? '_blank' : undefined}
+                rel={label === 'Resume' ? 'noopener noreferrer' : undefined}
               >
                 {label}
               </a>

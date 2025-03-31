@@ -1,9 +1,9 @@
 {
   "name": "portfolio",
   "homepage": ".",
-  "description": "Portfolio site for Hamish Williams",
-  "repository": "https://github.com/HamishMW/portfolio.git",
-  "author": "Hamish Williams",
+  "description": "Portfolio site for Ziying Qi",
+  "repository": "https://github.com/Qiqicoder/portfolio.git",
+  "author": "Ziying Qi",
   "sideEffects": false,
   "type": "module",
   "scripts": {
@@ -24,6 +24,10 @@
     "@remix-run/react": "^2.7.1",
     "chart.js": "^4.4.7",
     "classnames": "^2.5.1",
+    "concurrently": "^9.1.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
     "framer-motion": "11.0.5",
     "isbot": "^4.1.0",
     "miniflare": "^3.20231030.4",

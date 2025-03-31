@@ -171,7 +171,7 @@ export function ProjectSummary({
           <div
             className={styles.model}
             data-device="laptop"
-            style={{ transform: 'scale(0.8)' }}
+            style={{ transform: isMobile ? 'scale(0.8)' : 'scale(0.8)' }}
             suppressHydrationWarning
           >
             <Suspense
@@ -187,13 +187,16 @@ export function ProjectSummary({
               {isHydrated && visible ? (
                 <Model
                   alt={model.alt}
-                  cameraPosition={{ x: 0, y: 0, z: 6 }}
+                  cameraPosition={{ x: 0, y: 0, z: isMobile ? 7 : 6 }}
                   showDelay={700}
                   onLoad={handleModelLoad}
                   show={visible}
                   models={[
                     {
                       ...deviceModels.laptop,
+                      position: isMobile 
+                        ? { x: 0, y: 0, z: 0 } 
+                        : deviceModels.laptop.position,
                       texture: model.video
                         ? {
                             type: 'video',
@@ -234,14 +237,16 @@ export function ProjectSummary({
               {isHydrated && visible ? (
                 <Model
                   alt={model.alt}
-                  cameraPosition={{ x: 0, y: 0, z: 10 }}
+                  cameraPosition={{ x: 0, y: 0, z: isMobile ? 12 : 10 }}
                   showDelay={300}
                   onLoad={handleModelLoad}
                   show={visible}
                   models={[
                     {
                       ...deviceModels.phone,
-                      position: { x: -0.6, y: 1.1, z: 0 },
+                      position: isMobile 
+                        ? { x: -0.4, y: 1.1, z: 0 } 
+                        : { x: -0.6, y: 1.1, z: 0 },
                       texture: {
                         ...model.textures[0],
                         sizes: phoneSizes,
@@ -249,7 +254,9 @@ export function ProjectSummary({
                     },
                     {
                       ...deviceModels.phone,
-                      position: { x: 0.6, y: -0.5, z: 0.3 },
+                      position: isMobile 
+                        ? { x: 0.4, y: -0.5, z: 0.3 } 
+                        : { x: 0.6, y: -0.5, z: 0.3 },
                       texture: {
                         ...model.textures[1],
                         sizes: phoneSizes,
@@ -281,7 +288,7 @@ export function ProjectSummary({
               {isHydrated && visible ? (
                 <Model
                   alt={model.alt}
-                  cameraPosition={{ x: 0, y: 0, z: 0.6 }}
+                  cameraPosition={{ x: 0, y: 0, z: isMobile ? 0.8 : 0.6 }}
                   showDelay={300}
                   onLoad={() => {
                     console.log('Quest3 model loaded successfully');
@@ -292,7 +299,9 @@ export function ProjectSummary({
                     {
                       type: 'quest3',
                       url: deviceModels.quest3.url,
-                      position: deviceModels.quest3.position,
+                      position: isMobile
+                        ? { x: 0, y: -0.1, z: 0 }
+                        : { x: deviceModels.quest3.position.x, y: deviceModels.quest3.position.y, z: deviceModels.quest3.position.z },
                       rotation: deviceModels.quest3.rotation,
                       scale: deviceModels.quest3.scale,
                       animation: ModelAnimationType.Quest3Rotate,

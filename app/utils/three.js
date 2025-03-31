@@ -83,21 +83,10 @@ export const getChild = (name, object) => {
   return node;
 };
 
-// 添加预加载函数
-export const preloadModel = (url) => {
-  try {
-    useGLTF.preload(url);
-    console.log('Preloaded model:', url);
-  } catch (error) {
-    console.warn('Model preload failed:', error);
-  }
-};
 
 // 扩展现有的 modelLoader
 const originalLoad = modelLoader.load.bind(modelLoader);
 modelLoader.load = (url, onLoad, onProgress, onError) => {
-  // 在加载之前尝试预加载
-  preloadModel(url);
   
   console.log('Loading model:', url);
   return originalLoad(

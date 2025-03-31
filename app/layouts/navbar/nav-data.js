@@ -24,9 +24,8 @@ export const navLinks = [
   },
   {
     label: 'Resume',
-    pathname: '/assets/resume/Resume-ZiyingQi.pdf',
-    type: 'contact',
-    download: true
+    pathname: '/resume',
+    type: 'contact'
   },
 ];
 

@@ -2,15 +2,36 @@
   .model {
     position: relative;
     opacity: 0;
+    width: 100%;
+    height: 100%;
 
     &[data-loaded='true']:global {
       animation: fade-in 1s ease forwards var(--delay);
+    }
+    
+    /* 添加媒体查询，确保在窄屏模式下模型容器能适应布局 */
+    @media (max-width: 1040px) {
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+    }
+    
+    /* 移动设备适配 */
+    @media (max-width: 696px) {
+      aspect-ratio: auto;
+      min-height: 280px;
     }
   }
 
   .canvas {
     position: absolute;
     inset: 0;
+    
+    /* 确保画布在窄屏模式下适应容器 */
+    @media (max-width: 1040px) {
+      width: 100% !important; /* 强制覆盖内联样式 */
+      height: 100% !important;
+    }
   }
 
   .model[data-device='quest3'] {
@@ -19,5 +40,14 @@
     height: 100%;
     transform-origin: center center;
     transform: scale(1.2);
+    
+    /* Quest3 模型在窄屏上的特殊处理 */
+    @media (max-width: 1040px) {
+      transform: scale(1);
+    }
+    
+    @media (max-width: 696px) {
+      transform: scale(0.9);
+    }
   }
 }
