@@ -1,4 +1,3 @@
-
 import matchingVideo from '/assets/petpals/Matching.mov';
 import adaptiveUIMain from '/assets/adaptive-ui/adaptive-ui-main.jpg';
 import adaptiveUIDetail from '/assets/adaptive-ui/adaptive-ui-detail.jpg';
@@ -119,27 +118,10 @@ export const Home = () => {
       />
       <SectionTitle />
       <ProjectSummary
-        id="ai-product"
+        id="data-narratives"
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
-        category="AI Product"
-        title="PetPals"
-        description="An AI-powered platform that helps pets seamlessly connect, find nearby playmates, and join vibrant pet communities."
-        buttonText="View project"
-        buttonLink="/projects/petpals"
-        model={{
-          type: 'laptop',
-          alt: 'PetPals web application interface',
-          video: matchingVideo
-        }}
-      />
-      <ProjectSummary
-        id="data-narratives"
-        alternate
-        sectionRef={projectTwo}
-        visible={visibleSections.includes(projectTwo.current)}
-        index={2}
         category="AI Product"
         title="Adaptive UI for Sleep & Respiratory Care"
         description="An AI-driven initiative at Philips—combining an Adaptive UI workshop I led and collaborative user testing with fellow designers, to deliver personalized, compliant interfaces for CPAP devices."
@@ -159,6 +141,23 @@ export const Home = () => {
               placeholder: adaptiveUIDetail,
             },
           ],
+        }}
+      />
+      <ProjectSummary
+        id="ai-product"
+        alternate
+        sectionRef={projectTwo}
+        visible={visibleSections.includes(projectTwo.current)}
+        index={2}
+        category="AI Product"
+        title="PetPals"
+        description="An AI-powered platform that helps pets seamlessly connect, find nearby playmates, and join vibrant pet communities."
+        buttonText="View project"
+        buttonLink="/projects/petpals"
+        model={{
+          type: 'laptop',
+          alt: 'PetPals web application interface',
+          video: matchingVideo
         }}
       />
       <ProjectSummary
