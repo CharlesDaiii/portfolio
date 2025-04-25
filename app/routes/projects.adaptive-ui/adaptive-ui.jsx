@@ -87,6 +87,19 @@ export const AdaptiveUI = () => {
 
           <div className={projectStyles.sectionContainer}>
             <div className={projectStyles.sectionHeader}>
+              <div className={projectStyles.sectionSubtitle}>● Storyboard</div>
+            </div>
+            <div className={styles.storyboardContainer}>
+              <img 
+                src="/assets/adaptive-ui/Storyboard.png" 
+                alt="Adaptive UI Storyboard" 
+                className={styles.storyboardImage} 
+              />
+            </div>
+          </div>
+
+          <div className={projectStyles.sectionContainer}>
+            <div className={projectStyles.sectionHeader}>
               <div className={projectStyles.sectionSubtitle}>● The Workshop</div>
               <h2 className={projectStyles.sectionTitle}>
                 Exploring Adaptive UI to Improve CPAP Usage

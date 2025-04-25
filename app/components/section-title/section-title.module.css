@@ -1,5 +1,5 @@
 .sectionTitle {
-  font-family: "Playfair Display", serif;
+  font-family: var(--displayFont);
   font-size: clamp(120px, 20vw, 260px);
   line-height: 1;
   color: var(--colorText);

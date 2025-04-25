@@ -408,6 +408,23 @@ ol.infoList li {
   object-fit: cover;
 }
 
+/* Storyboard Styles */
+.storyboardContainer {
+  width: 100%;
+  margin: 20px auto 60px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.storyboardImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 /* Media Queries */
 @media (max-width: 1024px) {
   .timelineStep {

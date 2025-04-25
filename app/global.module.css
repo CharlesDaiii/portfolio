@@ -10,11 +10,13 @@
 @custom-media --mediaNoTouch (pointer: fine);
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
 @layer base {
   :root {
-    --primaryFont: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    --monoFont: 'SF Mono', 'Roboto Mono', 'Cascadia Code', Menlo, monospace;
+    --primaryFont: 'Helvetica', Arial, sans-serif;
+    --displayFont: 'Playfair Display', serif;
+    --monoFont: 'SF Mono', 'Roboto Mono', Menlo, monospace;
     --fontWeightRegular: 400;
     --fontWeightMedium: 500;
     --fontWeightSemibold: 600;

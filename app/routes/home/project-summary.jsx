@@ -132,9 +132,9 @@ export function ProjectSummary({
             </>
           ) : title === "Adaptive UI for Sleep & Respiratory Care" ? (
             <>
-              <span className={styles.tag}>Co-Creation</span>
+              <span className={styles.tag}>Design Sprint</span>
               <span className={styles.tag}>User Testing</span>
-              <span className={styles.tag}>Proactive Intelligence</span>
+              <span className={styles.tag}>AI</span>
               <span className={styles.tag}>Healthcare</span>
             </>
           ) : title === "Fireboy & Watergirl" ? (
