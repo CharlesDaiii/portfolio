@@ -7,8 +7,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  justify-content: space-between;
+  gap: 20px;
 }
 
 /* Hero Section */
@@ -16,7 +15,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin: 20px 0 0;
+  margin: 20px 0 20px;
   position: relative;
 }
 
@@ -35,13 +34,13 @@
 .name::before {
   content: '';
   position: absolute;
-  left: -4px;
-  top: 0.6em;
+  left: 0;
+  top: 0.5em;
   height: 0.2em;
-  width: 100%;
+  width: 23%; /* 缩短宽度，使其大致与名字长度匹配 */
   background-color: var(--primary);
   z-index: -1;
-  opacity: 0.7;
+  opacity: 0.3; /* 降低不透明度，使其更淡 */
 }
 
 .title {
@@ -55,10 +54,26 @@
   padding-left: 2px;
 }
 
+/* Two Column Layout */
+.twoColumnLayout {
+  display: flex;
+  gap: 40px;
+  width: 100%;
+}
+
+.leftColumn {
+  flex: 1;
+  min-width: 0;
+}
+
+.rightColumn {
+  flex: 1;
+  min-width: 0;
+}
+
 /* About Section */
 .about {
-  max-width: 800px;
-  margin-top: 20px;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -88,14 +103,13 @@
 /* Projects Section */
 .projects {
   width: 100%;
-  margin-top: 20px;
 }
 
 .sectionTitle {
   font-size: 1.75rem;
   font-weight: 400;
   color: var(--text-primary);
-  margin: 0 0 20px 0;
+  margin: 0 0 12px 0;
   line-height: 1.1;
   position: relative;
   padding-left: 2px;
@@ -108,28 +122,29 @@
   left: 0;
   bottom: -6px;
   height: 2px;
-  width: 60px;
+  width: 100%; /* 改为100%让它跟随文字长度 */
   background-color: var(--primary);
   opacity: 0.8;
 }
 
 .projectsGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 6px;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-top: 4px;
 }
 
 .projectCard {
   display: block;
   text-decoration: none;
   background: var(--background-light);
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
   height: 100%;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   border: 1px solid rgba(255, 255, 255, 0.05);
   position: relative;
+  color: var(--text-primary);
 }
 
 .projectCard:hover {
@@ -155,23 +170,23 @@
 }
 
 .projectContent {
-  padding: 20px;
+  padding: 12px 14px;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .projectTitle {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--text-primary);
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
   line-height: 1.2;
 }
 
 .projectDescription {
-  font-size: 0.875rem;
-  line-height: 1.4;
+  font-size: 0.8125rem;
+  line-height: 1.35;
   color: var(--text-secondary);
   margin: 0;
   flex-grow: 1;
@@ -183,7 +198,7 @@
 @media (max-width: 1024px) {
   .container {
     padding: 50px 32px 40px;
-    gap: 40px;
+    gap: 30px;
   }
   
   .name {
@@ -194,19 +209,20 @@
     font-size: 1.25rem;
   }
   
-  .projectsGrid {
-    grid-template-columns: repeat(2, 1fr);
+  .twoColumnLayout {
+    gap: 30px;
   }
 }
 
 @media (max-width: 768px) {
   .container {
     padding: 40px 24px 30px;
-    gap: 30px;
+    gap: 20px;
   }
   
-  .projectsGrid {
-    grid-template-columns: 1fr;
+  .twoColumnLayout {
+    flex-direction: column;
+    gap: 20px;
   }
   
   .name {
@@ -214,7 +230,7 @@
   }
   
   .hero {
-    margin: 10px 0 0;
+    margin: 10px 0 10px;
   }
   
   .paragraph {

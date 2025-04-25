@@ -10,6 +10,20 @@ export const meta = () => {
   });
 };
 
+// 添加自定义样式，覆盖Link组件的默认紫色
+const linkStyle = {
+  color: 'inherit',
+  textDecoration: 'none'
+};
+
+// 添加内联链接样式，带下划线
+const inlineLink = {
+  color: 'var(--text-primary)',
+  textDecoration: 'underline',
+  textUnderlineOffset: '2px',
+  fontWeight: '500'
+};
+
 export default function Instalily() {
   // Log when component mounts to verify it's being loaded
   useEffect(() => {
@@ -29,12 +43,12 @@ export default function Instalily() {
             <section className={styles.about}>
               <h3 className={styles.sectionHeading}>👋 Who I Am</h3>
               <p className={styles.paragraph}>
-                Hi, I'm Ziying — a design engineer who loves building things that actually work and feel good to use. I come from a background in computational design and UX, and I've spent the past few years working across healthcare, social platforms, and AI-driven tools. Whether it's designing interfaces in Figma, coding up responsive React components, or integrating APIs like ChatGPT or Google Maps, I enjoy connecting the dots between ideas and real-world products.
+                Hi, I'm Ziying, a design engineer passionate about building intuitive, enjoyable products. My background blends computational design with hands-on UX/UI development. I've created responsive React experiences, integrated APIs like ChatGPT and Google Maps, and led projects in healthcare UX (<Link to="/projects/adaptive-ui" style={inlineLink}>Philips</Link>) and conversational AI research (<Link to="/projects/breast-cancer-ai" style={inlineLink}>Breast cancer support</Link>). I love turning complex ideas into simple, effective experiences like <Link to="/projects/petpals" style={inlineLink}>PetPals</Link> and <Link to="/projects/mr-finder" style={inlineLink}>MR Finder</Link>.
               </p>
               
               <h3 className={styles.sectionHeading}>🤝 Why I'm a Fit for Instalily</h3>
               <p className={styles.paragraph}>
-                What really drew me to Instalily is the way you treat agents not as one-off tools, but as composable systems that adapt, learn, and move work forward. That kind of structure-first, outcomes-driven mindset really resonates with how I approach design and engineering. I've built AI-powered features into full-stack apps, collaborated on conversational UX for healthcare, and led end-to-end design projects that balance complexity and clarity. I'm excited about the possibility of contributing to something that's pushing agentic systems beyond dashboards—and into action.
+                What really drew me to Instalily is the way you treat agents not as one-off tools, but as composable systems that adapt, learn, and move work forward. That kind of structure-first, outcomes-driven mindset really resonates with how I approach design and engineering. I'm excited about the possibility of contributing to something that's pushing agentic systems beyond dashboards—and into action.
               </p>
             </section>
           </div>
@@ -44,16 +58,7 @@ export default function Instalily() {
               <h2 className={styles.sectionTitle}>Relevant Projects</h2>
               
               <div className={styles.projectsGrid}>
-                <Link to="/projects/petpals" className={styles.projectCard}>
-                  <div className={styles.projectContent}>
-                    <h3 className={styles.projectTitle}>PetPals</h3>
-                    <p className={styles.projectDescription}>
-                      A pet social web app using AI-driven matching and full-stack development.
-                    </p>
-                  </div>
-                </Link>
-                
-                <Link to="/projects/adaptive-ui" className={styles.projectCard}>
+                <Link to="/projects/adaptive-ui" className={styles.projectCard} style={linkStyle}>
                   <div className={styles.projectContent}>
                     <h3 className={styles.projectTitle}>Philips UX Internship</h3>
                     <p className={styles.projectDescription}>
@@ -62,7 +67,16 @@ export default function Instalily() {
                   </div>
                 </Link>
                 
-                <Link to="/projects/mr-finder" className={styles.projectCard}>
+                <Link to="/projects/petpals" className={styles.projectCard} style={linkStyle}>
+                  <div className={styles.projectContent}>
+                    <h3 className={styles.projectTitle}>PetPals</h3>
+                    <p className={styles.projectDescription}>
+                      A pet social web app using AI-driven matching and full-stack development.
+                    </p>
+                  </div>
+                </Link>
+                
+                <Link to="/projects/mr-finder" className={styles.projectCard} style={linkStyle}>
                   <div className={styles.projectContent}>
                     <h3 className={styles.projectTitle}>MR Finder: Mixed Reality</h3>
                     <p className={styles.projectDescription}>
@@ -70,6 +84,30 @@ export default function Instalily() {
                     </p>
                   </div>
                 </Link>
+                
+                <Link to="/projects/breast-cancer-ai" className={styles.projectCard} style={linkStyle}>
+                  <div className={styles.projectContent}>
+                    <h3 className={styles.projectTitle}>Breast Cancer Conversational AI</h3>
+                    <p className={styles.projectDescription}>
+                      Researching and designing supportive conversational AI interfaces for breast cancer patients.
+                    </p>
+                  </div>
+                </Link>
+                
+                <a 
+                  href="https://www.figma.com/design/ZDyqTe2ovpNTS7SOiLj8Ba/IntheLens-EatMeFirst?node-id=0-1&p=f&t=IWuO5P8XX6XsWpYf-0" 
+                  className={styles.projectCard} 
+                  style={linkStyle}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div className={styles.projectContent}>
+                    <h3 className={styles.projectTitle}>Ongoing Swift UI Project</h3>
+                    <p className={styles.projectDescription}>
+                      IntheLens & EatMeFirst - A Swift UI design project focused on intuitive mobile experiences.
+                    </p>
+                  </div>
+                </a>
               </div>
             </section>
           </div>
@@ -77,4 +115,4 @@ export default function Instalily() {
       </div>
     </Fragment>
   );
-} 
+}
