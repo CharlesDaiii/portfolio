@@ -777,7 +777,8 @@ ol.infoList li {
 .prototypeCard {
   position: relative;
   width: 100%;
-  aspect-ratio: 4/3;  /* 调整为更高的比例 */
+  display: flex;
+  flex-direction: column;
   border-radius: 8px;
   overflow: hidden;
 }
@@ -785,25 +786,19 @@ ol.infoList li {
 .prototypeImage {
   width: 100%;
   height: 100%;
-  object-fit: cover;  /* 改回 cover 以填充整个容器 */
-  filter: blur(12px);  /* 增加模糊程度 */
-  opacity: 0.8;  /* 降低不透明度 */
-  transform: scale(1.1);  /* 稍微放大以避免模糊边缘 */
+  /* object-fit: cover;  /* 改回 cover 以填充整个容器 */
+  /* transform: scale(1);  稍微放大以避免模糊边缘 */ 
   background: rgba(0, 0, 0, 0.3);  /* 加深背景 */
 }
 
 .prototypeCaption {
-  position: absolute;
-  bottom: 12px;  /* 稍微往下移 */
-  left: 12px;
-  color: white;
-  font-size: 0.7rem;  /* 更小的字号 */
-  font-weight: 300;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);  /* 加强文字阴影 */
+  padding: 12px 0;  /* 上下padding，左右不需要 */
+  color: var(--text-secondary);  /* 改为普通文字颜色 */
+  font-size: 0.8rem;  /* 稍微增大字号 */
+  font-weight: 400;  /* 调整字重 */
   text-align: left;
-  max-width: 90%;
   line-height: 1.4;
-  opacity: 0.75;  /* 更透明 */
+  background: var(--background);  /* 添加背景色 */
 }
 
 /* Testing Section Styles */

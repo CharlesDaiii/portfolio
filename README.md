@@ -13,7 +13,7 @@ My personal portfolio website showcasing my work in AI product design, data visu
 - Three.js
 - Framer Motion
 - CSS Modules
-- Cloudflare Pages
+- Vercel
 
 ## 🎨 Design Features
 
