@@ -101,21 +101,29 @@ export const DevicePhone = ({
         model1.scale.set(1, 1, 1);
         
         // 设置纹理
-        if (textures[0]) {
-          const image = await resolveSrcFromSrcSet(textures[0]);
-          const textureLoader = new TextureLoader();
-          const texture = await textureLoader.loadAsync(image);
-          texture.colorSpace = SRGBColorSpace;
-          texture.flipY = false;
-          
-          model1.traverse((node) => {
-            if (node.isMesh && node.name === MeshType.Screen) {
-              node.material.map = texture;
-              node.material.color = new Color(0xffffff);
-            } else if (node.isMesh) {
-              node.material.color = new Color(0x1f2025);
-            }
-          });
+        if (textures && textures[0]) {
+          try {
+            const image = await resolveSrcFromSrcSet(textures[0]);
+            const textureLoader = new TextureLoader();
+            const texture = await textureLoader.loadAsync(image);
+            texture.colorSpace = SRGBColorSpace;
+            texture.flipY = false;
+            
+            model1.traverse((node) => {
+              if (node.isMesh && node.name === MeshType.Screen) {
+                // Clone material to avoid sharing issues
+                node.material = node.material.clone();
+                node.material.map = texture;
+                node.material.color = new Color(0xffffff);
+                node.material.needsUpdate = true;
+              } else if (node.isMesh) {
+                node.material.color = new Color(0x1f2025);
+              }
+            });
+            console.log('Phone model 1 texture loaded successfully');
+          } catch (error) {
+            console.error('Error loading texture for Phone model 1:', error);
+          }
         }
         
         models.push(model1);
@@ -145,21 +153,29 @@ export const DevicePhone = ({
         model2.scale.set(1, 1, 1);
         
         // 设置纹理
-        if (textures[1]) {
-          const image = await resolveSrcFromSrcSet(textures[1]);
-          const textureLoader = new TextureLoader();
-          const texture = await textureLoader.loadAsync(image);
-          texture.colorSpace = SRGBColorSpace;
-          texture.flipY = false;
-          
-          model2.traverse((node) => {
-            if (node.isMesh && node.name === MeshType.Screen) {
-              node.material.map = texture;
-              node.material.color = new Color(0xffffff);
-            } else if (node.isMesh) {
-              node.material.color = new Color(0x1f2025);
-            }
-          });
+        if (textures && textures[1]) {
+          try {
+            const image = await resolveSrcFromSrcSet(textures[1]);
+            const textureLoader = new TextureLoader();
+            const texture = await textureLoader.loadAsync(image);
+            texture.colorSpace = SRGBColorSpace;
+            texture.flipY = false;
+            
+            model2.traverse((node) => {
+              if (node.isMesh && node.name === MeshType.Screen) {
+                // Clone material to avoid sharing issues
+                node.material = node.material.clone();
+                node.material.map = texture;
+                node.material.color = new Color(0xffffff);
+                node.material.needsUpdate = true;
+              } else if (node.isMesh) {
+                node.material.color = new Color(0x1f2025);
+              }
+            });
+            console.log('Phone model 2 texture loaded successfully');
+          } catch (error) {
+            console.error('Error loading texture for Phone model 2:', error);
+          }
         }
         
         models.push(model2);

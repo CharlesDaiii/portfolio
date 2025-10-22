@@ -78,8 +78,8 @@ export const DeviceQuest3 = ({
         scene.add(model);
         
         // 调整模型位置和大小
-        model.position.set(0, 0, 0);
-        model.scale.set(1, 1, 1);
+        model.position.set(-0.15, 0, 0);
+        model.scale.set(3, 3, 3);
         
         setLoaded(true);
         onLoad?.();
