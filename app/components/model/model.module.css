@@ -38,16 +38,19 @@
     position: relative;
     width: 100%;
     height: 100%;
+    min-height: 500px;  /* 确保有足够的高度显示模型 */
     transform-origin: center center;
     transform: scale(1.2);
     
     /* Quest3 模型在窄屏上的特殊处理 */
     @media (max-width: 1040px) {
       transform: scale(1);
+      min-height: 400px;
     }
     
     @media (max-width: 696px) {
       transform: scale(0.9);
+      min-height: 350px;
     }
   }
 }

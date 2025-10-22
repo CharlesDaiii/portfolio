@@ -174,7 +174,8 @@ export function ProjectSummary({
           <div
             className={styles.model}
             data-device="laptop"
-            style={{ transform: isMobile ? 'scale(0.8)' : 'scale(0.8)' }}
+            data-loaded={modelLoaded}
+            style={{ '--delay': '700ms', transform: isMobile ? 'scale(0.8)' : 'scale(0.8)' }}
             suppressHydrationWarning
           >
             {isHydrated && (
@@ -205,6 +206,8 @@ export function ProjectSummary({
           <div
             className={styles.model}
             data-device="phone"
+            data-loaded={modelLoaded}
+            style={{ '--delay': '300ms' }}
             suppressHydrationWarning
           >
             {isHydrated && (
@@ -234,6 +237,8 @@ export function ProjectSummary({
           <div
             className={styles.model}
             data-device="quest3"
+            data-loaded={modelLoaded}
+            style={{ '--delay': '300ms' }}
             suppressHydrationWarning
           >
             {isHydrated && (

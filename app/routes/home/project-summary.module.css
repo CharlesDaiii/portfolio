@@ -213,25 +213,25 @@
     }
   }
   
-  /* &[data-device='quest3'] {
+  &[data-device='quest3'] {
     --width: 160%;
     --aspectRatio: 1 / 1;
-    --scale: 1.0; */
-    /* top: 30px; */
+    --scale: 1.0;
+    top: 30px;
 
-    /* @media (--mediaTablet) {
+    @media (--mediaTablet) {
       --width: 100%;
       --scale: 1;
       min-width: 100%;
       justify-self: center;
-      top: 80px; */
-    /* } */
+      top: 80px;
+    }
 
-    /* @media (--mediaMobile) {
+    @media (--mediaMobile) {
       --scale: 0.9;
       top: 100px;
-    } */
-  /* } */
+    }
+  }
 }
 
 .loader {

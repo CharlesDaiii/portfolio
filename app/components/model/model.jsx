@@ -284,9 +284,6 @@ export const Model = ({
     modelGroup.current.rotation.x = rotationX.get();
     modelGroup.current.rotation.y = rotationY.get();
 
-    scene.current.traverse(o => {
-      if (o.isMesh) console.log(o.material);
-    });
     renderer.current.render(scene.current, camera.current);
   }, [blurShadow, rotationX, rotationY]);
 

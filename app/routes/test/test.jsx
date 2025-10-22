@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import {
   Scene,
   PerspectiveCamera,
@@ -8,36 +8,30 @@ import {
   SRGBColorSpace,
 } from 'three';
 import { GLTFLoader } from 'three-stdlib';
-import { deviceModels } from './device-models';
-import styles from './model.module.css';
+import { baseMeta } from '~/utils/meta';
+import styles from './test.module.css';
 
-export const DeviceQuest3 = ({ 
-  alt, 
-  onLoad, 
-  show,
-  isMobile 
-}) => {
+export const meta = () => {
+  return baseMeta({
+    title: 'Quest 3 Model Test',
+    description: 'Testing Quest 3 GLB model loading',
+  });
+};
+
+export const Test = () => {
   const canvasRef = useRef(null);
-  const [loaded, setLoaded] = useState(false);
+  const containerRef = useRef(null);
 
   useEffect(() => {
-    // 关键：等待 show 为 true 才初始化，像其他模型组件一样
-    if (!canvasRef.current || !show) return;
-
-    // 使用 canvas 的父元素作为容器
-    const container = canvasRef.current.parentElement;
-    if (!container) return;
-
-    const containerWidth = container.clientWidth;
-    const containerHeight = container.clientHeight;
+    if (!canvasRef.current || !containerRef.current) return;
 
     // 设置场景
     const scene = new Scene();
     
-    // 设置相机 - 完全按照 test 的设置
+    // 设置相机
     const camera = new PerspectiveCamera(
       45,
-      containerWidth / containerHeight || 1,
+      containerRef.current.clientWidth / containerRef.current.clientHeight,
       0.1,
       1000
     );
@@ -49,7 +43,7 @@ export const DeviceQuest3 = ({
       alpha: true,
       antialias: true,
     });
-    renderer.setSize(containerWidth, containerHeight);
+    renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.outputColorSpace = SRGBColorSpace;
 
@@ -67,30 +61,31 @@ export const DeviceQuest3 = ({
 
     // 加载模型
     const loader = new GLTFLoader();
-    const modelUrl = deviceModels.quest3.url;
+    const modelUrl = 'https://res.cloudinary.com/dkodwtxtw/image/upload/v1761088955/quest3_rrz0w1.glb';
     
     let model = null;
     
     loader.load(
       modelUrl,
       (gltf) => {
+        console.log('Model loaded successfully:', gltf);
         model = gltf.scene;
         scene.add(model);
         
         // 调整模型位置和大小
         model.position.set(0, 0, 0);
         model.scale.set(1, 1, 1);
-        
-        setLoaded(true);
-        onLoad?.();
       },
-      undefined,
+      (progress) => {
+        const percent = (progress.loaded / progress.total) * 100;
+        console.log(`Loading: ${percent.toFixed(2)}%`);
+      },
       (error) => {
-        console.error('Error loading Quest3 model:', error);
+        console.error('Error loading model:', error);
       }
     );
 
-    // 动画循环 - 完全按照 test 的设置
+    // 动画循环
     let animationFrameId;
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
@@ -106,11 +101,10 @@ export const DeviceQuest3 = ({
 
     // 处理窗口大小变化
     const handleResize = () => {
-      const currentContainer = canvasRef.current?.parentElement;
-      if (!currentContainer) return;
+      if (!containerRef.current) return;
       
-      const width = currentContainer.clientWidth;
-      const height = currentContainer.clientHeight;
+      const width = containerRef.current.clientWidth;
+      const height = containerRef.current.clientHeight;
       
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
@@ -130,7 +124,19 @@ export const DeviceQuest3 = ({
       scene.clear();
       renderer.dispose();
     };
-  }, [show]); // 当 show 变化时重新初始化
+  }, []);
 
-  return <canvas ref={canvasRef} className={styles.canvas} data-loaded={loaded} />;
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.title}>Quest 3 Model Test - Raw Three.js</h1>
+      <div className={styles.modelWrapper} ref={containerRef}>
+        <canvas ref={canvasRef} className={styles.canvas} />
+      </div>
+      <div className={styles.info}>
+        <p>Loading model directly from Three.js GLTFLoader</p>
+        <p>Model URL: https://res.cloudinary.com/dkodwtxtw/image/upload/v1761088955/quest3_rrz0w1.glb</p>
+      </div>
+    </div>
+  );
 };
+
