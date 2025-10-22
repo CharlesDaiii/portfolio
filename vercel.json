@@ -4,17 +4,6 @@
   "installCommand": "npm install",
   "framework": "remix",
   "outputDirectory": "build/client",
-  "functions": {
-    "app/routes/**/*.{js,ts,jsx,tsx}": {
-      "maxDuration": 30
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/((?!assets/).*)",
-      "destination": "/index.js"
-    }
-  ],
   "headers": [
     {
       "source": "/assets/(.*)",

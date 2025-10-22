@@ -9,6 +9,7 @@ import rehypeSlug from 'rehype-slug';
 import rehypePrism from '@mapbox/rehype-prism';
 
 export default defineConfig({
+  publicDir: 'public',
   assetsInclude: [
     "**/*.glb", 
     "**/*.hdr", 

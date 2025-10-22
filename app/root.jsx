@@ -108,7 +108,6 @@ export default function App() {
 
   useEffect(() => {
     console.info(
-      `${config.ascii}\n`,
       `Taking a peek huh? Check out the source code: ${config.repo}\n\n`
     );
   }, []);
@@ -122,12 +121,11 @@ export default function App() {
         <meta name="theme-color" content={theme === 'dark' ? '#111' : '#F2F2F2'} />
         <meta
           name="color-scheme"
-          content={theme === 'light' ? 'light dark' : 'dark light'}
+          content={theme === 'dark' ? 'dark' : 'light'}
         />
         <style dangerouslySetInnerHTML={{ __html: themeStyles }} />
         <Meta />
         <Links />
-        <link rel="canonical" href={canonicalUrl} />
       </head>
       <body data-theme={theme}>
         <ThemeProvider theme={theme} toggleTheme={toggleTheme}>
@@ -161,7 +159,7 @@ export function ErrorBoundary() {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#111" />
-        <meta name="color-scheme" content="dark light" />
+        <meta name="color-scheme" content="dark" />
         <style dangerouslySetInnerHTML={{ __html: themeStyles }} />
         <Meta />
         <Links />

@@ -1,6 +1,6 @@
-import iphone11 from '/assets/iphone-11.glb';
-import macbookPro from '/assets/macbook-pro.glb';
-import quest3Model from '/assets/quest3.glb';
+const iphone11 = 'https://res.cloudinary.com/dkodwtxtw/image/upload/v1761088955/iphone-11_nbtpjb.glb';
+const macbookPro = 'https://res.cloudinary.com/dkodwtxtw/image/upload/v1761088955/macbook-pro_gonomn.glb';
+const quest3Model = 'https://res.cloudinary.com/dkodwtxtw/image/upload/v1761088955/quest3_rrz0w1.glb';
 
 export const ModelAnimationType = {
   SpringUp: 'spring-up',
