@@ -11,6 +11,7 @@ import {
   VideoTexture,
   LinearFilter,
   TextureLoader,
+  MathUtils,
 } from 'three';
 import { GLTFLoader, DRACOLoader } from 'three-stdlib';
 import { deviceModels } from './device-models';
@@ -32,6 +33,8 @@ export const DeviceLaptop = ({
   const canvasRef = useRef(null);
   const videoElement = useRef(null);
   const [loaded, setLoaded] = useState(false);
+  const targetRotation = useRef({ x: 0, y: 0 });
+  const currentRotation = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     if (!canvasRef.current || !show) return;
@@ -150,14 +153,27 @@ export const DeviceLaptop = ({
       }
     );
 
-    // 动画循环
+    // 动画循环 - 使用平滑插值跟随鼠标
     let animationFrameId;
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
       
-      // 轻微旋转模型
+      // 使用lerp平滑插值跟随鼠标位置
+      currentRotation.current.x = MathUtils.lerp(
+        currentRotation.current.x,
+        targetRotation.current.x,
+        0.05
+      );
+      currentRotation.current.y = MathUtils.lerp(
+        currentRotation.current.y,
+        targetRotation.current.y,
+        0.05
+      );
+      
+      // 应用旋转到模型
       if (model) {
-        model.rotation.y += 0.002;
+        model.rotation.x = currentRotation.current.x;
+        model.rotation.y = currentRotation.current.y;
       }
       
       renderer.render(scene, camera);
@@ -178,9 +194,24 @@ export const DeviceLaptop = ({
     };
     window.addEventListener('resize', handleResize);
 
+    // 处理鼠标移动 - 小幅度跟随
+    const handleMouseMove = (event) => {
+      const { innerWidth, innerHeight } = window;
+      
+      // 计算鼠标相对于屏幕中心的位置 (-0.5 到 0.5)
+      const x = (event.clientX / innerWidth) - 0.5;
+      const y = (event.clientY / innerHeight) - 0.5;
+      
+      // 设置目标旋转角度，使用较小的系数来实现小幅度转动
+      targetRotation.current.y = x * 0.3; // 水平旋转范围约 ±17度
+      targetRotation.current.x = y * 0.2; // 垂直旋转范围约 ±11度
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+
     // 清理函数
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrameId);
       
       if (videoElement.current) {
