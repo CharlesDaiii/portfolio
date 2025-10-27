@@ -16,10 +16,16 @@ export default defineConfig({
     "**/*.glsl", 
     "**/*.mp4", 
     "**/*.jpg",
-    "**/*.pdf"
+    "**/*.pdf",
+    "**/*.woff2"
   ],
   build: {
     assetsInlineLimit: 1024,
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
   },
   server: {
     port: 3003,

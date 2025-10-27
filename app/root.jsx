@@ -12,7 +12,11 @@ import {
 import { createCookieSessionStorage, json } from '@remix-run/node';
 import { ThemeProvider, themeStyles } from '~/components/theme-provider';
 import GothamBook from '/assets/fonts/gotham-book.woff2';
+import GothamBookItalic from '/assets/fonts/gotham-book-italic.woff2';
 import GothamMedium from '/assets/fonts/gotham-medium.woff2';
+import GothamMediumItalic from '/assets/fonts/gotham-medium-italic.woff2';
+import GothamBold from '/assets/fonts/gotham-bold.woff2';
+import GothamBoldItalic from '/assets/fonts/gotham-bold-italic.woff2';
 import { useEffect } from 'react';
 import { Error } from '~/layouts/error';
 import { VisuallyHidden } from '~/components/visually-hidden';
@@ -39,6 +43,20 @@ export const links = () => [
   },
   {
     rel: 'preload',
+    href: GothamBook,
+    as: 'font',
+    type: 'font/woff2',
+    crossOrigin: '',
+  },
+  {
+    rel: 'preload',
+    href: GothamBookItalic,
+    as: 'font',
+    type: 'font/woff2',
+    crossOrigin: '',
+  },
+  {
+    rel: 'preload',
     href: GothamMedium,
     as: 'font',
     type: 'font/woff2',
@@ -46,7 +64,21 @@ export const links = () => [
   },
   {
     rel: 'preload',
-    href: GothamBook,
+    href: GothamMediumItalic,
+    as: 'font',
+    type: 'font/woff2',
+    crossOrigin: '',
+  },
+  {
+    rel: 'preload',
+    href: GothamBold,
+    as: 'font',
+    type: 'font/woff2',
+    crossOrigin: '',
+  },
+  {
+    rel: 'preload',
+    href: GothamBoldItalic,
     as: 'font',
     type: 'font/woff2',
     crossOrigin: '',

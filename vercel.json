@@ -15,7 +15,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(?:glb|hdr|glsl|mp4|jpg|png|gif|webp|pdf))",
+      "source": "/(.*\\.(?:glb|hdr|glsl|mp4|jpg|png|gif|webp|pdf|woff2))",
       "headers": [
         {
           "key": "Cache-Control",
