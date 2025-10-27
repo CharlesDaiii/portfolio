@@ -1,8 +1,8 @@
 .sectionTitle {
-  font-family: var(--displayFont);
+  font-family: var(--displayFont, 'Playfair Display', serif);
   font-size: clamp(120px, 20vw, 260px);
   line-height: 1;
-  color: var(--colorText);
+  color: var(--text);
   position: absolute;
   top: 80vh;
   left: var(--spaceOuter);
@@ -11,6 +11,9 @@
   font-weight: 400;
   letter-spacing: -0.02em;
   z-index: 1;
+  font-display: swap;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @media (max-width: 1096px) {

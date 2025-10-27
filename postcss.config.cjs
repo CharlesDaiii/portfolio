@@ -4,5 +4,7 @@ module.exports = {
       files: ['app/global.module.css'],
     },
     'postcss-custom-media': {},
+    'postcss-nesting': {},
+    'autoprefixer': {},
   },
 };
