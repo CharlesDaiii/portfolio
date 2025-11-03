@@ -12,7 +12,7 @@ import { useFormInput } from '~/hooks';
 import { useRef, useState } from 'react';
 import { cssProps, msToNum, numToMs } from '~/utils/style';
 import { baseMeta } from '~/utils/meta';
-import { json } from '@remix-run/cloudflare';
+import { json } from '@remix-run/node';
 import styles from './contact.module.css';
 import { Footer } from '~/components/footer';
 import { emailConfig } from '~/config/email';

@@ -1,19 +1,52 @@
 import { Cache, TextureLoader } from 'three';
 import { DRACOLoader, GLTFLoader } from 'three-stdlib';
 
-// Enable caching for all loaders
-Cache.enabled = true;
+// Enable caching for all loaders (this is safe for SSR)
+if (typeof window !== 'undefined') {
+  Cache.enabled = true;
+}
 
-const dracoLoader = new DRACOLoader();
-const gltfLoader = new GLTFLoader();
-dracoLoader.setDecoderPath('/draco/');
-gltfLoader.setDRACOLoader(dracoLoader);
+// Lazy initialization to avoid SSR issues
+let dracoLoader = null;
+let gltfLoader = null;
+let textureLoaderInstance = null;
+
+function initLoaders() {
+  if (typeof window === 'undefined') {
+    return;
+  }
+  
+  if (!dracoLoader) {
+    dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath('/draco/');
+  }
+  
+  if (!gltfLoader) {
+    gltfLoader = new GLTFLoader();
+    gltfLoader.setDRACOLoader(dracoLoader);
+  }
+  
+  if (!textureLoaderInstance) {
+    textureLoaderInstance = new TextureLoader();
+  }
+}
 
 /**
  * GLTF model loader configured with draco decoder
  */
-export const modelLoader = gltfLoader;
-export const textureLoader = new TextureLoader();
+export const modelLoader = new Proxy({}, {
+  get(target, prop) {
+    initLoaders();
+    return gltfLoader?.[prop];
+  }
+});
+
+export const textureLoader = new Proxy({}, {
+  get(target, prop) {
+    initLoaders();
+    return textureLoaderInstance?.[prop];
+  }
+});
 
 /**
  * Clean up a scene's materials and geometry
@@ -82,37 +115,3 @@ export const getChild = (name, object) => {
 
   return node;
 };
-
-
-// 扩展现有的 modelLoader
-const originalLoad = modelLoader.load.bind(modelLoader);
-modelLoader.load = (url, onLoad, onProgress, onError) => {
-  
-  console.log('Loading model:', url);
-  return originalLoad(
-    url,
-    onLoad,
-    onProgress,
-    (error) => {
-      console.error('Model loading error:', error);
-      onError?.(error);
-    }
-  );
-};
-
-// 新增检测函数
-export function isWebGLAvailable() {
-  try {
-    const canvas = document.createElement('canvas');
-    return !!(
-      window.WebGLRenderingContext && 
-      (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
-    );
-  } catch (e) {
-    return false;
-  }
-}
-
-window.addEventListener('error', (event) => {
-  console.error('WebGL Error:', event.error);
-});

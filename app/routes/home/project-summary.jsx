@@ -1,23 +1,30 @@
 import { Button } from '~/components/button';
 import { Divider } from '~/components/divider';
 import { Heading } from '~/components/heading';
-import { deviceModels, ModelAnimationType } from '~/components/model/device-models';
 import { Section } from '~/components/section';
 import { Text } from '~/components/text';
-import { useTheme } from '~/components/theme-provider';
 import { Transition } from '~/components/transition';
 import { Loader } from '~/components/loader';
 import { useWindowSize } from '~/hooks';
 import { Suspense, lazy, useState } from 'react';
-import { cssProps, media } from '~/utils/style';
+import { media } from '~/utils/style';
 import { useHydrated } from '~/hooks/useHydrated';
 import styles from './project-summary.module.css';
 import philipsLogo from '/assets/adaptive-ui/Philips.png';
 import philipsSRCLogo from '/assets/adaptive-ui/SRC.png';
 import bikelogo from '/assets/bike-sharing/bikelogo.jpg';
 
-const Model = lazy(() =>
-  import('~/components/model').then(module => ({ default: module.Model }))
+// 懒加载设备组件，类似云朵的加载方式
+const DevicePhone = lazy(() =>
+  import('~/components/model/device-phone').then(module => ({ default: module.DevicePhone }))
+);
+
+const DeviceLaptop = lazy(() =>
+  import('~/components/model/device-laptop').then(module => ({ default: module.DeviceLaptop }))
+);
+
+const DeviceQuest3 = lazy(() =>
+  import('~/components/model/device-quest3').then(module => ({ default: module.DeviceQuest3 }))
 );
 
 export function ProjectSummary({
@@ -38,16 +45,12 @@ export function ProjectSummary({
   const [focused, setFocused] = useState(false);
   const [modelLoaded, setModelLoaded] = useState(false);
 
-  const { theme } = useTheme();
   const { width } = useWindowSize();
   const isHydrated = useHydrated();
 
   const titleId = `${id}-title`;
   const isMobile = width <= media.tablet;
-  const svgOpacity = theme === 'light' ? 0.7 : 1;
   const indexText = index < 10 ? `0${index}` : index;
-  const phoneSizes = `(max-width: ${media.tablet}px) 30vw, 20vw`;
-  const laptopSizes = `(max-width: ${media.tablet}px) 80vw, 40vw`;
 
   // 仅客户端加载后才回调
   function handleModelLoad() {
@@ -166,150 +169,98 @@ export function ProjectSummary({
   function renderPreview(visible) {
     return (
       <div className={styles.preview}>
-        {/* Laptop */}
+        {/* Laptop - 懒加载方式，类似云朵 */}
         {model?.type === 'laptop' && (
           <div
             className={styles.model}
             data-device="laptop"
-            style={{ transform: isMobile ? 'scale(0.8)' : 'scale(0.8)' }}
+            data-loaded={modelLoaded}
+            style={{ '--delay': '700ms', transform: isMobile ? 'scale(0.8)' : 'scale(0.8)' }}
             suppressHydrationWarning
           >
-            <Suspense
-              fallback={
-                <Loader
-                  center
-                  className={styles.loader}
-                  data-visible={visible}
-                />
-              }
-            >
-              {/* 仅在客户端且 section 可见时真正挂载 Model */}
-              {isHydrated && visible ? (
-                <Model
+            {isHydrated && (
+              <Suspense
+                fallback={
+                  <Loader
+                    center
+                    className={styles.loader}
+                    data-visible={visible}
+                  />
+                }
+              >
+                <DeviceLaptop
                   alt={model.alt}
-                  cameraPosition={{ x: 0, y: 0, z: isMobile ? 7 : 6 }}
-                  showDelay={700}
+                  video={model.video}
+                  texture={model.textures?.[0]}
                   onLoad={handleModelLoad}
                   show={visible}
-                  models={[
-                    {
-                      ...deviceModels.laptop,
-                      position: isMobile 
-                        ? { x: 0, y: 0, z: 0 } 
-                        : deviceModels.laptop.position,
-                      texture: model.video
-                        ? {
-                            type: 'video',
-                            src: model.video,
-                            autoPlay: true,
-                            loop: true,
-                            muted: true,
-                            playsInline: true,
-                          }
-                        : {
-                            ...model.textures?.[0],
-                            sizes: laptopSizes,
-                          },
-                    },
-                  ]}
+                  isMobile={isMobile}
                 />
-              ) : null}
-            </Suspense>
+              </Suspense>
+            )}
           </div>
         )}
 
-        {/* Phone */}
+        {/* Phone - 懒加载方式，类似云朵 */}
         {model?.type === 'phone' && (
           <div
             className={styles.model}
             data-device="phone"
+            data-loaded={modelLoaded}
+            style={{ '--delay': '300ms' }}
             suppressHydrationWarning
           >
-            <Suspense
-              fallback={
-                <Loader
-                  center
-                  className={styles.loader}
-                  data-visible={visible}
-                />
-              }
-            >
-              {isHydrated && visible ? (
-                <Model
+            {isHydrated && (
+              <Suspense
+                fallback={
+                  <Loader
+                    center
+                    className={styles.loader}
+                    data-visible={visible}
+                  />
+                }
+              >
+                <DevicePhone
                   alt={model.alt}
-                  cameraPosition={{ x: 0, y: 0, z: isMobile ? 12 : 10 }}
-                  showDelay={300}
+                  textures={model.textures}
                   onLoad={handleModelLoad}
                   show={visible}
-                  models={[
-                    {
-                      ...deviceModels.phone,
-                      position: isMobile 
-                        ? { x: -0.4, y: 1.1, z: 0 } 
-                        : { x: -0.6, y: 1.1, z: 0 },
-                      texture: {
-                        ...model.textures[0],
-                        sizes: phoneSizes,
-                      },
-                    },
-                    {
-                      ...deviceModels.phone,
-                      position: isMobile 
-                        ? { x: 0.4, y: -0.5, z: 0.3 } 
-                        : { x: 0.6, y: -0.5, z: 0.3 },
-                      texture: {
-                        ...model.textures[1],
-                        sizes: phoneSizes,
-                      },
-                    },
-                  ]}
+                  isMobile={isMobile}
                 />
-              ) : null}
-            </Suspense>
+              </Suspense>
+            )}
           </div>
         )}
 
-        {/* Quest3 */}
+        {/* Quest3 - 懒加载方式，类似云朵 */}
         {model?.type === 'quest3' && (
           <div
             className={styles.model}
             data-device="quest3"
+            data-loaded={modelLoaded}
+            style={{ '--delay': '300ms' }}
             suppressHydrationWarning
           >
-            <Suspense
-              fallback={
-                <Loader
-                  center
-                  className={styles.loader}
-                  data-visible={visible}
-                />
-              }
-            >
-              {isHydrated && visible ? (
-                <Model
+            {isHydrated && (
+              <Suspense
+                fallback={
+                  <Loader
+                    center
+                    className={styles.loader}
+                    data-visible={visible}
+                  />
+                }
+              >
+                <DeviceQuest3
                   alt={model.alt}
-                  cameraPosition={{ x: 0, y: 0, z: isMobile ? 0.8 : 0.6 }}
-                  showDelay={300}
                   onLoad={() => {
-                    console.log('Quest3 model loaded successfully');
                     handleModelLoad();
                   }}
                   show={visible}
-                  models={[
-                    {
-                      type: 'quest3',
-                      url: deviceModels.quest3.url,
-                      position: isMobile
-                        ? { x: 0, y: -0.1, z: 0 }
-                        : { x: deviceModels.quest3.position.x, y: deviceModels.quest3.position.y, z: deviceModels.quest3.position.z },
-                      rotation: deviceModels.quest3.rotation,
-                      scale: deviceModels.quest3.scale,
-                      animation: ModelAnimationType.Quest3Rotate,
-                    },
-                  ]}
+                  isMobile={isMobile}
                 />
-              ) : null}
-            </Suspense>
+              </Suspense>
+            )}
           </div>
         )}
 

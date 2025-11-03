@@ -42,7 +42,6 @@ import {
 import { ModelAnimationType, deviceModels } from './device-models';
 import { throttle } from '~/utils/throttle';
 import styles from './model.module.css';
-import { GLTFLoader } from 'three-stdlib';
 
 const MeshType = {
   Frame: 'Frame',
@@ -102,8 +101,14 @@ export const Model = ({
       failIfMajorPerformanceCaveat: true,
     });
 
-    renderer.current.setPixelRatio(2);
-    renderer.current.setSize(clientWidth, clientHeight);
+    // Use device pixel ratio with a sensible cap for performance
+    const dpr = typeof window !== 'undefined' ? Math.min(window.devicePixelRatio || 1, 2) : 1;
+    renderer.current.setPixelRatio(dpr);
+    renderer.current.setSize(clientWidth || 1, clientHeight || 1);
+    // Ensure canvas fills its container even if CSS hasn't applied yet
+    renderer.current.domElement.style.width = '100%';
+    renderer.current.domElement.style.height = '100%';
+    renderer.current.domElement.style.display = 'block';
     renderer.current.outputColorSpace = SRGBColorSpace;
 
     camera.current = new PerspectiveCamera(36, clientWidth / clientHeight, 0.1, 100);
@@ -212,8 +217,6 @@ export const Model = ({
 
     const unsubscribeX = rotationX.on('change', renderFrame);
     const unsubscribeY = rotationY.on('change', renderFrame);
-
-    const loader = new GLTFLoader();
 
     return () => {
       renderTarget.current.dispose();
@@ -329,6 +332,27 @@ export const Model = ({
     };
   }, [renderFrame]);
 
+  // Observe container size changes (e.g., after CSS loads or layout shifts)
+  useEffect(() => {
+    if (!container.current) return;
+
+    const observer = new ResizeObserver(entries => {
+      const entry = entries[0];
+      if (!entry) return;
+      const width = Math.max(1, Math.floor(entry.contentRect.width));
+      const height = Math.max(1, Math.floor(entry.contentRect.height));
+      if (!renderer.current || !camera.current) return;
+
+      renderer.current.setSize(width, height);
+      camera.current.aspect = width / height;
+      camera.current.updateProjectionMatrix();
+      renderFrame();
+    });
+
+    observer.observe(container.current);
+    return () => observer.disconnect();
+  }, [renderFrame]);
+
   return (
     <div
       className={classes(styles.model, className)}
@@ -417,7 +441,9 @@ const Device = ({
         const [gltf] = await Promise.all([
           modelLoader.loadAsync(url),
         ]);
-
+        console.log(gltf);
+        console.log(gltf.scene);
+        console.log('Model position:', gltf.scene.position);
         modelGroup.current.add(gltf.scene);
 
         // 根据模型类型设置材质

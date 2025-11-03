@@ -80,6 +80,9 @@ export const AdaptiveUI = () => {
                   <p className={projectStyles.overviewText}>
                     Our small-scale study indicated a potential <strong>10–15% boost</strong> in device usage and user satisfaction. By offering <strong>subtle, user-controlled AI features</strong>, we reduced everyday friction so patients could stick to their CPAP routines more easily—helping them stay on track with treatment in a natural, comfortable way.
                   </p>
+                  <p className={projectStyles.overviewText} style={{ fontStyle: 'italic' }}>
+                    *This case study reflects work done during my internship at Philips and is intended for portfolio demonstration only. Full content available upon request.
+                  </p>
                 </div>
               </div>
             </section>
@@ -234,6 +237,7 @@ export const AdaptiveUI = () => {
                 ))}
               </div>
 
+            
               <div className={styles.testingSection}>
                 <div className={projectStyles.sectionSubtitle}>● User Testing</div>
                 <h2 className={projectStyles.sectionTitle}>From Complexity to Simplicity</h2>
@@ -348,4 +352,4 @@ export const AdaptiveUI = () => {
     </Fragment>
   );
 };
-export default AdaptiveUI; 
+export default AdaptiveUI;

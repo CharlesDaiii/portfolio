@@ -1,7 +1,4 @@
-import {
-  vitePlugin as remix,
-  cloudflareDevProxyVitePlugin as remixCloudflareDevProxy,
-} from '@remix-run/dev';
+import { vitePlugin as remix } from '@remix-run/dev';
 import { defineConfig } from 'vite';
 import jsconfigPaths from 'vite-jsconfig-paths';
 import mdx from '@mdx-js/rollup';
@@ -12,16 +9,23 @@ import rehypeSlug from 'rehype-slug';
 import rehypePrism from '@mapbox/rehype-prism';
 
 export default defineConfig({
+  publicDir: 'public',
   assetsInclude: [
     "**/*.glb", 
     "**/*.hdr", 
     "**/*.glsl", 
     "**/*.mp4", 
     "**/*.jpg",
-    "**/*.pdf"
+    "**/*.pdf",
+    "**/*.woff2"
   ],
   build: {
     assetsInlineLimit: 1024,
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
   },
   server: {
     port: 3003,
@@ -33,22 +37,6 @@ export default defineConfig({
       rehypePlugins: [[rehypeImgSize, { dir: 'public' }], rehypeSlug, rehypePrism],
       remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
       providerImportSource: '@mdx-js/react',
-    }),
-    remixCloudflareDevProxy({
-      getLoadContext: () => ({
-        cloudflare: {
-          env: {
-            SESSION_SECRET: process.env.SESSION_SECRET || 'dev-secret'
-          }
-        }
-      }),
-      platformProxy: {
-        crypto: () => ({
-          subtle: crypto.subtle,
-          randomUUID: crypto.randomUUID?.bind(crypto),
-          getRandomValues: crypto.getRandomValues?.bind(crypto),
-        })
-      }
     }),
     remix({
       routes(defineRoutes) {

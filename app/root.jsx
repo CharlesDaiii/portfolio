@@ -9,10 +9,14 @@ import {
   useNavigation,
   useRouteError,
 } from '@remix-run/react';
-import { createCookieSessionStorage, json } from '@remix-run/cloudflare';
+import { createCookieSessionStorage, json } from '@remix-run/node';
 import { ThemeProvider, themeStyles } from '~/components/theme-provider';
 import GothamBook from '/assets/fonts/gotham-book.woff2';
+import GothamBookItalic from '/assets/fonts/gotham-book-italic.woff2';
 import GothamMedium from '/assets/fonts/gotham-medium.woff2';
+import GothamMediumItalic from '/assets/fonts/gotham-medium-italic.woff2';
+import GothamBold from '/assets/fonts/gotham-bold.woff2';
+import GothamBoldItalic from '/assets/fonts/gotham-bold-italic.woff2';
 import { useEffect } from 'react';
 import { Error } from '~/layouts/error';
 import { VisuallyHidden } from '~/components/visually-hidden';
@@ -35,7 +39,21 @@ export const links = () => [
   },
   {
     rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap',
+    href: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap',
+  },
+  {
+    rel: 'preload',
+    href: GothamBook,
+    as: 'font',
+    type: 'font/woff2',
+    crossOrigin: '',
+  },
+  {
+    rel: 'preload',
+    href: GothamBookItalic,
+    as: 'font',
+    type: 'font/woff2',
+    crossOrigin: '',
   },
   {
     rel: 'preload',
@@ -46,7 +64,21 @@ export const links = () => [
   },
   {
     rel: 'preload',
-    href: GothamBook,
+    href: GothamMediumItalic,
+    as: 'font',
+    type: 'font/woff2',
+    crossOrigin: '',
+  },
+  {
+    rel: 'preload',
+    href: GothamBold,
+    as: 'font',
+    type: 'font/woff2',
+    crossOrigin: '',
+  },
+  {
+    rel: 'preload',
+    href: GothamBoldItalic,
     as: 'font',
     type: 'font/woff2',
     crossOrigin: '',
@@ -72,7 +104,7 @@ export const loader = async ({ request, context }) => {
       maxAge: 604_800,
       path: '/',
       sameSite: 'lax',
-      secrets: [context.cloudflare.env.SESSION_SECRET || ' '],
+      secrets: [process.env.SESSION_SECRET || 'dev-secret'],
       secure: true,
     },
   });
@@ -108,7 +140,6 @@ export default function App() {
 
   useEffect(() => {
     console.info(
-      `${config.ascii}\n`,
       `Taking a peek huh? Check out the source code: ${config.repo}\n\n`
     );
   }, []);
@@ -122,12 +153,11 @@ export default function App() {
         <meta name="theme-color" content={theme === 'dark' ? '#111' : '#F2F2F2'} />
         <meta
           name="color-scheme"
-          content={theme === 'light' ? 'light dark' : 'dark light'}
+          content={theme === 'dark' ? 'dark' : 'light'}
         />
         <style dangerouslySetInnerHTML={{ __html: themeStyles }} />
         <Meta />
         <Links />
-        <link rel="canonical" href={canonicalUrl} />
       </head>
       <body data-theme={theme}>
         <ThemeProvider theme={theme} toggleTheme={toggleTheme}>
@@ -161,7 +191,7 @@ export function ErrorBoundary() {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#111" />
-        <meta name="color-scheme" content="dark light" />
+        <meta name="color-scheme" content="dark" />
         <style dangerouslySetInnerHTML={{ __html: themeStyles }} />
         <Meta />
         <Links />

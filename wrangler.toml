@@ -1,8 +1,0 @@
-kv_namespaces = [
-  { id = "MY_KV", binding="MY_KV" }
-]
-compatibility_date = "2025-02-21"
-
-[vars]
-RESEND_API_KEY = "你的_API_KEY"
-EMAIL = "ziyingq@andrew.cmu.edu"
