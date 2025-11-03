@@ -12,3 +12,4 @@ storybook-static
 
 .dev.vars
 .vercel
+.DS_Store

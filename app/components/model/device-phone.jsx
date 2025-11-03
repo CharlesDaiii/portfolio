@@ -123,7 +123,6 @@ export const DevicePhone = ({
                 node.material.color = new Color(0x1f2025);
               }
             });
-            console.log('Phone model 1 texture loaded successfully');
           } catch (error) {
             console.error('Error loading texture for Phone model 1:', error);
           }
@@ -175,7 +174,6 @@ export const DevicePhone = ({
                 node.material.color = new Color(0x1f2025);
               }
             });
-            console.log('Phone model 2 texture loaded successfully');
           } catch (error) {
             console.error('Error loading texture for Phone model 2:', error);
           }

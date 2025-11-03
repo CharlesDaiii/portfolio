@@ -11,11 +11,11 @@ import styles from './bike-sharing.module.css';
 import projectStyles from '~/styles/project.module.css';
 import { ProjectNav } from '~/components/project-nav/project-nav';
 
-import data5_1 from '/assets/bike-sharing/data5_1.jpg';
-import data5_2 from '/assets/bike-sharing/data5_2.jpg';
-import data5_3 from '/assets/bike-sharing/data5_3.jpg';
-import data5_4 from '/assets/bike-sharing/data5_4.jpg';
-import data5_5 from '/assets/bike-sharing/data5_5.jpg';
+import data5_1 from '/assets/bike-sharing/data5_1.jpeg';
+import data5_2 from '/assets/bike-sharing/data5_2.jpeg';
+import data5_3 from '/assets/bike-sharing/data5_3.jpeg';
+import data5_4 from '/assets/bike-sharing/data5_4.jpeg';
+import data5_5 from '/assets/bike-sharing/data5_5.jpeg';
 
 export const meta = () => {
   return baseMeta({
