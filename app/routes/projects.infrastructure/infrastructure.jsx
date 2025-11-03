@@ -12,12 +12,12 @@ import { optimizeImage } from '~/utils/image-optimization';
 import { ProjectNav } from '~/components/project-nav/project-nav';
 
 // 导入图片
-import data6_1 from '/assets/infrastructure/data6_1.jpg';
-import data6_2 from '/assets/infrastructure/data6_2.jpg';
-import data6_3 from '/assets/infrastructure/data6_3.jpg';
-import data6_4 from '/assets/infrastructure/data6_4.jpg';
-import data6_5 from '/assets/infrastructure/data6_5.jpg';
-import data6_6 from '/assets/infrastructure/data6_6.jpg';
+import data6_1 from '/assets/infrastructure/data6_1.jpeg';
+import data6_2 from '/assets/infrastructure/data6_2.jpeg';
+import data6_3 from '/assets/infrastructure/data6_3.jpeg';
+import data6_4 from '/assets/infrastructure/data6_4.jpeg';
+import data6_5 from '/assets/infrastructure/data6_5.jpeg';
+import data6_6 from '/assets/infrastructure/data6_6.jpeg';
 
 export const meta = () => {
   return baseMeta({
