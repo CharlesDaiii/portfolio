@@ -19,22 +19,65 @@ import data7_1Image from '/assets/fireboywatergirl/7.1.png';
 import data7Image from '/assets/fireboywatergirl/7.2.png';
 import bikelogo from '/assets/bike-sharing/bikelogo.jpg';
 
-// Prefetch draco decoader wasm
+// 渐进式加载策略：根据资源重要性分级加载
 export const links = () => {
   return [
+    // === 🚀 高优先级 (preload) - 首屏关键资源 ===
+    // DRACO 解码器（解压 GLB 模型必需）
     {
-      rel: 'prefetch',
+      rel: 'preload',
       href: '/draco/draco_wasm_wrapper.js',
       as: 'script',
       type: 'text/javascript',
-      importance: 'low',
     },
     {
-      rel: 'prefetch',
+      rel: 'preload',
       href: '/draco/draco_decoder.wasm',
       as: 'fetch',
       type: 'application/wasm',
-      importance: 'low',
+    },
+    
+    // Project 1: Phone 模型（Adaptive UI - 首屏）
+    {
+      rel: 'preload',
+      href: '/assets/iphone-11.glb',
+      as: 'fetch',
+      type: 'model/gltf-binary',
+      crossOrigin: 'anonymous',
+    },
+    
+    // Project 1: Phone 模型的纹理图片（首屏）
+    {
+      rel: 'preload',
+      href: '/assets/adaptive-ui/adaptive-ui-main.jpg',
+      as: 'image',
+      type: 'image/jpeg',
+    },
+    
+    // === ⚡ 中优先级 (prefetch) - 第二屏资源 ===
+    // Project 2: Laptop 模型（PetPals）
+    {
+      rel: 'prefetch',
+      href: '/assets/macbook-pro.glb',
+      as: 'fetch',
+      type: 'model/gltf-binary',
+    },
+    
+    // Project 2: Laptop 模型的视频纹理
+    {
+      rel: 'prefetch',
+      href: '/assets/petpals/Matching.mov',
+      as: 'video',
+      type: 'video/quicktime',
+    },
+    
+    // === 💡 低优先级 (prefetch) - 后续屏幕资源 ===
+    // Project 3: Quest3 模型（MR Finder）
+    {
+      rel: 'prefetch',
+      href: '/assets/quest3.glb',
+      as: 'fetch',
+      type: 'model/gltf-binary',
     },
   ];
 };
