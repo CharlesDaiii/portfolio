@@ -16,6 +16,9 @@ import therapy1Image from '/assets/adaptive-ui/Therapy1.png';
 import therapy2Image from '/assets/adaptive-ui/Therapy2.png';
 import therapy3Image from '/assets/adaptive-ui/Therapy3.png';
 import therapy4Image from '/assets/adaptive-ui/Therapy4.png';
+import dreamFamilyImage from '/assets/adaptive-ui/dream_family_gross.jpg';
+import presentationImage from '/assets/adaptive-ui/presentation.png';
+import endImage from '/assets/adaptive-ui/End.png';
 import projectStyles from '~/styles/project.module.css';
 import { ProjectNav } from '~/components/project-nav/project-nav';
 
@@ -34,11 +37,18 @@ export const AdaptiveUI = () => {
     <Fragment>
       <ProjectContainer className={styles.adaptiveUI}>
         <div className={styles.slogan}>
-          <div className={styles.sloganSubtitle}>Adaptive UI – Workshop & User Testing for Philips Sleep & Respiratory Care</div>
-          <h1 className={styles.sloganTitle}>
-          Breathe easy: Subtle AI that adapts, never overshadows.
-          </h1>
-          <div className={styles.sloganDivider} />
+          <div className={styles.sloganBackground} style={{ backgroundImage: `url(${dreamFamilyImage})` }} />
+          <div className={styles.sloganContent}>
+            <div className={styles.sloganSubtitle}>Adaptive UI – Workshop & User Testing for Philips Sleep & Respiratory Care</div>
+            <h1 className={styles.sloganTitle}>
+            Breathe easy: Subtle AI that adapts, never overshadows.
+            </h1>
+            <div className={styles.sloganDivider} />
+          </div>
+        </div>
+
+        <div className={styles.endImageContainer}>
+          <img src={endImage} alt="Project End" className={styles.endImage} />
         </div>
         
         <div className={styles.mainContent}>
@@ -346,6 +356,9 @@ export const AdaptiveUI = () => {
             </div>
           </div>
         </div>
+        <div className={styles.presentationImageContainer}>
+                <img src={presentationImage} alt="Presentation" className={styles.presentationImage} />
+              </div>
       </ProjectContainer>
       <ProjectNav currentPath="/projects/adaptive-ui" />
       <Footer />
